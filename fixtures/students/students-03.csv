@@ -1,0 +1,101 @@
+name,email,program,year,department,studentId
+Mock UNZA-EDU-RELS Y1 009 Chipo Banda,mock.unza-edu-rels.y1.009@example.test,Mock study cohort - Religious Studies,1,UNZA-EDU-RELS,202690201
+Mock UNZA-EDU-RELS Y2 010 Mapalo Banda,mock.unza-edu-rels.y2.010@example.test,Mock study cohort - Religious Studies,2,UNZA-EDU-RELS,202690202
+Mock UNZA-EDU-RELS Y3 011 Chanda Phiri,mock.unza-edu-rels.y3.011@example.test,Mock study cohort - Religious Studies,3,UNZA-EDU-RELS,202690203
+Mock UNZA-EDU-RELS Y4 012 Mutinta Phiri,mock.unza-edu-rels.y4.012@example.test,Mock study cohort - Religious Studies,4,UNZA-EDU-RELS,202690204
+Mock UNZA-EDU-RELS Y1 013 Mwila Phiri,mock.unza-edu-rels.y1.013@example.test,Mock study cohort - Religious Studies,1,UNZA-EDU-RELS,202690205
+Mock UNZA-EDU-RELS Y2 014 Thandiwe Phiri,mock.unza-edu-rels.y2.014@example.test,Mock study cohort - Religious Studies,2,UNZA-EDU-RELS,202690206
+Mock UNZA-EDU-RELS Y3 015 Bwalya Phiri,mock.unza-edu-rels.y3.015@example.test,Mock study cohort - Religious Studies,3,UNZA-EDU-RELS,202690207
+Mock UNZA-EDU-RELS Y4 016 Luyando Phiri,mock.unza-edu-rels.y4.016@example.test,Mock study cohort - Religious Studies,4,UNZA-EDU-RELS,202690208
+Mock UNZA-GSB-ABF Y1 001 Chanda Banda,mock.unza-gsb-abf.y1.001@example.test,Mock study cohort - Accounting; Banking; and Finance,1,UNZA-GSB-ABF,202690209
+Mock UNZA-GSB-ABF Y2 002 Mutinta Banda,mock.unza-gsb-abf.y2.002@example.test,Mock study cohort - Accounting; Banking; and Finance,2,UNZA-GSB-ABF,202690210
+Mock UNZA-GSB-ABF Y3 003 Mwila Banda,mock.unza-gsb-abf.y3.003@example.test,Mock study cohort - Accounting; Banking; and Finance,3,UNZA-GSB-ABF,202690211
+Mock UNZA-GSB-ABF Y4 004 Thandiwe Banda,mock.unza-gsb-abf.y4.004@example.test,Mock study cohort - Accounting; Banking; and Finance,4,UNZA-GSB-ABF,202690212
+Mock UNZA-GSB-ABF Y1 005 Bwalya Banda,mock.unza-gsb-abf.y1.005@example.test,Mock study cohort - Accounting; Banking; and Finance,1,UNZA-GSB-ABF,202690213
+Mock UNZA-GSB-ABF Y2 006 Luyando Banda,mock.unza-gsb-abf.y2.006@example.test,Mock study cohort - Accounting; Banking; and Finance,2,UNZA-GSB-ABF,202690214
+Mock UNZA-GSB-ABF Y3 007 Musonda Banda,mock.unza-gsb-abf.y3.007@example.test,Mock study cohort - Accounting; Banking; and Finance,3,UNZA-GSB-ABF,202690215
+Mock UNZA-GSB-ABF Y4 008 Mwaka Banda,mock.unza-gsb-abf.y4.008@example.test,Mock study cohort - Accounting; Banking; and Finance,4,UNZA-GSB-ABF,202690216
+Mock UNZA-GSB-ABF Y1 009 Chipo Banda,mock.unza-gsb-abf.y1.009@example.test,Mock study cohort - Accounting; Banking; and Finance,1,UNZA-GSB-ABF,202690217
+Mock UNZA-GSB-ABF Y2 010 Mapalo Banda,mock.unza-gsb-abf.y2.010@example.test,Mock study cohort - Accounting; Banking; and Finance,2,UNZA-GSB-ABF,202690218
+Mock UNZA-GSB-ABF Y3 011 Chanda Phiri,mock.unza-gsb-abf.y3.011@example.test,Mock study cohort - Accounting; Banking; and Finance,3,UNZA-GSB-ABF,202690219
+Mock UNZA-GSB-ABF Y4 012 Mutinta Phiri,mock.unza-gsb-abf.y4.012@example.test,Mock study cohort - Accounting; Banking; and Finance,4,UNZA-GSB-ABF,202690220
+Mock UNZA-GSB-ABF Y1 013 Mwila Phiri,mock.unza-gsb-abf.y1.013@example.test,Mock study cohort - Accounting; Banking; and Finance,1,UNZA-GSB-ABF,202690221
+Mock UNZA-GSB-ABF Y2 014 Thandiwe Phiri,mock.unza-gsb-abf.y2.014@example.test,Mock study cohort - Accounting; Banking; and Finance,2,UNZA-GSB-ABF,202690222
+Mock UNZA-GSB-ABF Y3 015 Bwalya Phiri,mock.unza-gsb-abf.y3.015@example.test,Mock study cohort - Accounting; Banking; and Finance,3,UNZA-GSB-ABF,202690223
+Mock UNZA-GSB-ABF Y4 016 Luyando Phiri,mock.unza-gsb-abf.y4.016@example.test,Mock study cohort - Accounting; Banking; and Finance,4,UNZA-GSB-ABF,202690224
+Mock UNZA-GSB-BMM Y1 001 Chanda Banda,mock.unza-gsb-bmm.y1.001@example.test,Mock study cohort - Business Management; and Marketing,1,UNZA-GSB-BMM,202690225
+Mock UNZA-GSB-BMM Y2 002 Mutinta Banda,mock.unza-gsb-bmm.y2.002@example.test,Mock study cohort - Business Management; and Marketing,2,UNZA-GSB-BMM,202690226
+Mock UNZA-GSB-BMM Y3 003 Mwila Banda,mock.unza-gsb-bmm.y3.003@example.test,Mock study cohort - Business Management; and Marketing,3,UNZA-GSB-BMM,202690227
+Mock UNZA-GSB-BMM Y4 004 Thandiwe Banda,mock.unza-gsb-bmm.y4.004@example.test,Mock study cohort - Business Management; and Marketing,4,UNZA-GSB-BMM,202690228
+Mock UNZA-GSB-BMM Y1 005 Bwalya Banda,mock.unza-gsb-bmm.y1.005@example.test,Mock study cohort - Business Management; and Marketing,1,UNZA-GSB-BMM,202690229
+Mock UNZA-GSB-BMM Y2 006 Luyando Banda,mock.unza-gsb-bmm.y2.006@example.test,Mock study cohort - Business Management; and Marketing,2,UNZA-GSB-BMM,202690230
+Mock UNZA-GSB-BMM Y3 007 Musonda Banda,mock.unza-gsb-bmm.y3.007@example.test,Mock study cohort - Business Management; and Marketing,3,UNZA-GSB-BMM,202690231
+Mock UNZA-GSB-BMM Y4 008 Mwaka Banda,mock.unza-gsb-bmm.y4.008@example.test,Mock study cohort - Business Management; and Marketing,4,UNZA-GSB-BMM,202690232
+Mock UNZA-GSB-BMM Y1 009 Chipo Banda,mock.unza-gsb-bmm.y1.009@example.test,Mock study cohort - Business Management; and Marketing,1,UNZA-GSB-BMM,202690233
+Mock UNZA-GSB-BMM Y2 010 Mapalo Banda,mock.unza-gsb-bmm.y2.010@example.test,Mock study cohort - Business Management; and Marketing,2,UNZA-GSB-BMM,202690234
+Mock UNZA-GSB-BMM Y3 011 Chanda Phiri,mock.unza-gsb-bmm.y3.011@example.test,Mock study cohort - Business Management; and Marketing,3,UNZA-GSB-BMM,202690235
+Mock UNZA-GSB-BMM Y4 012 Mutinta Phiri,mock.unza-gsb-bmm.y4.012@example.test,Mock study cohort - Business Management; and Marketing,4,UNZA-GSB-BMM,202690236
+Mock UNZA-GSB-BMM Y1 013 Mwila Phiri,mock.unza-gsb-bmm.y1.013@example.test,Mock study cohort - Business Management; and Marketing,1,UNZA-GSB-BMM,202690237
+Mock UNZA-GSB-BMM Y2 014 Thandiwe Phiri,mock.unza-gsb-bmm.y2.014@example.test,Mock study cohort - Business Management; and Marketing,2,UNZA-GSB-BMM,202690238
+Mock UNZA-GSB-BMM Y3 015 Bwalya Phiri,mock.unza-gsb-bmm.y3.015@example.test,Mock study cohort - Business Management; and Marketing,3,UNZA-GSB-BMM,202690239
+Mock UNZA-GSB-BMM Y4 016 Luyando Phiri,mock.unza-gsb-bmm.y4.016@example.test,Mock study cohort - Business Management; and Marketing,4,UNZA-GSB-BMM,202690240
+Mock UNZA-GSB-OPSC Y1 001 Chanda Banda,mock.unza-gsb-opsc.y1.001@example.test,Mock study cohort - Operations; Projects; and Supply Chain Management,1,UNZA-GSB-OPSC,202690241
+Mock UNZA-GSB-OPSC Y2 002 Mutinta Banda,mock.unza-gsb-opsc.y2.002@example.test,Mock study cohort - Operations; Projects; and Supply Chain Management,2,UNZA-GSB-OPSC,202690242
+Mock UNZA-GSB-OPSC Y3 003 Mwila Banda,mock.unza-gsb-opsc.y3.003@example.test,Mock study cohort - Operations; Projects; and Supply Chain Management,3,UNZA-GSB-OPSC,202690243
+Mock UNZA-GSB-OPSC Y4 004 Thandiwe Banda,mock.unza-gsb-opsc.y4.004@example.test,Mock study cohort - Operations; Projects; and Supply Chain Management,4,UNZA-GSB-OPSC,202690244
+Mock UNZA-GSB-OPSC Y1 005 Bwalya Banda,mock.unza-gsb-opsc.y1.005@example.test,Mock study cohort - Operations; Projects; and Supply Chain Management,1,UNZA-GSB-OPSC,202690245
+Mock UNZA-GSB-OPSC Y2 006 Luyando Banda,mock.unza-gsb-opsc.y2.006@example.test,Mock study cohort - Operations; Projects; and Supply Chain Management,2,UNZA-GSB-OPSC,202690246
+Mock UNZA-GSB-OPSC Y3 007 Musonda Banda,mock.unza-gsb-opsc.y3.007@example.test,Mock study cohort - Operations; Projects; and Supply Chain Management,3,UNZA-GSB-OPSC,202690247
+Mock UNZA-GSB-OPSC Y4 008 Mwaka Banda,mock.unza-gsb-opsc.y4.008@example.test,Mock study cohort - Operations; Projects; and Supply Chain Management,4,UNZA-GSB-OPSC,202690248
+Mock UNZA-GSB-OPSC Y1 009 Chipo Banda,mock.unza-gsb-opsc.y1.009@example.test,Mock study cohort - Operations; Projects; and Supply Chain Management,1,UNZA-GSB-OPSC,202690249
+Mock UNZA-GSB-OPSC Y2 010 Mapalo Banda,mock.unza-gsb-opsc.y2.010@example.test,Mock study cohort - Operations; Projects; and Supply Chain Management,2,UNZA-GSB-OPSC,202690250
+Mock UNZA-GSB-OPSC Y3 011 Chanda Phiri,mock.unza-gsb-opsc.y3.011@example.test,Mock study cohort - Operations; Projects; and Supply Chain Management,3,UNZA-GSB-OPSC,202690251
+Mock UNZA-GSB-OPSC Y4 012 Mutinta Phiri,mock.unza-gsb-opsc.y4.012@example.test,Mock study cohort - Operations; Projects; and Supply Chain Management,4,UNZA-GSB-OPSC,202690252
+Mock UNZA-GSB-OPSC Y1 013 Mwila Phiri,mock.unza-gsb-opsc.y1.013@example.test,Mock study cohort - Operations; Projects; and Supply Chain Management,1,UNZA-GSB-OPSC,202690253
+Mock UNZA-GSB-OPSC Y2 014 Thandiwe Phiri,mock.unza-gsb-opsc.y2.014@example.test,Mock study cohort - Operations; Projects; and Supply Chain Management,2,UNZA-GSB-OPSC,202690254
+Mock UNZA-GSB-OPSC Y3 015 Bwalya Phiri,mock.unza-gsb-opsc.y3.015@example.test,Mock study cohort - Operations; Projects; and Supply Chain Management,3,UNZA-GSB-OPSC,202690255
+Mock UNZA-GSB-OPSC Y4 016 Luyando Phiri,mock.unza-gsb-opsc.y4.016@example.test,Mock study cohort - Operations; Projects; and Supply Chain Management,4,UNZA-GSB-OPSC,202690256
+Mock UNZA-ENG-AGEN Y1 001 Chanda Banda,mock.unza-eng-agen.y1.001@example.test,Mock study cohort - Agricultural Engineering,1,UNZA-ENG-AGEN,202690257
+Mock UNZA-ENG-AGEN Y2 002 Mutinta Banda,mock.unza-eng-agen.y2.002@example.test,Mock study cohort - Agricultural Engineering,2,UNZA-ENG-AGEN,202690258
+Mock UNZA-ENG-AGEN Y3 003 Mwila Banda,mock.unza-eng-agen.y3.003@example.test,Mock study cohort - Agricultural Engineering,3,UNZA-ENG-AGEN,202690259
+Mock UNZA-ENG-AGEN Y4 004 Thandiwe Banda,mock.unza-eng-agen.y4.004@example.test,Mock study cohort - Agricultural Engineering,4,UNZA-ENG-AGEN,202690260
+Mock UNZA-ENG-AGEN Y1 005 Bwalya Banda,mock.unza-eng-agen.y1.005@example.test,Mock study cohort - Agricultural Engineering,1,UNZA-ENG-AGEN,202690261
+Mock UNZA-ENG-AGEN Y2 006 Luyando Banda,mock.unza-eng-agen.y2.006@example.test,Mock study cohort - Agricultural Engineering,2,UNZA-ENG-AGEN,202690262
+Mock UNZA-ENG-AGEN Y3 007 Musonda Banda,mock.unza-eng-agen.y3.007@example.test,Mock study cohort - Agricultural Engineering,3,UNZA-ENG-AGEN,202690263
+Mock UNZA-ENG-AGEN Y4 008 Mwaka Banda,mock.unza-eng-agen.y4.008@example.test,Mock study cohort - Agricultural Engineering,4,UNZA-ENG-AGEN,202690264
+Mock UNZA-ENG-AGEN Y1 009 Chipo Banda,mock.unza-eng-agen.y1.009@example.test,Mock study cohort - Agricultural Engineering,1,UNZA-ENG-AGEN,202690265
+Mock UNZA-ENG-AGEN Y2 010 Mapalo Banda,mock.unza-eng-agen.y2.010@example.test,Mock study cohort - Agricultural Engineering,2,UNZA-ENG-AGEN,202690266
+Mock UNZA-ENG-AGEN Y3 011 Chanda Phiri,mock.unza-eng-agen.y3.011@example.test,Mock study cohort - Agricultural Engineering,3,UNZA-ENG-AGEN,202690267
+Mock UNZA-ENG-AGEN Y4 012 Mutinta Phiri,mock.unza-eng-agen.y4.012@example.test,Mock study cohort - Agricultural Engineering,4,UNZA-ENG-AGEN,202690268
+Mock UNZA-ENG-AGEN Y1 013 Mwila Phiri,mock.unza-eng-agen.y1.013@example.test,Mock study cohort - Agricultural Engineering,1,UNZA-ENG-AGEN,202690269
+Mock UNZA-ENG-AGEN Y2 014 Thandiwe Phiri,mock.unza-eng-agen.y2.014@example.test,Mock study cohort - Agricultural Engineering,2,UNZA-ENG-AGEN,202690270
+Mock UNZA-ENG-AGEN Y3 015 Bwalya Phiri,mock.unza-eng-agen.y3.015@example.test,Mock study cohort - Agricultural Engineering,3,UNZA-ENG-AGEN,202690271
+Mock UNZA-ENG-AGEN Y4 016 Luyando Phiri,mock.unza-eng-agen.y4.016@example.test,Mock study cohort - Agricultural Engineering,4,UNZA-ENG-AGEN,202690272
+Mock UNZA-ENG-CEE Y1 001 Chanda Banda,mock.unza-eng-cee.y1.001@example.test,Mock study cohort - Civil and Environmental Engineering,1,UNZA-ENG-CEE,202690273
+Mock UNZA-ENG-CEE Y2 002 Mutinta Banda,mock.unza-eng-cee.y2.002@example.test,Mock study cohort - Civil and Environmental Engineering,2,UNZA-ENG-CEE,202690274
+Mock UNZA-ENG-CEE Y3 003 Mwila Banda,mock.unza-eng-cee.y3.003@example.test,Mock study cohort - Civil and Environmental Engineering,3,UNZA-ENG-CEE,202690275
+Mock UNZA-ENG-CEE Y4 004 Thandiwe Banda,mock.unza-eng-cee.y4.004@example.test,Mock study cohort - Civil and Environmental Engineering,4,UNZA-ENG-CEE,202690276
+Mock UNZA-ENG-CEE Y1 005 Bwalya Banda,mock.unza-eng-cee.y1.005@example.test,Mock study cohort - Civil and Environmental Engineering,1,UNZA-ENG-CEE,202690277
+Mock UNZA-ENG-CEE Y2 006 Luyando Banda,mock.unza-eng-cee.y2.006@example.test,Mock study cohort - Civil and Environmental Engineering,2,UNZA-ENG-CEE,202690278
+Mock UNZA-ENG-CEE Y3 007 Musonda Banda,mock.unza-eng-cee.y3.007@example.test,Mock study cohort - Civil and Environmental Engineering,3,UNZA-ENG-CEE,202690279
+Mock UNZA-ENG-CEE Y4 008 Mwaka Banda,mock.unza-eng-cee.y4.008@example.test,Mock study cohort - Civil and Environmental Engineering,4,UNZA-ENG-CEE,202690280
+Mock UNZA-ENG-CEE Y1 009 Chipo Banda,mock.unza-eng-cee.y1.009@example.test,Mock study cohort - Civil and Environmental Engineering,1,UNZA-ENG-CEE,202690281
+Mock UNZA-ENG-CEE Y2 010 Mapalo Banda,mock.unza-eng-cee.y2.010@example.test,Mock study cohort - Civil and Environmental Engineering,2,UNZA-ENG-CEE,202690282
+Mock UNZA-ENG-CEE Y3 011 Chanda Phiri,mock.unza-eng-cee.y3.011@example.test,Mock study cohort - Civil and Environmental Engineering,3,UNZA-ENG-CEE,202690283
+Mock UNZA-ENG-CEE Y4 012 Mutinta Phiri,mock.unza-eng-cee.y4.012@example.test,Mock study cohort - Civil and Environmental Engineering,4,UNZA-ENG-CEE,202690284
+Mock UNZA-ENG-CEE Y1 013 Mwila Phiri,mock.unza-eng-cee.y1.013@example.test,Mock study cohort - Civil and Environmental Engineering,1,UNZA-ENG-CEE,202690285
+Mock UNZA-ENG-CEE Y2 014 Thandiwe Phiri,mock.unza-eng-cee.y2.014@example.test,Mock study cohort - Civil and Environmental Engineering,2,UNZA-ENG-CEE,202690286
+Mock UNZA-ENG-CEE Y3 015 Bwalya Phiri,mock.unza-eng-cee.y3.015@example.test,Mock study cohort - Civil and Environmental Engineering,3,UNZA-ENG-CEE,202690287
+Mock UNZA-ENG-CEE Y4 016 Luyando Phiri,mock.unza-eng-cee.y4.016@example.test,Mock study cohort - Civil and Environmental Engineering,4,UNZA-ENG-CEE,202690288
+Mock UNZA-ENG-EEE Y1 001 Chanda Banda,mock.unza-eng-eee.y1.001@example.test,Mock study cohort - Electrical and Electronic Engineering,1,UNZA-ENG-EEE,202690289
+Mock UNZA-ENG-EEE Y2 002 Mutinta Banda,mock.unza-eng-eee.y2.002@example.test,Mock study cohort - Electrical and Electronic Engineering,2,UNZA-ENG-EEE,202690290
+Mock UNZA-ENG-EEE Y3 003 Mwila Banda,mock.unza-eng-eee.y3.003@example.test,Mock study cohort - Electrical and Electronic Engineering,3,UNZA-ENG-EEE,202690291
+Mock UNZA-ENG-EEE Y4 004 Thandiwe Banda,mock.unza-eng-eee.y4.004@example.test,Mock study cohort - Electrical and Electronic Engineering,4,UNZA-ENG-EEE,202690292
+Mock UNZA-ENG-EEE Y1 005 Bwalya Banda,mock.unza-eng-eee.y1.005@example.test,Mock study cohort - Electrical and Electronic Engineering,1,UNZA-ENG-EEE,202690293
+Mock UNZA-ENG-EEE Y2 006 Luyando Banda,mock.unza-eng-eee.y2.006@example.test,Mock study cohort - Electrical and Electronic Engineering,2,UNZA-ENG-EEE,202690294
+Mock UNZA-ENG-EEE Y3 007 Musonda Banda,mock.unza-eng-eee.y3.007@example.test,Mock study cohort - Electrical and Electronic Engineering,3,UNZA-ENG-EEE,202690295
+Mock UNZA-ENG-EEE Y4 008 Mwaka Banda,mock.unza-eng-eee.y4.008@example.test,Mock study cohort - Electrical and Electronic Engineering,4,UNZA-ENG-EEE,202690296
+Mock UNZA-ENG-EEE Y1 009 Chipo Banda,mock.unza-eng-eee.y1.009@example.test,Mock study cohort - Electrical and Electronic Engineering,1,UNZA-ENG-EEE,202690297
+Mock UNZA-ENG-EEE Y2 010 Mapalo Banda,mock.unza-eng-eee.y2.010@example.test,Mock study cohort - Electrical and Electronic Engineering,2,UNZA-ENG-EEE,202690298
+Mock UNZA-ENG-EEE Y3 011 Chanda Phiri,mock.unza-eng-eee.y3.011@example.test,Mock study cohort - Electrical and Electronic Engineering,3,UNZA-ENG-EEE,202690299
+Mock UNZA-ENG-EEE Y4 012 Mutinta Phiri,mock.unza-eng-eee.y4.012@example.test,Mock study cohort - Electrical and Electronic Engineering,4,UNZA-ENG-EEE,202690300

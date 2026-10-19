@@ -4,6 +4,10 @@ import bcrypt from "bcryptjs";
 
 import User from "@/lib/database/models/User";
 import { connectToDatabase } from "@/lib/database";
+import { isActiveStaff } from "@/lib/accountPolicy";
+import { failedLoginUpdate } from "@/lib/loginAttempts";
+
+const DUMMY_HASH = "$2a$10$CwTycUXWue0Thq9StjUM0uJ8.rJq3yH0k2WZ6s2z0bEw1q5yQe4yO";
 
 const nextAuthSecret = process.env.NEXTAUTH_SECRET || process.env.AUTH_SECRET;
 
@@ -24,7 +28,7 @@ export const authOptions: NextAuthOptions = {
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials) {
-        if (!credentials?.studentId || !credentials?.password) {
+        if (!credentials?.studentId || !credentials?.password || credentials.studentId.length > 160 || credentials.password.length > 200) {
           return null;
         }
 
@@ -37,28 +41,25 @@ export const authOptions: NextAuthOptions = {
             $or: [{ studentId: normalizedStudentId }, { email: login.toLowerCase() }],
             role: { $in: ["staff", "admin"] },
             status: "active",
-          }).select("+password");
+          }).select("+password +failedLoginAttempts +lockedUntil");
 
-          if (!user || !user.password) {
+          if (!user || !user.password?.startsWith("$2")) {
+            await bcrypt.compare(credentials.password, DUMMY_HASH);
             return null;
           }
-
-          const isLegacyPassword = !user.password.startsWith("$2");
-          let isValidPassword = false;
-
-          if (isLegacyPassword) {
-            isValidPassword = credentials.password === user.password;
-            if (isValidPassword) {
-              user.password = await bcrypt.hash(credentials.password, 10);
-              await user.save();
-            }
-          } else {
-            isValidPassword = await bcrypt.compare(credentials.password, user.password);
-          }
-
-          if (!isValidPassword) {
+          if (user.lockedUntil && user.lockedUntil.getTime() > Date.now()) return null;
+          if (!(await bcrypt.compare(credentials.password, user.password))) {
+            await User.updateOne({
+              _id: user._id, password: user.password,
+              $or: [{ lockedUntil: { $exists: false } }, { lockedUntil: null }, { lockedUntil: { $lte: new Date() } }],
+            }, failedLoginUpdate(), { updatePipeline: true });
             return null;
           }
+          const confirmed = await User.updateOne({
+            _id: user._id, password: user.password, status: "active", role: user.role,
+            $or: [{ lockedUntil: { $exists: false } }, { lockedUntil: null }, { lockedUntil: { $lte: new Date() } }],
+          }, { $set: { failedLoginAttempts: 0 }, $unset: { lockedUntil: 1 } });
+          if (confirmed.matchedCount !== 1) return null;
 
           return {
             id: String(user._id),
@@ -78,17 +79,23 @@ export const authOptions: NextAuthOptions = {
     signIn: "/login",
   },
   callbacks: {
-    jwt({ token, user }) {
+    async jwt({ token, user }) {
       if (user) {
         token.role = (user as { role?: string }).role;
         token.studentId = (user as { studentId?: string }).studentId ?? token.sub ?? "";
+      }
+      if (token.sub) {
+        await connectToDatabase();
+        const current = await User.findById(token.sub).select("role status studentId").lean();
+        token.role = current && isActiveStaff(current) ? current.role : "";
+        token.studentId = current?.studentId || "";
       }
       return token;
     },
     session({ session, token }) {
       if (session.user) {
         session.user.id = token.sub ?? "";
-        session.user.role = (token.role as string | undefined) ?? "staff";
+        session.user.role = (token.role as string | undefined) ?? "";
         session.user.studentId = (token.studentId as string | undefined) ?? "";
       }
       return session;

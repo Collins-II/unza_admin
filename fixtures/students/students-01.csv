@@ -1,0 +1,101 @@
+name,email,program,year,department,studentId
+Mock UNZA-AGR-AEEE Y1 001 Chanda Banda,mock.unza-agr-aeee.y1.001@example.test,Mock study cohort - Agricultural Economics and Extension Education,1,UNZA-AGR-AEEE,202690001
+Mock UNZA-AGR-AEEE Y2 002 Mutinta Banda,mock.unza-agr-aeee.y2.002@example.test,Mock study cohort - Agricultural Economics and Extension Education,2,UNZA-AGR-AEEE,202690002
+Mock UNZA-AGR-AEEE Y3 003 Mwila Banda,mock.unza-agr-aeee.y3.003@example.test,Mock study cohort - Agricultural Economics and Extension Education,3,UNZA-AGR-AEEE,202690003
+Mock UNZA-AGR-AEEE Y4 004 Thandiwe Banda,mock.unza-agr-aeee.y4.004@example.test,Mock study cohort - Agricultural Economics and Extension Education,4,UNZA-AGR-AEEE,202690004
+Mock UNZA-AGR-AEEE Y1 005 Bwalya Banda,mock.unza-agr-aeee.y1.005@example.test,Mock study cohort - Agricultural Economics and Extension Education,1,UNZA-AGR-AEEE,202690005
+Mock UNZA-AGR-AEEE Y2 006 Luyando Banda,mock.unza-agr-aeee.y2.006@example.test,Mock study cohort - Agricultural Economics and Extension Education,2,UNZA-AGR-AEEE,202690006
+Mock UNZA-AGR-AEEE Y3 007 Musonda Banda,mock.unza-agr-aeee.y3.007@example.test,Mock study cohort - Agricultural Economics and Extension Education,3,UNZA-AGR-AEEE,202690007
+Mock UNZA-AGR-AEEE Y4 008 Mwaka Banda,mock.unza-agr-aeee.y4.008@example.test,Mock study cohort - Agricultural Economics and Extension Education,4,UNZA-AGR-AEEE,202690008
+Mock UNZA-AGR-AEEE Y1 009 Chipo Banda,mock.unza-agr-aeee.y1.009@example.test,Mock study cohort - Agricultural Economics and Extension Education,1,UNZA-AGR-AEEE,202690009
+Mock UNZA-AGR-AEEE Y2 010 Mapalo Banda,mock.unza-agr-aeee.y2.010@example.test,Mock study cohort - Agricultural Economics and Extension Education,2,UNZA-AGR-AEEE,202690010
+Mock UNZA-AGR-AEEE Y3 011 Chanda Phiri,mock.unza-agr-aeee.y3.011@example.test,Mock study cohort - Agricultural Economics and Extension Education,3,UNZA-AGR-AEEE,202690011
+Mock UNZA-AGR-AEEE Y4 012 Mutinta Phiri,mock.unza-agr-aeee.y4.012@example.test,Mock study cohort - Agricultural Economics and Extension Education,4,UNZA-AGR-AEEE,202690012
+Mock UNZA-AGR-AEEE Y1 013 Mwila Phiri,mock.unza-agr-aeee.y1.013@example.test,Mock study cohort - Agricultural Economics and Extension Education,1,UNZA-AGR-AEEE,202690013
+Mock UNZA-AGR-AEEE Y2 014 Thandiwe Phiri,mock.unza-agr-aeee.y2.014@example.test,Mock study cohort - Agricultural Economics and Extension Education,2,UNZA-AGR-AEEE,202690014
+Mock UNZA-AGR-AEEE Y3 015 Bwalya Phiri,mock.unza-agr-aeee.y3.015@example.test,Mock study cohort - Agricultural Economics and Extension Education,3,UNZA-AGR-AEEE,202690015
+Mock UNZA-AGR-AEEE Y4 016 Luyando Phiri,mock.unza-agr-aeee.y4.016@example.test,Mock study cohort - Agricultural Economics and Extension Education,4,UNZA-AGR-AEEE,202690016
+Mock UNZA-AGR-ANSC Y1 001 Chanda Banda,mock.unza-agr-ansc.y1.001@example.test,Mock study cohort - Animal Sciences,1,UNZA-AGR-ANSC,202690017
+Mock UNZA-AGR-ANSC Y2 002 Mutinta Banda,mock.unza-agr-ansc.y2.002@example.test,Mock study cohort - Animal Sciences,2,UNZA-AGR-ANSC,202690018
+Mock UNZA-AGR-ANSC Y3 003 Mwila Banda,mock.unza-agr-ansc.y3.003@example.test,Mock study cohort - Animal Sciences,3,UNZA-AGR-ANSC,202690019
+Mock UNZA-AGR-ANSC Y4 004 Thandiwe Banda,mock.unza-agr-ansc.y4.004@example.test,Mock study cohort - Animal Sciences,4,UNZA-AGR-ANSC,202690020
+Mock UNZA-AGR-ANSC Y1 005 Bwalya Banda,mock.unza-agr-ansc.y1.005@example.test,Mock study cohort - Animal Sciences,1,UNZA-AGR-ANSC,202690021
+Mock UNZA-AGR-ANSC Y2 006 Luyando Banda,mock.unza-agr-ansc.y2.006@example.test,Mock study cohort - Animal Sciences,2,UNZA-AGR-ANSC,202690022
+Mock UNZA-AGR-ANSC Y3 007 Musonda Banda,mock.unza-agr-ansc.y3.007@example.test,Mock study cohort - Animal Sciences,3,UNZA-AGR-ANSC,202690023
+Mock UNZA-AGR-ANSC Y4 008 Mwaka Banda,mock.unza-agr-ansc.y4.008@example.test,Mock study cohort - Animal Sciences,4,UNZA-AGR-ANSC,202690024
+Mock UNZA-AGR-ANSC Y1 009 Chipo Banda,mock.unza-agr-ansc.y1.009@example.test,Mock study cohort - Animal Sciences,1,UNZA-AGR-ANSC,202690025
+Mock UNZA-AGR-ANSC Y2 010 Mapalo Banda,mock.unza-agr-ansc.y2.010@example.test,Mock study cohort - Animal Sciences,2,UNZA-AGR-ANSC,202690026
+Mock UNZA-AGR-ANSC Y3 011 Chanda Phiri,mock.unza-agr-ansc.y3.011@example.test,Mock study cohort - Animal Sciences,3,UNZA-AGR-ANSC,202690027
+Mock UNZA-AGR-ANSC Y4 012 Mutinta Phiri,mock.unza-agr-ansc.y4.012@example.test,Mock study cohort - Animal Sciences,4,UNZA-AGR-ANSC,202690028
+Mock UNZA-AGR-ANSC Y1 013 Mwila Phiri,mock.unza-agr-ansc.y1.013@example.test,Mock study cohort - Animal Sciences,1,UNZA-AGR-ANSC,202690029
+Mock UNZA-AGR-ANSC Y2 014 Thandiwe Phiri,mock.unza-agr-ansc.y2.014@example.test,Mock study cohort - Animal Sciences,2,UNZA-AGR-ANSC,202690030
+Mock UNZA-AGR-ANSC Y3 015 Bwalya Phiri,mock.unza-agr-ansc.y3.015@example.test,Mock study cohort - Animal Sciences,3,UNZA-AGR-ANSC,202690031
+Mock UNZA-AGR-ANSC Y4 016 Luyando Phiri,mock.unza-agr-ansc.y4.016@example.test,Mock study cohort - Animal Sciences,4,UNZA-AGR-ANSC,202690032
+Mock UNZA-AGR-FSNT Y1 001 Chanda Banda,mock.unza-agr-fsnt.y1.001@example.test,Mock study cohort - Food Science and Nutrition,1,UNZA-AGR-FSNT,202690033
+Mock UNZA-AGR-FSNT Y2 002 Mutinta Banda,mock.unza-agr-fsnt.y2.002@example.test,Mock study cohort - Food Science and Nutrition,2,UNZA-AGR-FSNT,202690034
+Mock UNZA-AGR-FSNT Y3 003 Mwila Banda,mock.unza-agr-fsnt.y3.003@example.test,Mock study cohort - Food Science and Nutrition,3,UNZA-AGR-FSNT,202690035
+Mock UNZA-AGR-FSNT Y4 004 Thandiwe Banda,mock.unza-agr-fsnt.y4.004@example.test,Mock study cohort - Food Science and Nutrition,4,UNZA-AGR-FSNT,202690036
+Mock UNZA-AGR-FSNT Y1 005 Bwalya Banda,mock.unza-agr-fsnt.y1.005@example.test,Mock study cohort - Food Science and Nutrition,1,UNZA-AGR-FSNT,202690037
+Mock UNZA-AGR-FSNT Y2 006 Luyando Banda,mock.unza-agr-fsnt.y2.006@example.test,Mock study cohort - Food Science and Nutrition,2,UNZA-AGR-FSNT,202690038
+Mock UNZA-AGR-FSNT Y3 007 Musonda Banda,mock.unza-agr-fsnt.y3.007@example.test,Mock study cohort - Food Science and Nutrition,3,UNZA-AGR-FSNT,202690039
+Mock UNZA-AGR-FSNT Y4 008 Mwaka Banda,mock.unza-agr-fsnt.y4.008@example.test,Mock study cohort - Food Science and Nutrition,4,UNZA-AGR-FSNT,202690040
+Mock UNZA-AGR-FSNT Y1 009 Chipo Banda,mock.unza-agr-fsnt.y1.009@example.test,Mock study cohort - Food Science and Nutrition,1,UNZA-AGR-FSNT,202690041
+Mock UNZA-AGR-FSNT Y2 010 Mapalo Banda,mock.unza-agr-fsnt.y2.010@example.test,Mock study cohort - Food Science and Nutrition,2,UNZA-AGR-FSNT,202690042
+Mock UNZA-AGR-FSNT Y3 011 Chanda Phiri,mock.unza-agr-fsnt.y3.011@example.test,Mock study cohort - Food Science and Nutrition,3,UNZA-AGR-FSNT,202690043
+Mock UNZA-AGR-FSNT Y4 012 Mutinta Phiri,mock.unza-agr-fsnt.y4.012@example.test,Mock study cohort - Food Science and Nutrition,4,UNZA-AGR-FSNT,202690044
+Mock UNZA-AGR-FSNT Y1 013 Mwila Phiri,mock.unza-agr-fsnt.y1.013@example.test,Mock study cohort - Food Science and Nutrition,1,UNZA-AGR-FSNT,202690045
+Mock UNZA-AGR-FSNT Y2 014 Thandiwe Phiri,mock.unza-agr-fsnt.y2.014@example.test,Mock study cohort - Food Science and Nutrition,2,UNZA-AGR-FSNT,202690046
+Mock UNZA-AGR-FSNT Y3 015 Bwalya Phiri,mock.unza-agr-fsnt.y3.015@example.test,Mock study cohort - Food Science and Nutrition,3,UNZA-AGR-FSNT,202690047
+Mock UNZA-AGR-FSNT Y4 016 Luyando Phiri,mock.unza-agr-fsnt.y4.016@example.test,Mock study cohort - Food Science and Nutrition,4,UNZA-AGR-FSNT,202690048
+Mock UNZA-AGR-PLSC Y1 001 Chanda Banda,mock.unza-agr-plsc.y1.001@example.test,Mock study cohort - Plant Sciences,1,UNZA-AGR-PLSC,202690049
+Mock UNZA-AGR-PLSC Y2 002 Mutinta Banda,mock.unza-agr-plsc.y2.002@example.test,Mock study cohort - Plant Sciences,2,UNZA-AGR-PLSC,202690050
+Mock UNZA-AGR-PLSC Y3 003 Mwila Banda,mock.unza-agr-plsc.y3.003@example.test,Mock study cohort - Plant Sciences,3,UNZA-AGR-PLSC,202690051
+Mock UNZA-AGR-PLSC Y4 004 Thandiwe Banda,mock.unza-agr-plsc.y4.004@example.test,Mock study cohort - Plant Sciences,4,UNZA-AGR-PLSC,202690052
+Mock UNZA-AGR-PLSC Y1 005 Bwalya Banda,mock.unza-agr-plsc.y1.005@example.test,Mock study cohort - Plant Sciences,1,UNZA-AGR-PLSC,202690053
+Mock UNZA-AGR-PLSC Y2 006 Luyando Banda,mock.unza-agr-plsc.y2.006@example.test,Mock study cohort - Plant Sciences,2,UNZA-AGR-PLSC,202690054
+Mock UNZA-AGR-PLSC Y3 007 Musonda Banda,mock.unza-agr-plsc.y3.007@example.test,Mock study cohort - Plant Sciences,3,UNZA-AGR-PLSC,202690055
+Mock UNZA-AGR-PLSC Y4 008 Mwaka Banda,mock.unza-agr-plsc.y4.008@example.test,Mock study cohort - Plant Sciences,4,UNZA-AGR-PLSC,202690056
+Mock UNZA-AGR-PLSC Y1 009 Chipo Banda,mock.unza-agr-plsc.y1.009@example.test,Mock study cohort - Plant Sciences,1,UNZA-AGR-PLSC,202690057
+Mock UNZA-AGR-PLSC Y2 010 Mapalo Banda,mock.unza-agr-plsc.y2.010@example.test,Mock study cohort - Plant Sciences,2,UNZA-AGR-PLSC,202690058
+Mock UNZA-AGR-PLSC Y3 011 Chanda Phiri,mock.unza-agr-plsc.y3.011@example.test,Mock study cohort - Plant Sciences,3,UNZA-AGR-PLSC,202690059
+Mock UNZA-AGR-PLSC Y4 012 Mutinta Phiri,mock.unza-agr-plsc.y4.012@example.test,Mock study cohort - Plant Sciences,4,UNZA-AGR-PLSC,202690060
+Mock UNZA-AGR-PLSC Y1 013 Mwila Phiri,mock.unza-agr-plsc.y1.013@example.test,Mock study cohort - Plant Sciences,1,UNZA-AGR-PLSC,202690061
+Mock UNZA-AGR-PLSC Y2 014 Thandiwe Phiri,mock.unza-agr-plsc.y2.014@example.test,Mock study cohort - Plant Sciences,2,UNZA-AGR-PLSC,202690062
+Mock UNZA-AGR-PLSC Y3 015 Bwalya Phiri,mock.unza-agr-plsc.y3.015@example.test,Mock study cohort - Plant Sciences,3,UNZA-AGR-PLSC,202690063
+Mock UNZA-AGR-PLSC Y4 016 Luyando Phiri,mock.unza-agr-plsc.y4.016@example.test,Mock study cohort - Plant Sciences,4,UNZA-AGR-PLSC,202690064
+Mock UNZA-AGR-LMGT Y1 001 Chanda Banda,mock.unza-agr-lmgt.y1.001@example.test,Mock study cohort - Land Management,1,UNZA-AGR-LMGT,202690065
+Mock UNZA-AGR-LMGT Y2 002 Mutinta Banda,mock.unza-agr-lmgt.y2.002@example.test,Mock study cohort - Land Management,2,UNZA-AGR-LMGT,202690066
+Mock UNZA-AGR-LMGT Y3 003 Mwila Banda,mock.unza-agr-lmgt.y3.003@example.test,Mock study cohort - Land Management,3,UNZA-AGR-LMGT,202690067
+Mock UNZA-AGR-LMGT Y4 004 Thandiwe Banda,mock.unza-agr-lmgt.y4.004@example.test,Mock study cohort - Land Management,4,UNZA-AGR-LMGT,202690068
+Mock UNZA-AGR-LMGT Y1 005 Bwalya Banda,mock.unza-agr-lmgt.y1.005@example.test,Mock study cohort - Land Management,1,UNZA-AGR-LMGT,202690069
+Mock UNZA-AGR-LMGT Y2 006 Luyando Banda,mock.unza-agr-lmgt.y2.006@example.test,Mock study cohort - Land Management,2,UNZA-AGR-LMGT,202690070
+Mock UNZA-AGR-LMGT Y3 007 Musonda Banda,mock.unza-agr-lmgt.y3.007@example.test,Mock study cohort - Land Management,3,UNZA-AGR-LMGT,202690071
+Mock UNZA-AGR-LMGT Y4 008 Mwaka Banda,mock.unza-agr-lmgt.y4.008@example.test,Mock study cohort - Land Management,4,UNZA-AGR-LMGT,202690072
+Mock UNZA-AGR-LMGT Y1 009 Chipo Banda,mock.unza-agr-lmgt.y1.009@example.test,Mock study cohort - Land Management,1,UNZA-AGR-LMGT,202690073
+Mock UNZA-AGR-LMGT Y2 010 Mapalo Banda,mock.unza-agr-lmgt.y2.010@example.test,Mock study cohort - Land Management,2,UNZA-AGR-LMGT,202690074
+Mock UNZA-AGR-LMGT Y3 011 Chanda Phiri,mock.unza-agr-lmgt.y3.011@example.test,Mock study cohort - Land Management,3,UNZA-AGR-LMGT,202690075
+Mock UNZA-AGR-LMGT Y4 012 Mutinta Phiri,mock.unza-agr-lmgt.y4.012@example.test,Mock study cohort - Land Management,4,UNZA-AGR-LMGT,202690076
+Mock UNZA-AGR-LMGT Y1 013 Mwila Phiri,mock.unza-agr-lmgt.y1.013@example.test,Mock study cohort - Land Management,1,UNZA-AGR-LMGT,202690077
+Mock UNZA-AGR-LMGT Y2 014 Thandiwe Phiri,mock.unza-agr-lmgt.y2.014@example.test,Mock study cohort - Land Management,2,UNZA-AGR-LMGT,202690078
+Mock UNZA-AGR-LMGT Y3 015 Bwalya Phiri,mock.unza-agr-lmgt.y3.015@example.test,Mock study cohort - Land Management,3,UNZA-AGR-LMGT,202690079
+Mock UNZA-AGR-LMGT Y4 016 Luyando Phiri,mock.unza-agr-lmgt.y4.016@example.test,Mock study cohort - Land Management,4,UNZA-AGR-LMGT,202690080
+Mock UNZA-EDU-CELL Y1 001 Chanda Banda,mock.unza-edu-cell.y1.001@example.test,Mock study cohort - Community Education and Lifelong Learning,1,UNZA-EDU-CELL,202690081
+Mock UNZA-EDU-CELL Y2 002 Mutinta Banda,mock.unza-edu-cell.y2.002@example.test,Mock study cohort - Community Education and Lifelong Learning,2,UNZA-EDU-CELL,202690082
+Mock UNZA-EDU-CELL Y3 003 Mwila Banda,mock.unza-edu-cell.y3.003@example.test,Mock study cohort - Community Education and Lifelong Learning,3,UNZA-EDU-CELL,202690083
+Mock UNZA-EDU-CELL Y4 004 Thandiwe Banda,mock.unza-edu-cell.y4.004@example.test,Mock study cohort - Community Education and Lifelong Learning,4,UNZA-EDU-CELL,202690084
+Mock UNZA-EDU-CELL Y1 005 Bwalya Banda,mock.unza-edu-cell.y1.005@example.test,Mock study cohort - Community Education and Lifelong Learning,1,UNZA-EDU-CELL,202690085
+Mock UNZA-EDU-CELL Y2 006 Luyando Banda,mock.unza-edu-cell.y2.006@example.test,Mock study cohort - Community Education and Lifelong Learning,2,UNZA-EDU-CELL,202690086
+Mock UNZA-EDU-CELL Y3 007 Musonda Banda,mock.unza-edu-cell.y3.007@example.test,Mock study cohort - Community Education and Lifelong Learning,3,UNZA-EDU-CELL,202690087
+Mock UNZA-EDU-CELL Y4 008 Mwaka Banda,mock.unza-edu-cell.y4.008@example.test,Mock study cohort - Community Education and Lifelong Learning,4,UNZA-EDU-CELL,202690088
+Mock UNZA-EDU-CELL Y1 009 Chipo Banda,mock.unza-edu-cell.y1.009@example.test,Mock study cohort - Community Education and Lifelong Learning,1,UNZA-EDU-CELL,202690089
+Mock UNZA-EDU-CELL Y2 010 Mapalo Banda,mock.unza-edu-cell.y2.010@example.test,Mock study cohort - Community Education and Lifelong Learning,2,UNZA-EDU-CELL,202690090
+Mock UNZA-EDU-CELL Y3 011 Chanda Phiri,mock.unza-edu-cell.y3.011@example.test,Mock study cohort - Community Education and Lifelong Learning,3,UNZA-EDU-CELL,202690091
+Mock UNZA-EDU-CELL Y4 012 Mutinta Phiri,mock.unza-edu-cell.y4.012@example.test,Mock study cohort - Community Education and Lifelong Learning,4,UNZA-EDU-CELL,202690092
+Mock UNZA-EDU-CELL Y1 013 Mwila Phiri,mock.unza-edu-cell.y1.013@example.test,Mock study cohort - Community Education and Lifelong Learning,1,UNZA-EDU-CELL,202690093
+Mock UNZA-EDU-CELL Y2 014 Thandiwe Phiri,mock.unza-edu-cell.y2.014@example.test,Mock study cohort - Community Education and Lifelong Learning,2,UNZA-EDU-CELL,202690094
+Mock UNZA-EDU-CELL Y3 015 Bwalya Phiri,mock.unza-edu-cell.y3.015@example.test,Mock study cohort - Community Education and Lifelong Learning,3,UNZA-EDU-CELL,202690095
+Mock UNZA-EDU-CELL Y4 016 Luyando Phiri,mock.unza-edu-cell.y4.016@example.test,Mock study cohort - Community Education and Lifelong Learning,4,UNZA-EDU-CELL,202690096
+Mock UNZA-EDU-EAPS Y1 001 Chanda Banda,mock.unza-edu-eaps.y1.001@example.test,Mock study cohort - Educational Administration and Policy Studies,1,UNZA-EDU-EAPS,202690097
+Mock UNZA-EDU-EAPS Y2 002 Mutinta Banda,mock.unza-edu-eaps.y2.002@example.test,Mock study cohort - Educational Administration and Policy Studies,2,UNZA-EDU-EAPS,202690098
+Mock UNZA-EDU-EAPS Y3 003 Mwila Banda,mock.unza-edu-eaps.y3.003@example.test,Mock study cohort - Educational Administration and Policy Studies,3,UNZA-EDU-EAPS,202690099
+Mock UNZA-EDU-EAPS Y4 004 Thandiwe Banda,mock.unza-edu-eaps.y4.004@example.test,Mock study cohort - Educational Administration and Policy Studies,4,UNZA-EDU-EAPS,202690100

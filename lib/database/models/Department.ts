@@ -6,6 +6,8 @@ export interface IDepartment extends Document {
   faculty: string;
   headOfDepartment?: string;
   active: boolean;
+  sourceUrl?: string;
+  verifiedAt?: string;
 }
 
 const departmentSchema = new Schema<IDepartment>(
@@ -15,6 +17,8 @@ const departmentSchema = new Schema<IDepartment>(
     faculty: { type: String, required: true, trim: true },
     headOfDepartment: { type: String, trim: true },
     active: { type: Boolean, default: true },
+    sourceUrl: { type: String, trim: true },
+    verifiedAt: { type: String, trim: true },
   },
   { timestamps: true }
 );

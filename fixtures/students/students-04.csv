@@ -1,0 +1,101 @@
+name,email,program,year,department,studentId
+Mock UNZA-ENG-EEE Y1 013 Mwila Phiri,mock.unza-eng-eee.y1.013@example.test,Mock study cohort - Electrical and Electronic Engineering,1,UNZA-ENG-EEE,202690301
+Mock UNZA-ENG-EEE Y2 014 Thandiwe Phiri,mock.unza-eng-eee.y2.014@example.test,Mock study cohort - Electrical and Electronic Engineering,2,UNZA-ENG-EEE,202690302
+Mock UNZA-ENG-EEE Y3 015 Bwalya Phiri,mock.unza-eng-eee.y3.015@example.test,Mock study cohort - Electrical and Electronic Engineering,3,UNZA-ENG-EEE,202690303
+Mock UNZA-ENG-EEE Y4 016 Luyando Phiri,mock.unza-eng-eee.y4.016@example.test,Mock study cohort - Electrical and Electronic Engineering,4,UNZA-ENG-EEE,202690304
+Mock UNZA-ENG-GMAT Y1 001 Chanda Banda,mock.unza-eng-gmat.y1.001@example.test,Mock study cohort - Geomatic Engineering,1,UNZA-ENG-GMAT,202690305
+Mock UNZA-ENG-GMAT Y2 002 Mutinta Banda,mock.unza-eng-gmat.y2.002@example.test,Mock study cohort - Geomatic Engineering,2,UNZA-ENG-GMAT,202690306
+Mock UNZA-ENG-GMAT Y3 003 Mwila Banda,mock.unza-eng-gmat.y3.003@example.test,Mock study cohort - Geomatic Engineering,3,UNZA-ENG-GMAT,202690307
+Mock UNZA-ENG-GMAT Y4 004 Thandiwe Banda,mock.unza-eng-gmat.y4.004@example.test,Mock study cohort - Geomatic Engineering,4,UNZA-ENG-GMAT,202690308
+Mock UNZA-ENG-GMAT Y1 005 Bwalya Banda,mock.unza-eng-gmat.y1.005@example.test,Mock study cohort - Geomatic Engineering,1,UNZA-ENG-GMAT,202690309
+Mock UNZA-ENG-GMAT Y2 006 Luyando Banda,mock.unza-eng-gmat.y2.006@example.test,Mock study cohort - Geomatic Engineering,2,UNZA-ENG-GMAT,202690310
+Mock UNZA-ENG-GMAT Y3 007 Musonda Banda,mock.unza-eng-gmat.y3.007@example.test,Mock study cohort - Geomatic Engineering,3,UNZA-ENG-GMAT,202690311
+Mock UNZA-ENG-GMAT Y4 008 Mwaka Banda,mock.unza-eng-gmat.y4.008@example.test,Mock study cohort - Geomatic Engineering,4,UNZA-ENG-GMAT,202690312
+Mock UNZA-ENG-GMAT Y1 009 Chipo Banda,mock.unza-eng-gmat.y1.009@example.test,Mock study cohort - Geomatic Engineering,1,UNZA-ENG-GMAT,202690313
+Mock UNZA-ENG-GMAT Y2 010 Mapalo Banda,mock.unza-eng-gmat.y2.010@example.test,Mock study cohort - Geomatic Engineering,2,UNZA-ENG-GMAT,202690314
+Mock UNZA-ENG-GMAT Y3 011 Chanda Phiri,mock.unza-eng-gmat.y3.011@example.test,Mock study cohort - Geomatic Engineering,3,UNZA-ENG-GMAT,202690315
+Mock UNZA-ENG-GMAT Y4 012 Mutinta Phiri,mock.unza-eng-gmat.y4.012@example.test,Mock study cohort - Geomatic Engineering,4,UNZA-ENG-GMAT,202690316
+Mock UNZA-ENG-GMAT Y1 013 Mwila Phiri,mock.unza-eng-gmat.y1.013@example.test,Mock study cohort - Geomatic Engineering,1,UNZA-ENG-GMAT,202690317
+Mock UNZA-ENG-GMAT Y2 014 Thandiwe Phiri,mock.unza-eng-gmat.y2.014@example.test,Mock study cohort - Geomatic Engineering,2,UNZA-ENG-GMAT,202690318
+Mock UNZA-ENG-GMAT Y3 015 Bwalya Phiri,mock.unza-eng-gmat.y3.015@example.test,Mock study cohort - Geomatic Engineering,3,UNZA-ENG-GMAT,202690319
+Mock UNZA-ENG-GMAT Y4 016 Luyando Phiri,mock.unza-eng-gmat.y4.016@example.test,Mock study cohort - Geomatic Engineering,4,UNZA-ENG-GMAT,202690320
+Mock UNZA-ENG-MECH Y1 001 Chanda Banda,mock.unza-eng-mech.y1.001@example.test,Mock study cohort - Mechanical Engineering,1,UNZA-ENG-MECH,202690321
+Mock UNZA-ENG-MECH Y2 002 Mutinta Banda,mock.unza-eng-mech.y2.002@example.test,Mock study cohort - Mechanical Engineering,2,UNZA-ENG-MECH,202690322
+Mock UNZA-ENG-MECH Y3 003 Mwila Banda,mock.unza-eng-mech.y3.003@example.test,Mock study cohort - Mechanical Engineering,3,UNZA-ENG-MECH,202690323
+Mock UNZA-ENG-MECH Y4 004 Thandiwe Banda,mock.unza-eng-mech.y4.004@example.test,Mock study cohort - Mechanical Engineering,4,UNZA-ENG-MECH,202690324
+Mock UNZA-ENG-MECH Y1 005 Bwalya Banda,mock.unza-eng-mech.y1.005@example.test,Mock study cohort - Mechanical Engineering,1,UNZA-ENG-MECH,202690325
+Mock UNZA-ENG-MECH Y2 006 Luyando Banda,mock.unza-eng-mech.y2.006@example.test,Mock study cohort - Mechanical Engineering,2,UNZA-ENG-MECH,202690326
+Mock UNZA-ENG-MECH Y3 007 Musonda Banda,mock.unza-eng-mech.y3.007@example.test,Mock study cohort - Mechanical Engineering,3,UNZA-ENG-MECH,202690327
+Mock UNZA-ENG-MECH Y4 008 Mwaka Banda,mock.unza-eng-mech.y4.008@example.test,Mock study cohort - Mechanical Engineering,4,UNZA-ENG-MECH,202690328
+Mock UNZA-ENG-MECH Y1 009 Chipo Banda,mock.unza-eng-mech.y1.009@example.test,Mock study cohort - Mechanical Engineering,1,UNZA-ENG-MECH,202690329
+Mock UNZA-ENG-MECH Y2 010 Mapalo Banda,mock.unza-eng-mech.y2.010@example.test,Mock study cohort - Mechanical Engineering,2,UNZA-ENG-MECH,202690330
+Mock UNZA-ENG-MECH Y3 011 Chanda Phiri,mock.unza-eng-mech.y3.011@example.test,Mock study cohort - Mechanical Engineering,3,UNZA-ENG-MECH,202690331
+Mock UNZA-ENG-MECH Y4 012 Mutinta Phiri,mock.unza-eng-mech.y4.012@example.test,Mock study cohort - Mechanical Engineering,4,UNZA-ENG-MECH,202690332
+Mock UNZA-ENG-MECH Y1 013 Mwila Phiri,mock.unza-eng-mech.y1.013@example.test,Mock study cohort - Mechanical Engineering,1,UNZA-ENG-MECH,202690333
+Mock UNZA-ENG-MECH Y2 014 Thandiwe Phiri,mock.unza-eng-mech.y2.014@example.test,Mock study cohort - Mechanical Engineering,2,UNZA-ENG-MECH,202690334
+Mock UNZA-ENG-MECH Y3 015 Bwalya Phiri,mock.unza-eng-mech.y3.015@example.test,Mock study cohort - Mechanical Engineering,3,UNZA-ENG-MECH,202690335
+Mock UNZA-ENG-MECH Y4 016 Luyando Phiri,mock.unza-eng-mech.y4.016@example.test,Mock study cohort - Mechanical Engineering,4,UNZA-ENG-MECH,202690336
+Mock UNZA-HS-BMS Y1 001 Chanda Banda,mock.unza-hs-bms.y1.001@example.test,Mock study cohort - Biomedical Sciences,1,UNZA-HS-BMS,202690337
+Mock UNZA-HS-BMS Y2 002 Mutinta Banda,mock.unza-hs-bms.y2.002@example.test,Mock study cohort - Biomedical Sciences,2,UNZA-HS-BMS,202690338
+Mock UNZA-HS-BMS Y3 003 Mwila Banda,mock.unza-hs-bms.y3.003@example.test,Mock study cohort - Biomedical Sciences,3,UNZA-HS-BMS,202690339
+Mock UNZA-HS-BMS Y4 004 Thandiwe Banda,mock.unza-hs-bms.y4.004@example.test,Mock study cohort - Biomedical Sciences,4,UNZA-HS-BMS,202690340
+Mock UNZA-HS-BMS Y1 005 Bwalya Banda,mock.unza-hs-bms.y1.005@example.test,Mock study cohort - Biomedical Sciences,1,UNZA-HS-BMS,202690341
+Mock UNZA-HS-BMS Y2 006 Luyando Banda,mock.unza-hs-bms.y2.006@example.test,Mock study cohort - Biomedical Sciences,2,UNZA-HS-BMS,202690342
+Mock UNZA-HS-BMS Y3 007 Musonda Banda,mock.unza-hs-bms.y3.007@example.test,Mock study cohort - Biomedical Sciences,3,UNZA-HS-BMS,202690343
+Mock UNZA-HS-BMS Y4 008 Mwaka Banda,mock.unza-hs-bms.y4.008@example.test,Mock study cohort - Biomedical Sciences,4,UNZA-HS-BMS,202690344
+Mock UNZA-HS-BMS Y1 009 Chipo Banda,mock.unza-hs-bms.y1.009@example.test,Mock study cohort - Biomedical Sciences,1,UNZA-HS-BMS,202690345
+Mock UNZA-HS-BMS Y2 010 Mapalo Banda,mock.unza-hs-bms.y2.010@example.test,Mock study cohort - Biomedical Sciences,2,UNZA-HS-BMS,202690346
+Mock UNZA-HS-BMS Y3 011 Chanda Phiri,mock.unza-hs-bms.y3.011@example.test,Mock study cohort - Biomedical Sciences,3,UNZA-HS-BMS,202690347
+Mock UNZA-HS-BMS Y4 012 Mutinta Phiri,mock.unza-hs-bms.y4.012@example.test,Mock study cohort - Biomedical Sciences,4,UNZA-HS-BMS,202690348
+Mock UNZA-HS-BMS Y1 013 Mwila Phiri,mock.unza-hs-bms.y1.013@example.test,Mock study cohort - Biomedical Sciences,1,UNZA-HS-BMS,202690349
+Mock UNZA-HS-BMS Y2 014 Thandiwe Phiri,mock.unza-hs-bms.y2.014@example.test,Mock study cohort - Biomedical Sciences,2,UNZA-HS-BMS,202690350
+Mock UNZA-HS-BMS Y3 015 Bwalya Phiri,mock.unza-hs-bms.y3.015@example.test,Mock study cohort - Biomedical Sciences,3,UNZA-HS-BMS,202690351
+Mock UNZA-HS-BMS Y4 016 Luyando Phiri,mock.unza-hs-bms.y4.016@example.test,Mock study cohort - Biomedical Sciences,4,UNZA-HS-BMS,202690352
+Mock UNZA-HS-PHAR Y1 001 Chanda Banda,mock.unza-hs-phar.y1.001@example.test,Mock study cohort - Pharmacy,1,UNZA-HS-PHAR,202690353
+Mock UNZA-HS-PHAR Y2 002 Mutinta Banda,mock.unza-hs-phar.y2.002@example.test,Mock study cohort - Pharmacy,2,UNZA-HS-PHAR,202690354
+Mock UNZA-HS-PHAR Y3 003 Mwila Banda,mock.unza-hs-phar.y3.003@example.test,Mock study cohort - Pharmacy,3,UNZA-HS-PHAR,202690355
+Mock UNZA-HS-PHAR Y4 004 Thandiwe Banda,mock.unza-hs-phar.y4.004@example.test,Mock study cohort - Pharmacy,4,UNZA-HS-PHAR,202690356
+Mock UNZA-HS-PHAR Y1 005 Bwalya Banda,mock.unza-hs-phar.y1.005@example.test,Mock study cohort - Pharmacy,1,UNZA-HS-PHAR,202690357
+Mock UNZA-HS-PHAR Y2 006 Luyando Banda,mock.unza-hs-phar.y2.006@example.test,Mock study cohort - Pharmacy,2,UNZA-HS-PHAR,202690358
+Mock UNZA-HS-PHAR Y3 007 Musonda Banda,mock.unza-hs-phar.y3.007@example.test,Mock study cohort - Pharmacy,3,UNZA-HS-PHAR,202690359
+Mock UNZA-HS-PHAR Y4 008 Mwaka Banda,mock.unza-hs-phar.y4.008@example.test,Mock study cohort - Pharmacy,4,UNZA-HS-PHAR,202690360
+Mock UNZA-HS-PHAR Y1 009 Chipo Banda,mock.unza-hs-phar.y1.009@example.test,Mock study cohort - Pharmacy,1,UNZA-HS-PHAR,202690361
+Mock UNZA-HS-PHAR Y2 010 Mapalo Banda,mock.unza-hs-phar.y2.010@example.test,Mock study cohort - Pharmacy,2,UNZA-HS-PHAR,202690362
+Mock UNZA-HS-PHAR Y3 011 Chanda Phiri,mock.unza-hs-phar.y3.011@example.test,Mock study cohort - Pharmacy,3,UNZA-HS-PHAR,202690363
+Mock UNZA-HS-PHAR Y4 012 Mutinta Phiri,mock.unza-hs-phar.y4.012@example.test,Mock study cohort - Pharmacy,4,UNZA-HS-PHAR,202690364
+Mock UNZA-HS-PHAR Y1 013 Mwila Phiri,mock.unza-hs-phar.y1.013@example.test,Mock study cohort - Pharmacy,1,UNZA-HS-PHAR,202690365
+Mock UNZA-HS-PHAR Y2 014 Thandiwe Phiri,mock.unza-hs-phar.y2.014@example.test,Mock study cohort - Pharmacy,2,UNZA-HS-PHAR,202690366
+Mock UNZA-HS-PHAR Y3 015 Bwalya Phiri,mock.unza-hs-phar.y3.015@example.test,Mock study cohort - Pharmacy,3,UNZA-HS-PHAR,202690367
+Mock UNZA-HS-PHAR Y4 016 Luyando Phiri,mock.unza-hs-phar.y4.016@example.test,Mock study cohort - Pharmacy,4,UNZA-HS-PHAR,202690368
+Mock UNZA-HS-PHYT Y1 001 Chanda Banda,mock.unza-hs-phyt.y1.001@example.test,Mock study cohort - Physiotherapy,1,UNZA-HS-PHYT,202690369
+Mock UNZA-HS-PHYT Y2 002 Mutinta Banda,mock.unza-hs-phyt.y2.002@example.test,Mock study cohort - Physiotherapy,2,UNZA-HS-PHYT,202690370
+Mock UNZA-HS-PHYT Y3 003 Mwila Banda,mock.unza-hs-phyt.y3.003@example.test,Mock study cohort - Physiotherapy,3,UNZA-HS-PHYT,202690371
+Mock UNZA-HS-PHYT Y4 004 Thandiwe Banda,mock.unza-hs-phyt.y4.004@example.test,Mock study cohort - Physiotherapy,4,UNZA-HS-PHYT,202690372
+Mock UNZA-HS-PHYT Y1 005 Bwalya Banda,mock.unza-hs-phyt.y1.005@example.test,Mock study cohort - Physiotherapy,1,UNZA-HS-PHYT,202690373
+Mock UNZA-HS-PHYT Y2 006 Luyando Banda,mock.unza-hs-phyt.y2.006@example.test,Mock study cohort - Physiotherapy,2,UNZA-HS-PHYT,202690374
+Mock UNZA-HS-PHYT Y3 007 Musonda Banda,mock.unza-hs-phyt.y3.007@example.test,Mock study cohort - Physiotherapy,3,UNZA-HS-PHYT,202690375
+Mock UNZA-HS-PHYT Y4 008 Mwaka Banda,mock.unza-hs-phyt.y4.008@example.test,Mock study cohort - Physiotherapy,4,UNZA-HS-PHYT,202690376
+Mock UNZA-HS-PHYT Y1 009 Chipo Banda,mock.unza-hs-phyt.y1.009@example.test,Mock study cohort - Physiotherapy,1,UNZA-HS-PHYT,202690377
+Mock UNZA-HS-PHYT Y2 010 Mapalo Banda,mock.unza-hs-phyt.y2.010@example.test,Mock study cohort - Physiotherapy,2,UNZA-HS-PHYT,202690378
+Mock UNZA-HS-PHYT Y3 011 Chanda Phiri,mock.unza-hs-phyt.y3.011@example.test,Mock study cohort - Physiotherapy,3,UNZA-HS-PHYT,202690379
+Mock UNZA-HS-PHYT Y4 012 Mutinta Phiri,mock.unza-hs-phyt.y4.012@example.test,Mock study cohort - Physiotherapy,4,UNZA-HS-PHYT,202690380
+Mock UNZA-HS-PHYT Y1 013 Mwila Phiri,mock.unza-hs-phyt.y1.013@example.test,Mock study cohort - Physiotherapy,1,UNZA-HS-PHYT,202690381
+Mock UNZA-HS-PHYT Y2 014 Thandiwe Phiri,mock.unza-hs-phyt.y2.014@example.test,Mock study cohort - Physiotherapy,2,UNZA-HS-PHYT,202690382
+Mock UNZA-HS-PHYT Y3 015 Bwalya Phiri,mock.unza-hs-phyt.y3.015@example.test,Mock study cohort - Physiotherapy,3,UNZA-HS-PHYT,202690383
+Mock UNZA-HS-PHYT Y4 016 Luyando Phiri,mock.unza-hs-phyt.y4.016@example.test,Mock study cohort - Physiotherapy,4,UNZA-HS-PHYT,202690384
+Mock UNZA-HSS-ECON Y1 001 Chanda Banda,mock.unza-hss-econ.y1.001@example.test,Mock study cohort - Economics,1,UNZA-HSS-ECON,202690385
+Mock UNZA-HSS-ECON Y2 002 Mutinta Banda,mock.unza-hss-econ.y2.002@example.test,Mock study cohort - Economics,2,UNZA-HSS-ECON,202690386
+Mock UNZA-HSS-ECON Y3 003 Mwila Banda,mock.unza-hss-econ.y3.003@example.test,Mock study cohort - Economics,3,UNZA-HSS-ECON,202690387
+Mock UNZA-HSS-ECON Y4 004 Thandiwe Banda,mock.unza-hss-econ.y4.004@example.test,Mock study cohort - Economics,4,UNZA-HSS-ECON,202690388
+Mock UNZA-HSS-ECON Y1 005 Bwalya Banda,mock.unza-hss-econ.y1.005@example.test,Mock study cohort - Economics,1,UNZA-HSS-ECON,202690389
+Mock UNZA-HSS-ECON Y2 006 Luyando Banda,mock.unza-hss-econ.y2.006@example.test,Mock study cohort - Economics,2,UNZA-HSS-ECON,202690390
+Mock UNZA-HSS-ECON Y3 007 Musonda Banda,mock.unza-hss-econ.y3.007@example.test,Mock study cohort - Economics,3,UNZA-HSS-ECON,202690391
+Mock UNZA-HSS-ECON Y4 008 Mwaka Banda,mock.unza-hss-econ.y4.008@example.test,Mock study cohort - Economics,4,UNZA-HSS-ECON,202690392
+Mock UNZA-HSS-ECON Y1 009 Chipo Banda,mock.unza-hss-econ.y1.009@example.test,Mock study cohort - Economics,1,UNZA-HSS-ECON,202690393
+Mock UNZA-HSS-ECON Y2 010 Mapalo Banda,mock.unza-hss-econ.y2.010@example.test,Mock study cohort - Economics,2,UNZA-HSS-ECON,202690394
+Mock UNZA-HSS-ECON Y3 011 Chanda Phiri,mock.unza-hss-econ.y3.011@example.test,Mock study cohort - Economics,3,UNZA-HSS-ECON,202690395
+Mock UNZA-HSS-ECON Y4 012 Mutinta Phiri,mock.unza-hss-econ.y4.012@example.test,Mock study cohort - Economics,4,UNZA-HSS-ECON,202690396
+Mock UNZA-HSS-ECON Y1 013 Mwila Phiri,mock.unza-hss-econ.y1.013@example.test,Mock study cohort - Economics,1,UNZA-HSS-ECON,202690397
+Mock UNZA-HSS-ECON Y2 014 Thandiwe Phiri,mock.unza-hss-econ.y2.014@example.test,Mock study cohort - Economics,2,UNZA-HSS-ECON,202690398
+Mock UNZA-HSS-ECON Y3 015 Bwalya Phiri,mock.unza-hss-econ.y3.015@example.test,Mock study cohort - Economics,3,UNZA-HSS-ECON,202690399
+Mock UNZA-HSS-ECON Y4 016 Luyando Phiri,mock.unza-hss-econ.y4.016@example.test,Mock study cohort - Economics,4,UNZA-HSS-ECON,202690400

@@ -1,0 +1,611 @@
+{
+  "version": "unza-departments-v2",
+  "purpose": "Synthetic scheduling tests only; not an official UNZA course catalogue or student roster.",
+  "departmentSource": "../unza/catalogue.json",
+  "verifiedDepartmentDate": "2026-10-19",
+  "students": 1000,
+  "departments": 65,
+  "schools": 12,
+  "courses": 142,
+  "enrolmentLinks": 3000,
+  "testRooms": 16,
+  "testAssumptions": {
+    "credits": 3,
+    "sessionsPerWeek": 2,
+    "sessionMinutes": 60,
+    "roomCapacity": 50,
+    "studyYears": [
+      1,
+      2,
+      3,
+      4
+    ]
+  },
+  "departmentsAndCohorts": [
+    {
+      "code": "UNZA-AGR-AEEE",
+      "name": "Agricultural Economics and Extension Education",
+      "faculty": "School of Agricultural Sciences",
+      "sourceUrl": "https://www.unza.zm/agricultural-sciences/agricultural-economics-and-extension-education",
+      "count": 16,
+      "firstStudentId": "202690001",
+      "lastStudentId": "202690016"
+    },
+    {
+      "code": "UNZA-AGR-ANSC",
+      "name": "Animal Sciences",
+      "faculty": "School of Agricultural Sciences",
+      "sourceUrl": "https://www.unza.zm/agricultural-sciences/animal-sciences",
+      "count": 16,
+      "firstStudentId": "202690017",
+      "lastStudentId": "202690032"
+    },
+    {
+      "code": "UNZA-AGR-FSNT",
+      "name": "Food Science and Nutrition",
+      "faculty": "School of Agricultural Sciences",
+      "sourceUrl": "https://www.unza.zm/agricultural-sciences/food-science-and-nutrition",
+      "count": 16,
+      "firstStudentId": "202690033",
+      "lastStudentId": "202690048"
+    },
+    {
+      "code": "UNZA-AGR-PLSC",
+      "name": "Plant Sciences",
+      "faculty": "School of Agricultural Sciences",
+      "sourceUrl": "https://www.unza.zm/agricultural-sciences/plant-sciences",
+      "count": 16,
+      "firstStudentId": "202690049",
+      "lastStudentId": "202690064"
+    },
+    {
+      "code": "UNZA-AGR-LMGT",
+      "name": "Land Management",
+      "faculty": "School of Agricultural Sciences",
+      "sourceUrl": "https://www.unza.zm/agricultural-sciences/land-management",
+      "count": 16,
+      "firstStudentId": "202690065",
+      "lastStudentId": "202690080"
+    },
+    {
+      "code": "UNZA-EDU-CELL",
+      "name": "Community Education and Lifelong Learning",
+      "faculty": "School of Education",
+      "sourceUrl": "https://www.unza.zm/education/community-education-and-lifelong-learning",
+      "count": 16,
+      "firstStudentId": "202690081",
+      "lastStudentId": "202690096"
+    },
+    {
+      "code": "UNZA-EDU-EAPS",
+      "name": "Educational Administration and Policy Studies",
+      "faculty": "School of Education",
+      "sourceUrl": "https://www.unza.zm/education/educational-administration-and-policy-studies",
+      "count": 16,
+      "firstStudentId": "202690097",
+      "lastStudentId": "202690112"
+    },
+    {
+      "code": "UNZA-EDU-EPSS",
+      "name": "Educational Psychology, Sociology and Special Education",
+      "faculty": "School of Education",
+      "sourceUrl": "https://www.unza.zm/education/educational-psychology-sociology-and-special-education",
+      "count": 16,
+      "firstStudentId": "202690113",
+      "lastStudentId": "202690128"
+    },
+    {
+      "code": "UNZA-EDU-LIS",
+      "name": "Library Information Science",
+      "faculty": "School of Education",
+      "sourceUrl": "https://www.unza.zm/education/library-information-science",
+      "count": 16,
+      "firstStudentId": "202690129",
+      "lastStudentId": "202690144"
+    },
+    {
+      "code": "UNZA-EDU-LSSE",
+      "name": "Language and Social Sciences Education",
+      "faculty": "School of Education",
+      "sourceUrl": "https://www.unza.zm/education/language-and-social-sciences-education",
+      "count": 16,
+      "firstStudentId": "202690145",
+      "lastStudentId": "202690160"
+    },
+    {
+      "code": "UNZA-EDU-MSED",
+      "name": "Mathematics and Science Education",
+      "faculty": "School of Education",
+      "sourceUrl": "https://www.unza.zm/education/mathematics-and-science-education",
+      "count": 16,
+      "firstStudentId": "202690161",
+      "lastStudentId": "202690176"
+    },
+    {
+      "code": "UNZA-EDU-PRED",
+      "name": "Primary Education",
+      "faculty": "School of Education",
+      "sourceUrl": "https://www.unza.zm/education/primary-education",
+      "count": 16,
+      "firstStudentId": "202690177",
+      "lastStudentId": "202690192"
+    },
+    {
+      "code": "UNZA-EDU-RELS",
+      "name": "Religious Studies",
+      "faculty": "School of Education",
+      "sourceUrl": "https://www.unza.zm/education/religious-studies",
+      "count": 16,
+      "firstStudentId": "202690193",
+      "lastStudentId": "202690208"
+    },
+    {
+      "code": "UNZA-GSB-ABF",
+      "name": "Accounting, Banking, and Finance",
+      "faculty": "Graduate School of Business",
+      "sourceUrl": "https://www.unza.zm/graduate-school-of-business/dept-accounting-banking-and-finance",
+      "count": 16,
+      "firstStudentId": "202690209",
+      "lastStudentId": "202690224"
+    },
+    {
+      "code": "UNZA-GSB-BMM",
+      "name": "Business Management, and Marketing",
+      "faculty": "Graduate School of Business",
+      "sourceUrl": "https://www.unza.zm/graduate-school-of-business/dept-business-management-and-marketing",
+      "count": 16,
+      "firstStudentId": "202690225",
+      "lastStudentId": "202690240"
+    },
+    {
+      "code": "UNZA-GSB-OPSC",
+      "name": "Operations, Projects, and Supply Chain Management",
+      "faculty": "Graduate School of Business",
+      "sourceUrl": "https://www.unza.zm/graduate-school-of-business/dept-operations-projects-and-supply-chain-management",
+      "count": 16,
+      "firstStudentId": "202690241",
+      "lastStudentId": "202690256"
+    },
+    {
+      "code": "UNZA-ENG-AGEN",
+      "name": "Agricultural Engineering",
+      "faculty": "School of Engineering",
+      "sourceUrl": "https://www.unza.zm/engineering/agricultural-engineering",
+      "count": 16,
+      "firstStudentId": "202690257",
+      "lastStudentId": "202690272"
+    },
+    {
+      "code": "UNZA-ENG-CEE",
+      "name": "Civil and Environmental Engineering",
+      "faculty": "School of Engineering",
+      "sourceUrl": "https://www.unza.zm/engineering/civil-and-environmental-engineering",
+      "count": 16,
+      "firstStudentId": "202690273",
+      "lastStudentId": "202690288"
+    },
+    {
+      "code": "UNZA-ENG-EEE",
+      "name": "Electrical and Electronic Engineering",
+      "faculty": "School of Engineering",
+      "sourceUrl": "https://www.unza.zm/engineering/electrical-and-electronic-engineering",
+      "count": 16,
+      "firstStudentId": "202690289",
+      "lastStudentId": "202690304"
+    },
+    {
+      "code": "UNZA-ENG-GMAT",
+      "name": "Geomatic Engineering",
+      "faculty": "School of Engineering",
+      "sourceUrl": "https://www.unza.zm/engineering/geomatic-engineering",
+      "count": 16,
+      "firstStudentId": "202690305",
+      "lastStudentId": "202690320"
+    },
+    {
+      "code": "UNZA-ENG-MECH",
+      "name": "Mechanical Engineering",
+      "faculty": "School of Engineering",
+      "sourceUrl": "https://www.unza.zm/engineering/mechanical-engineering",
+      "count": 16,
+      "firstStudentId": "202690321",
+      "lastStudentId": "202690336"
+    },
+    {
+      "code": "UNZA-HS-BMS",
+      "name": "Biomedical Sciences",
+      "faculty": "School of Health Sciences",
+      "sourceUrl": "https://www.unza.zm/health-sciences/biomedical-sciences",
+      "count": 16,
+      "firstStudentId": "202690337",
+      "lastStudentId": "202690352"
+    },
+    {
+      "code": "UNZA-HS-PHAR",
+      "name": "Pharmacy",
+      "faculty": "School of Health Sciences",
+      "sourceUrl": "https://www.unza.zm/health-sciences/pharmacy",
+      "count": 16,
+      "firstStudentId": "202690353",
+      "lastStudentId": "202690368"
+    },
+    {
+      "code": "UNZA-HS-PHYT",
+      "name": "Physiotherapy",
+      "faculty": "School of Health Sciences",
+      "sourceUrl": "https://www.unza.zm/health-sciences/physiotherapy",
+      "count": 16,
+      "firstStudentId": "202690369",
+      "lastStudentId": "202690384"
+    },
+    {
+      "code": "UNZA-HSS-ECON",
+      "name": "Economics",
+      "faculty": "School of Humanities and Social Sciences",
+      "sourceUrl": "https://www.unza.zm/humanities/economics",
+      "count": 16,
+      "firstStudentId": "202690385",
+      "lastStudentId": "202690400"
+    },
+    {
+      "code": "UNZA-HSS-GMS",
+      "name": "Government and Management Studies",
+      "faculty": "School of Humanities and Social Sciences",
+      "sourceUrl": "https://www.unza.zm/humanities/government-and-management-studies",
+      "count": 15,
+      "firstStudentId": "202690401",
+      "lastStudentId": "202690415"
+    },
+    {
+      "code": "UNZA-HSS-HAS",
+      "name": "Historical and Archaeological Studies",
+      "faculty": "School of Humanities and Social Sciences",
+      "sourceUrl": "https://www.unza.zm/humanities/historical-and-archaeological-studies",
+      "count": 15,
+      "firstStudentId": "202690416",
+      "lastStudentId": "202690430"
+    },
+    {
+      "code": "UNZA-HSS-ALLS",
+      "name": "Arts, Languages and Literary Studies",
+      "faculty": "School of Humanities and Social Sciences",
+      "sourceUrl": "https://www.unza.zm/humanities/literature-and-languages",
+      "count": 15,
+      "firstStudentId": "202690431",
+      "lastStudentId": "202690445"
+    },
+    {
+      "code": "UNZA-HSS-MCS",
+      "name": "Media and Communication Studies",
+      "faculty": "School of Humanities and Social Sciences",
+      "sourceUrl": "https://www.unza.zm/humanities/media-and-communication-studies",
+      "count": 15,
+      "firstStudentId": "202690446",
+      "lastStudentId": "202690460"
+    },
+    {
+      "code": "UNZA-HSS-PAE",
+      "name": "Philosophy and Applied Ethics",
+      "faculty": "School of Humanities and Social Sciences",
+      "sourceUrl": "https://www.unza.zm/humanities/philosophy-and-applied-ethics",
+      "count": 15,
+      "firstStudentId": "202690461",
+      "lastStudentId": "202690475"
+    },
+    {
+      "code": "UNZA-HSS-PBS",
+      "name": "Psychology and Behavioural Science",
+      "faculty": "School of Humanities and Social Sciences",
+      "sourceUrl": "https://www.unza.zm/humanities/psychology",
+      "count": 15,
+      "firstStudentId": "202690476",
+      "lastStudentId": "202690490"
+    },
+    {
+      "code": "UNZA-HSS-SWS",
+      "name": "Social Work and Sociology",
+      "faculty": "School of Humanities and Social Sciences",
+      "sourceUrl": "https://www.unza.zm/humanities/social-work-and-sociology",
+      "count": 15,
+      "firstStudentId": "202690491",
+      "lastStudentId": "202690505"
+    },
+    {
+      "code": "UNZA-LAW-PRIV",
+      "name": "Private Law",
+      "faculty": "School of Law",
+      "sourceUrl": "https://www.unza.zm/law/private-law",
+      "count": 15,
+      "firstStudentId": "202690506",
+      "lastStudentId": "202690520"
+    },
+    {
+      "code": "UNZA-LAW-PUB",
+      "name": "Public Law",
+      "faculty": "School of Law",
+      "sourceUrl": "https://www.unza.zm/law/public-law",
+      "count": 15,
+      "firstStudentId": "202690521",
+      "lastStudentId": "202690535"
+    },
+    {
+      "code": "UNZA-MED-ANAT",
+      "name": "Anatomy",
+      "faculty": "School of Medicine",
+      "sourceUrl": "https://www.unza.zm/medicine/anatomy",
+      "count": 15,
+      "firstStudentId": "202690536",
+      "lastStudentId": "202690550"
+    },
+    {
+      "code": "UNZA-MED-IMED",
+      "name": "Internal Medicine",
+      "faculty": "School of Medicine",
+      "sourceUrl": "https://www.unza.zm/medicine/internal-medicine",
+      "count": 15,
+      "firstStudentId": "202690551",
+      "lastStudentId": "202690565"
+    },
+    {
+      "code": "UNZA-MED-MEDD",
+      "name": "Medical Education Development",
+      "faculty": "School of Medicine",
+      "sourceUrl": "https://www.unza.zm/medicine/medical-education-development",
+      "count": 15,
+      "firstStudentId": "202690566",
+      "lastStudentId": "202690580"
+    },
+    {
+      "code": "UNZA-MED-OBGY",
+      "name": "Obstetrics and Gynaecology",
+      "faculty": "School of Medicine",
+      "sourceUrl": "https://www.unza.zm/medicine/obstetrics-and-gynaecology",
+      "count": 15,
+      "firstStudentId": "202690581",
+      "lastStudentId": "202690595"
+    },
+    {
+      "code": "UNZA-MED-PAED",
+      "name": "Paediatrics and Child Health",
+      "faculty": "School of Medicine",
+      "sourceUrl": "https://www.unza.zm/medicine/paediatrics-and-child-health",
+      "count": 15,
+      "firstStudentId": "202690596",
+      "lastStudentId": "202690610"
+    },
+    {
+      "code": "UNZA-MED-PATH",
+      "name": "Pathology and Microbiology",
+      "faculty": "School of Medicine",
+      "sourceUrl": "https://www.unza.zm/medicine/pathology-and-microbiology",
+      "count": 15,
+      "firstStudentId": "202690611",
+      "lastStudentId": "202690625"
+    },
+    {
+      "code": "UNZA-MED-PHSL",
+      "name": "Physiological Sciences",
+      "faculty": "School of Medicine",
+      "sourceUrl": "https://www.unza.zm/medicine/physiological-sciences",
+      "count": 15,
+      "firstStudentId": "202690626",
+      "lastStudentId": "202690640"
+    },
+    {
+      "code": "UNZA-MED-PHAR",
+      "name": "Pharmacy",
+      "faculty": "School of Medicine",
+      "sourceUrl": "https://www.unza.zm/medicine/pharmacy",
+      "count": 15,
+      "firstStudentId": "202690641",
+      "lastStudentId": "202690655"
+    },
+    {
+      "code": "UNZA-MED-PHYT",
+      "name": "Physiotherapy",
+      "faculty": "School of Medicine",
+      "sourceUrl": "https://www.unza.zm/medicine/physiotherapy",
+      "count": 15,
+      "firstStudentId": "202690656",
+      "lastStudentId": "202690670"
+    },
+    {
+      "code": "UNZA-MED-PSYC",
+      "name": "Psychiatry",
+      "faculty": "School of Medicine",
+      "sourceUrl": "https://www.unza.zm/medicine/psychiatry",
+      "count": 15,
+      "firstStudentId": "202690671",
+      "lastStudentId": "202690685"
+    },
+    {
+      "code": "UNZA-MED-SURG",
+      "name": "Surgery",
+      "faculty": "School of Medicine",
+      "sourceUrl": "https://www.unza.zm/medicine/surgery",
+      "count": 15,
+      "firstStudentId": "202690686",
+      "lastStudentId": "202690700"
+    },
+    {
+      "code": "UNZA-MIN-GEOL",
+      "name": "Geology",
+      "faculty": "School of Mines",
+      "sourceUrl": "https://www.unza.zm/mines/geology",
+      "count": 15,
+      "firstStudentId": "202690701",
+      "lastStudentId": "202690715"
+    },
+    {
+      "code": "UNZA-MIN-MNEN",
+      "name": "Mining Engineering",
+      "faculty": "School of Mines",
+      "sourceUrl": "https://www.unza.zm/mines/mining-engineering",
+      "count": 15,
+      "firstStudentId": "202690716",
+      "lastStudentId": "202690730"
+    },
+    {
+      "code": "UNZA-MIN-METE",
+      "name": "Metallurgical Engineering",
+      "faculty": "School of Mines",
+      "sourceUrl": "https://www.unza.zm/mines/metallurgical-engineering",
+      "count": 15,
+      "firstStudentId": "202690731",
+      "lastStudentId": "202690745"
+    },
+    {
+      "code": "UNZA-NAS-BIOT",
+      "name": "Biosciences and Biotechnology",
+      "faculty": "School of Natural and Applied Sciences",
+      "sourceUrl": "https://www.unza.zm/natural-and-applied-sciences/biosciences-and-biotechnology",
+      "count": 15,
+      "firstStudentId": "202690746",
+      "lastStudentId": "202690760"
+    },
+    {
+      "code": "UNZA-NAS-COMP",
+      "name": "Computing and Informatics",
+      "faculty": "School of Natural and Applied Sciences",
+      "sourceUrl": "https://www.unza.zm/natural-and-applied-sciences/computing-and-informatics",
+      "count": 15,
+      "firstStudentId": "202690761",
+      "lastStudentId": "202690775"
+    },
+    {
+      "code": "UNZA-NAS-GSEP",
+      "name": "Geographical Sciences, Environmental and Planning",
+      "faculty": "School of Natural and Applied Sciences",
+      "sourceUrl": "https://www.unza.zm/natural-and-applied-sciences/geographical-sciences-environmental-and-planning",
+      "count": 15,
+      "firstStudentId": "202690776",
+      "lastStudentId": "202690790"
+    },
+    {
+      "code": "UNZA-NAS-MSAS",
+      "name": "Mathematics, Statistics, and Actuarial Sciences",
+      "faculty": "School of Natural and Applied Sciences",
+      "sourceUrl": "https://www.unza.zm/natural-and-applied-sciences/mathematics-statistics-and-actuarial-science",
+      "count": 15,
+      "firstStudentId": "202690791",
+      "lastStudentId": "202690805"
+    },
+    {
+      "code": "UNZA-NAS-CHEM",
+      "name": "Pure and Applied Chemistry",
+      "faculty": "School of Natural and Applied Sciences",
+      "sourceUrl": "https://www.unza.zm/natural-and-applied-sciences/pure-and-applied-chemistry",
+      "count": 15,
+      "firstStudentId": "202690806",
+      "lastStudentId": "202690820"
+    },
+    {
+      "code": "UNZA-NAS-PHYS",
+      "name": "Pure and Applied Physics",
+      "faculty": "School of Natural and Applied Sciences",
+      "sourceUrl": "https://www.unza.zm/natural-and-applied-sciences/pure-and-applied-physics",
+      "count": 15,
+      "firstStudentId": "202690821",
+      "lastStudentId": "202690835"
+    },
+    {
+      "code": "UNZA-PH-ENVH",
+      "name": "Environmental Health",
+      "faculty": "School of Public Health",
+      "sourceUrl": "https://www.unza.zm/public-health/environmental-health",
+      "count": 15,
+      "firstStudentId": "202690836",
+      "lastStudentId": "202690850"
+    },
+    {
+      "code": "UNZA-PH-EPBS",
+      "name": "Epidemiology and Biostatistics",
+      "faculty": "School of Public Health",
+      "sourceUrl": "https://www.unza.zm/public-health/epidemiology-and-biostatistics",
+      "count": 15,
+      "firstStudentId": "202690851",
+      "lastStudentId": "202690865"
+    },
+    {
+      "code": "UNZA-PH-HPM",
+      "name": "Health Policy and Management",
+      "faculty": "School of Public Health",
+      "sourceUrl": "https://www.unza.zm/public-health/health-policy-and-management",
+      "count": 15,
+      "firstStudentId": "202690866",
+      "lastStudentId": "202690880"
+    },
+    {
+      "code": "UNZA-PH-HPE",
+      "name": "Health Promotion and Education",
+      "faculty": "School of Public Health",
+      "sourceUrl": "https://www.unza.zm/public-health/health-promotion-and-education",
+      "count": 15,
+      "firstStudentId": "202690881",
+      "lastStudentId": "202690895"
+    },
+    {
+      "code": "UNZA-PH-POPS",
+      "name": "Population Studies",
+      "faculty": "School of Public Health",
+      "sourceUrl": "https://www.unza.zm/public-health/population-studies",
+      "count": 15,
+      "firstStudentId": "202690896",
+      "lastStudentId": "202690910"
+    },
+    {
+      "code": "UNZA-PH-CFM",
+      "name": "Community and Family Medicine",
+      "faculty": "School of Public Health",
+      "sourceUrl": "https://www.unza.zm/public-health/community-and-family-medicine",
+      "count": 15,
+      "firstStudentId": "202690911",
+      "lastStudentId": "202690925"
+    },
+    {
+      "code": "UNZA-VET-BMS",
+      "name": "Biomedical Sciences",
+      "faculty": "School of Veterinary Medicine",
+      "sourceUrl": "https://www.unza.zm/veterinary-medicine/biomedical-sciences",
+      "count": 15,
+      "firstStudentId": "202690926",
+      "lastStudentId": "202690940"
+    },
+    {
+      "code": "UNZA-VET-CSS",
+      "name": "Central Services and Supply",
+      "faculty": "School of Veterinary Medicine",
+      "sourceUrl": "https://www.unza.zm/veterinary-medicine/central-services-and-supply",
+      "count": 15,
+      "firstStudentId": "202690941",
+      "lastStudentId": "202690955"
+    },
+    {
+      "code": "UNZA-VET-CLST",
+      "name": "Clinical Studies",
+      "faculty": "School of Veterinary Medicine",
+      "sourceUrl": "https://www.unza.zm/veterinary-medicine/clinical-studies",
+      "count": 15,
+      "firstStudentId": "202690956",
+      "lastStudentId": "202690970"
+    },
+    {
+      "code": "UNZA-VET-DCON",
+      "name": "Disease Control",
+      "faculty": "School of Veterinary Medicine",
+      "sourceUrl": "https://www.unza.zm/veterinary-medicine/disease-control",
+      "count": 15,
+      "firstStudentId": "202690971",
+      "lastStudentId": "202690985"
+    },
+    {
+      "code": "UNZA-VET-PCST",
+      "name": "Para-Clinical Studies",
+      "faculty": "School of Veterinary Medicine",
+      "sourceUrl": "https://www.unza.zm/veterinary-medicine/para-clinical-studies",
+      "count": 15,
+      "firstStudentId": "202690986",
+      "lastStudentId": "202691000"
+    }
+  ]
+}

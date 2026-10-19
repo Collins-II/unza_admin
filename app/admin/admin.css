@@ -1,0 +1,40 @@
+.admin-shell { background: #f4f7fa; }
+.admin-sidebar { background: #0a2925; position: sticky; top: 0; height: 100dvh; }
+.admin-nav-item { display: flex; align-items: center; gap: .7rem; width: 100%; border-radius: .7rem; padding: .8rem .85rem; color: #b7cbc6; font-size: .8rem; text-align: left; transition: background .15s, color .15s; }
+.admin-nav-item:hover { background: #ffffff0d; color: white; }
+.admin-nav-item.is-active { color: #ecfdf5; background: #ffffff15; box-shadow: inset 3px 0 #34d399; }
+.admin-shell .ui-card { border: 1px solid #e2e8f0; border-radius: 1rem; box-shadow: 0 2px 6px #0f172a04; padding: 1.35rem; }
+.admin-shell .ui-title { text-transform: none; font-weight: 650; letter-spacing: -.025em; line-height: 1.3; color: #142f2b; }
+.admin-shell .ui-eyebrow { letter-spacing: .12em; font-size: 10px; font-weight: 650; color: #618079; }
+.admin-shell .ui-label { font-size: 11px; text-transform: none; letter-spacing: .015em; font-weight: 600; color: #475569; }
+.admin-shell .ui-input { min-height: 42px; border: 1px solid #dce3eb; border-radius: .6rem; font-size: .825rem; padding: .6rem .75rem; color: #1e293b; }
+.admin-shell .ui-input:focus { border-color: #059669; box-shadow: 0 0 0 3px #05966912; }
+.admin-shell .ui-btn { min-height: 42px; border-radius: .6rem; text-transform: none; letter-spacing: 0; font-size: .8rem; font-weight: 600; padding: 0 1rem; }
+.admin-shell .ui-btn-sm { min-height: 36px; font-size: .75rem; padding: 0 .75rem; }
+.admin-shell .ui-btn-secondary { border: 1px solid #dce3eb; color: #475569; }
+.admin-shell .ui-btn-secondary:hover:not(:disabled) { background: #f1f5f9; color: #0f172a; }
+.admin-shell .ui-chip { border-color: #dce3eb; font-size: .7rem; text-transform: none; letter-spacing: 0; }
+.admin-shell .ui-chip-active { border-color: #0a2925; background: #0a2925; }
+.admin-shell .ui-card-muted { background: #f8fafc; border: 1px solid #edf2f7; border-radius: .75rem; }
+.data-count { display: inline-flex; vertical-align: middle; border-radius: 99px; background: #ecfdf5; color: #047857; font-size: .75rem; padding: .2rem .6rem; margin-left: .4rem; font-weight: 600; letter-spacing: 0; }
+.data-toolbar { display: flex; flex-wrap: wrap; align-items: start; gap: .6rem; padding: .85rem; background: #f8fafc; border: 1px solid #edf2f7; border-radius: .85rem; }
+.data-toolbar > label:not(:first-child) { width: 150px; flex-grow: 1; }
+.data-toolbar > .record-select { width: 200px; flex-grow: 1; }
+.data-selection { display: flex; flex-wrap: wrap; align-items: center; gap: .65rem; padding: .75rem; background: #ecfdf5; border-radius: .75rem; color: #065f46; font-size: .75rem; }
+.data-table-scroll { width: 100%; max-height: 68vh; overflow: auto; border: 1px solid #e2e8f0; border-radius: .75rem; transition: opacity .15s; }
+.data-table-scroll[inert] { opacity: .45; }
+.data-table { width: 100%; text-align: left; font-size: .8rem; border-collapse: separate; border-spacing: 0; }
+.data-table th { position: sticky; top: 0; z-index: 1; background: #f8fafc; border-bottom: 1px solid #e2e8f0; color: #64748b; font-size: .7rem; font-weight: 600; white-space: nowrap; }
+.data-table th, .data-table td { padding: .8rem .85rem; }
+.data-table td { border-bottom: 1px solid #f1f5f9; max-width: 320px; overflow-wrap: anywhere; }
+.data-table tr:last-child td { border-bottom: none; }
+.data-table tbody tr:hover { background: #f8fafc; }
+.data-table tr[data-selected="true"] { background: #f0fdf4; }
+.data-table input[type="checkbox"] { width: 16px; height: 16px; accent-color: #059669; cursor: pointer; }
+.data-status { display: inline-flex; border-radius: 99px; background: #f1f5f9; color: #475569; padding: .25rem .5rem; font-size: .7rem; white-space: nowrap; }
+.data-detail-button { display: inline-flex; align-items: center; gap: .25rem; min-height: 32px; color: #047857; font-size: .75rem; font-weight: 600; }
+.data-table .data-detail-cell { max-width: none; padding: 1.2rem; background: #f8fafc; box-shadow: inset 3px 0 #059669; }
+.admin-composer > summary { display: flex; align-items: center; gap: .5rem; cursor: pointer; font-size: .875rem; font-weight: 600; color: #334155; list-style: none; }
+.admin-composer > summary::after { content: "+"; margin-left: auto; font-size: 1.15rem; color: #64748b; }
+.admin-composer[open] > summary::after { content: "-"; }
+@media (max-width: 640px) { .admin-shell .ui-card { padding: 1rem; border-radius: .8rem; } .data-toolbar > label, .data-toolbar > .record-select { width: 100% !important; } .data-table th, .data-table td { padding: .65rem; } }

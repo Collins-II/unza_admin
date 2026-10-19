@@ -1,0 +1,101 @@
+name,email,program,year,department,studentId
+Mock UNZA-MIN-GEOL Y1 001 Chanda Banda,mock.unza-min-geol.y1.001@example.test,Mock study cohort - Geology,1,UNZA-MIN-GEOL,202690701
+Mock UNZA-MIN-GEOL Y2 002 Mutinta Banda,mock.unza-min-geol.y2.002@example.test,Mock study cohort - Geology,2,UNZA-MIN-GEOL,202690702
+Mock UNZA-MIN-GEOL Y3 003 Mwila Banda,mock.unza-min-geol.y3.003@example.test,Mock study cohort - Geology,3,UNZA-MIN-GEOL,202690703
+Mock UNZA-MIN-GEOL Y4 004 Thandiwe Banda,mock.unza-min-geol.y4.004@example.test,Mock study cohort - Geology,4,UNZA-MIN-GEOL,202690704
+Mock UNZA-MIN-GEOL Y1 005 Bwalya Banda,mock.unza-min-geol.y1.005@example.test,Mock study cohort - Geology,1,UNZA-MIN-GEOL,202690705
+Mock UNZA-MIN-GEOL Y2 006 Luyando Banda,mock.unza-min-geol.y2.006@example.test,Mock study cohort - Geology,2,UNZA-MIN-GEOL,202690706
+Mock UNZA-MIN-GEOL Y3 007 Musonda Banda,mock.unza-min-geol.y3.007@example.test,Mock study cohort - Geology,3,UNZA-MIN-GEOL,202690707
+Mock UNZA-MIN-GEOL Y4 008 Mwaka Banda,mock.unza-min-geol.y4.008@example.test,Mock study cohort - Geology,4,UNZA-MIN-GEOL,202690708
+Mock UNZA-MIN-GEOL Y1 009 Chipo Banda,mock.unza-min-geol.y1.009@example.test,Mock study cohort - Geology,1,UNZA-MIN-GEOL,202690709
+Mock UNZA-MIN-GEOL Y2 010 Mapalo Banda,mock.unza-min-geol.y2.010@example.test,Mock study cohort - Geology,2,UNZA-MIN-GEOL,202690710
+Mock UNZA-MIN-GEOL Y3 011 Chanda Phiri,mock.unza-min-geol.y3.011@example.test,Mock study cohort - Geology,3,UNZA-MIN-GEOL,202690711
+Mock UNZA-MIN-GEOL Y4 012 Mutinta Phiri,mock.unza-min-geol.y4.012@example.test,Mock study cohort - Geology,4,UNZA-MIN-GEOL,202690712
+Mock UNZA-MIN-GEOL Y1 013 Mwila Phiri,mock.unza-min-geol.y1.013@example.test,Mock study cohort - Geology,1,UNZA-MIN-GEOL,202690713
+Mock UNZA-MIN-GEOL Y2 014 Thandiwe Phiri,mock.unza-min-geol.y2.014@example.test,Mock study cohort - Geology,2,UNZA-MIN-GEOL,202690714
+Mock UNZA-MIN-GEOL Y3 015 Bwalya Phiri,mock.unza-min-geol.y3.015@example.test,Mock study cohort - Geology,3,UNZA-MIN-GEOL,202690715
+Mock UNZA-MIN-MNEN Y1 001 Chanda Banda,mock.unza-min-mnen.y1.001@example.test,Mock study cohort - Mining Engineering,1,UNZA-MIN-MNEN,202690716
+Mock UNZA-MIN-MNEN Y2 002 Mutinta Banda,mock.unza-min-mnen.y2.002@example.test,Mock study cohort - Mining Engineering,2,UNZA-MIN-MNEN,202690717
+Mock UNZA-MIN-MNEN Y3 003 Mwila Banda,mock.unza-min-mnen.y3.003@example.test,Mock study cohort - Mining Engineering,3,UNZA-MIN-MNEN,202690718
+Mock UNZA-MIN-MNEN Y4 004 Thandiwe Banda,mock.unza-min-mnen.y4.004@example.test,Mock study cohort - Mining Engineering,4,UNZA-MIN-MNEN,202690719
+Mock UNZA-MIN-MNEN Y1 005 Bwalya Banda,mock.unza-min-mnen.y1.005@example.test,Mock study cohort - Mining Engineering,1,UNZA-MIN-MNEN,202690720
+Mock UNZA-MIN-MNEN Y2 006 Luyando Banda,mock.unza-min-mnen.y2.006@example.test,Mock study cohort - Mining Engineering,2,UNZA-MIN-MNEN,202690721
+Mock UNZA-MIN-MNEN Y3 007 Musonda Banda,mock.unza-min-mnen.y3.007@example.test,Mock study cohort - Mining Engineering,3,UNZA-MIN-MNEN,202690722
+Mock UNZA-MIN-MNEN Y4 008 Mwaka Banda,mock.unza-min-mnen.y4.008@example.test,Mock study cohort - Mining Engineering,4,UNZA-MIN-MNEN,202690723
+Mock UNZA-MIN-MNEN Y1 009 Chipo Banda,mock.unza-min-mnen.y1.009@example.test,Mock study cohort - Mining Engineering,1,UNZA-MIN-MNEN,202690724
+Mock UNZA-MIN-MNEN Y2 010 Mapalo Banda,mock.unza-min-mnen.y2.010@example.test,Mock study cohort - Mining Engineering,2,UNZA-MIN-MNEN,202690725
+Mock UNZA-MIN-MNEN Y3 011 Chanda Phiri,mock.unza-min-mnen.y3.011@example.test,Mock study cohort - Mining Engineering,3,UNZA-MIN-MNEN,202690726
+Mock UNZA-MIN-MNEN Y4 012 Mutinta Phiri,mock.unza-min-mnen.y4.012@example.test,Mock study cohort - Mining Engineering,4,UNZA-MIN-MNEN,202690727
+Mock UNZA-MIN-MNEN Y1 013 Mwila Phiri,mock.unza-min-mnen.y1.013@example.test,Mock study cohort - Mining Engineering,1,UNZA-MIN-MNEN,202690728
+Mock UNZA-MIN-MNEN Y2 014 Thandiwe Phiri,mock.unza-min-mnen.y2.014@example.test,Mock study cohort - Mining Engineering,2,UNZA-MIN-MNEN,202690729
+Mock UNZA-MIN-MNEN Y3 015 Bwalya Phiri,mock.unza-min-mnen.y3.015@example.test,Mock study cohort - Mining Engineering,3,UNZA-MIN-MNEN,202690730
+Mock UNZA-MIN-METE Y1 001 Chanda Banda,mock.unza-min-mete.y1.001@example.test,Mock study cohort - Metallurgical Engineering,1,UNZA-MIN-METE,202690731
+Mock UNZA-MIN-METE Y2 002 Mutinta Banda,mock.unza-min-mete.y2.002@example.test,Mock study cohort - Metallurgical Engineering,2,UNZA-MIN-METE,202690732
+Mock UNZA-MIN-METE Y3 003 Mwila Banda,mock.unza-min-mete.y3.003@example.test,Mock study cohort - Metallurgical Engineering,3,UNZA-MIN-METE,202690733
+Mock UNZA-MIN-METE Y4 004 Thandiwe Banda,mock.unza-min-mete.y4.004@example.test,Mock study cohort - Metallurgical Engineering,4,UNZA-MIN-METE,202690734
+Mock UNZA-MIN-METE Y1 005 Bwalya Banda,mock.unza-min-mete.y1.005@example.test,Mock study cohort - Metallurgical Engineering,1,UNZA-MIN-METE,202690735
+Mock UNZA-MIN-METE Y2 006 Luyando Banda,mock.unza-min-mete.y2.006@example.test,Mock study cohort - Metallurgical Engineering,2,UNZA-MIN-METE,202690736
+Mock UNZA-MIN-METE Y3 007 Musonda Banda,mock.unza-min-mete.y3.007@example.test,Mock study cohort - Metallurgical Engineering,3,UNZA-MIN-METE,202690737
+Mock UNZA-MIN-METE Y4 008 Mwaka Banda,mock.unza-min-mete.y4.008@example.test,Mock study cohort - Metallurgical Engineering,4,UNZA-MIN-METE,202690738
+Mock UNZA-MIN-METE Y1 009 Chipo Banda,mock.unza-min-mete.y1.009@example.test,Mock study cohort - Metallurgical Engineering,1,UNZA-MIN-METE,202690739
+Mock UNZA-MIN-METE Y2 010 Mapalo Banda,mock.unza-min-mete.y2.010@example.test,Mock study cohort - Metallurgical Engineering,2,UNZA-MIN-METE,202690740
+Mock UNZA-MIN-METE Y3 011 Chanda Phiri,mock.unza-min-mete.y3.011@example.test,Mock study cohort - Metallurgical Engineering,3,UNZA-MIN-METE,202690741
+Mock UNZA-MIN-METE Y4 012 Mutinta Phiri,mock.unza-min-mete.y4.012@example.test,Mock study cohort - Metallurgical Engineering,4,UNZA-MIN-METE,202690742
+Mock UNZA-MIN-METE Y1 013 Mwila Phiri,mock.unza-min-mete.y1.013@example.test,Mock study cohort - Metallurgical Engineering,1,UNZA-MIN-METE,202690743
+Mock UNZA-MIN-METE Y2 014 Thandiwe Phiri,mock.unza-min-mete.y2.014@example.test,Mock study cohort - Metallurgical Engineering,2,UNZA-MIN-METE,202690744
+Mock UNZA-MIN-METE Y3 015 Bwalya Phiri,mock.unza-min-mete.y3.015@example.test,Mock study cohort - Metallurgical Engineering,3,UNZA-MIN-METE,202690745
+Mock UNZA-NAS-BIOT Y1 001 Chanda Banda,mock.unza-nas-biot.y1.001@example.test,Mock study cohort - Biosciences and Biotechnology,1,UNZA-NAS-BIOT,202690746
+Mock UNZA-NAS-BIOT Y2 002 Mutinta Banda,mock.unza-nas-biot.y2.002@example.test,Mock study cohort - Biosciences and Biotechnology,2,UNZA-NAS-BIOT,202690747
+Mock UNZA-NAS-BIOT Y3 003 Mwila Banda,mock.unza-nas-biot.y3.003@example.test,Mock study cohort - Biosciences and Biotechnology,3,UNZA-NAS-BIOT,202690748
+Mock UNZA-NAS-BIOT Y4 004 Thandiwe Banda,mock.unza-nas-biot.y4.004@example.test,Mock study cohort - Biosciences and Biotechnology,4,UNZA-NAS-BIOT,202690749
+Mock UNZA-NAS-BIOT Y1 005 Bwalya Banda,mock.unza-nas-biot.y1.005@example.test,Mock study cohort - Biosciences and Biotechnology,1,UNZA-NAS-BIOT,202690750
+Mock UNZA-NAS-BIOT Y2 006 Luyando Banda,mock.unza-nas-biot.y2.006@example.test,Mock study cohort - Biosciences and Biotechnology,2,UNZA-NAS-BIOT,202690751
+Mock UNZA-NAS-BIOT Y3 007 Musonda Banda,mock.unza-nas-biot.y3.007@example.test,Mock study cohort - Biosciences and Biotechnology,3,UNZA-NAS-BIOT,202690752
+Mock UNZA-NAS-BIOT Y4 008 Mwaka Banda,mock.unza-nas-biot.y4.008@example.test,Mock study cohort - Biosciences and Biotechnology,4,UNZA-NAS-BIOT,202690753
+Mock UNZA-NAS-BIOT Y1 009 Chipo Banda,mock.unza-nas-biot.y1.009@example.test,Mock study cohort - Biosciences and Biotechnology,1,UNZA-NAS-BIOT,202690754
+Mock UNZA-NAS-BIOT Y2 010 Mapalo Banda,mock.unza-nas-biot.y2.010@example.test,Mock study cohort - Biosciences and Biotechnology,2,UNZA-NAS-BIOT,202690755
+Mock UNZA-NAS-BIOT Y3 011 Chanda Phiri,mock.unza-nas-biot.y3.011@example.test,Mock study cohort - Biosciences and Biotechnology,3,UNZA-NAS-BIOT,202690756
+Mock UNZA-NAS-BIOT Y4 012 Mutinta Phiri,mock.unza-nas-biot.y4.012@example.test,Mock study cohort - Biosciences and Biotechnology,4,UNZA-NAS-BIOT,202690757
+Mock UNZA-NAS-BIOT Y1 013 Mwila Phiri,mock.unza-nas-biot.y1.013@example.test,Mock study cohort - Biosciences and Biotechnology,1,UNZA-NAS-BIOT,202690758
+Mock UNZA-NAS-BIOT Y2 014 Thandiwe Phiri,mock.unza-nas-biot.y2.014@example.test,Mock study cohort - Biosciences and Biotechnology,2,UNZA-NAS-BIOT,202690759
+Mock UNZA-NAS-BIOT Y3 015 Bwalya Phiri,mock.unza-nas-biot.y3.015@example.test,Mock study cohort - Biosciences and Biotechnology,3,UNZA-NAS-BIOT,202690760
+Mock UNZA-NAS-COMP Y1 001 Chanda Banda,mock.unza-nas-comp.y1.001@example.test,Mock study cohort - Computing and Informatics,1,UNZA-NAS-COMP,202690761
+Mock UNZA-NAS-COMP Y2 002 Mutinta Banda,mock.unza-nas-comp.y2.002@example.test,Mock study cohort - Computing and Informatics,2,UNZA-NAS-COMP,202690762
+Mock UNZA-NAS-COMP Y3 003 Mwila Banda,mock.unza-nas-comp.y3.003@example.test,Mock study cohort - Computing and Informatics,3,UNZA-NAS-COMP,202690763
+Mock UNZA-NAS-COMP Y4 004 Thandiwe Banda,mock.unza-nas-comp.y4.004@example.test,Mock study cohort - Computing and Informatics,4,UNZA-NAS-COMP,202690764
+Mock UNZA-NAS-COMP Y1 005 Bwalya Banda,mock.unza-nas-comp.y1.005@example.test,Mock study cohort - Computing and Informatics,1,UNZA-NAS-COMP,202690765
+Mock UNZA-NAS-COMP Y2 006 Luyando Banda,mock.unza-nas-comp.y2.006@example.test,Mock study cohort - Computing and Informatics,2,UNZA-NAS-COMP,202690766
+Mock UNZA-NAS-COMP Y3 007 Musonda Banda,mock.unza-nas-comp.y3.007@example.test,Mock study cohort - Computing and Informatics,3,UNZA-NAS-COMP,202690767
+Mock UNZA-NAS-COMP Y4 008 Mwaka Banda,mock.unza-nas-comp.y4.008@example.test,Mock study cohort - Computing and Informatics,4,UNZA-NAS-COMP,202690768
+Mock UNZA-NAS-COMP Y1 009 Chipo Banda,mock.unza-nas-comp.y1.009@example.test,Mock study cohort - Computing and Informatics,1,UNZA-NAS-COMP,202690769
+Mock UNZA-NAS-COMP Y2 010 Mapalo Banda,mock.unza-nas-comp.y2.010@example.test,Mock study cohort - Computing and Informatics,2,UNZA-NAS-COMP,202690770
+Mock UNZA-NAS-COMP Y3 011 Chanda Phiri,mock.unza-nas-comp.y3.011@example.test,Mock study cohort - Computing and Informatics,3,UNZA-NAS-COMP,202690771
+Mock UNZA-NAS-COMP Y4 012 Mutinta Phiri,mock.unza-nas-comp.y4.012@example.test,Mock study cohort - Computing and Informatics,4,UNZA-NAS-COMP,202690772
+Mock UNZA-NAS-COMP Y1 013 Mwila Phiri,mock.unza-nas-comp.y1.013@example.test,Mock study cohort - Computing and Informatics,1,UNZA-NAS-COMP,202690773
+Mock UNZA-NAS-COMP Y2 014 Thandiwe Phiri,mock.unza-nas-comp.y2.014@example.test,Mock study cohort - Computing and Informatics,2,UNZA-NAS-COMP,202690774
+Mock UNZA-NAS-COMP Y3 015 Bwalya Phiri,mock.unza-nas-comp.y3.015@example.test,Mock study cohort - Computing and Informatics,3,UNZA-NAS-COMP,202690775
+Mock UNZA-NAS-GSEP Y1 001 Chanda Banda,mock.unza-nas-gsep.y1.001@example.test,Mock study cohort - Geographical Sciences; Environmental and Planning,1,UNZA-NAS-GSEP,202690776
+Mock UNZA-NAS-GSEP Y2 002 Mutinta Banda,mock.unza-nas-gsep.y2.002@example.test,Mock study cohort - Geographical Sciences; Environmental and Planning,2,UNZA-NAS-GSEP,202690777
+Mock UNZA-NAS-GSEP Y3 003 Mwila Banda,mock.unza-nas-gsep.y3.003@example.test,Mock study cohort - Geographical Sciences; Environmental and Planning,3,UNZA-NAS-GSEP,202690778
+Mock UNZA-NAS-GSEP Y4 004 Thandiwe Banda,mock.unza-nas-gsep.y4.004@example.test,Mock study cohort - Geographical Sciences; Environmental and Planning,4,UNZA-NAS-GSEP,202690779
+Mock UNZA-NAS-GSEP Y1 005 Bwalya Banda,mock.unza-nas-gsep.y1.005@example.test,Mock study cohort - Geographical Sciences; Environmental and Planning,1,UNZA-NAS-GSEP,202690780
+Mock UNZA-NAS-GSEP Y2 006 Luyando Banda,mock.unza-nas-gsep.y2.006@example.test,Mock study cohort - Geographical Sciences; Environmental and Planning,2,UNZA-NAS-GSEP,202690781
+Mock UNZA-NAS-GSEP Y3 007 Musonda Banda,mock.unza-nas-gsep.y3.007@example.test,Mock study cohort - Geographical Sciences; Environmental and Planning,3,UNZA-NAS-GSEP,202690782
+Mock UNZA-NAS-GSEP Y4 008 Mwaka Banda,mock.unza-nas-gsep.y4.008@example.test,Mock study cohort - Geographical Sciences; Environmental and Planning,4,UNZA-NAS-GSEP,202690783
+Mock UNZA-NAS-GSEP Y1 009 Chipo Banda,mock.unza-nas-gsep.y1.009@example.test,Mock study cohort - Geographical Sciences; Environmental and Planning,1,UNZA-NAS-GSEP,202690784
+Mock UNZA-NAS-GSEP Y2 010 Mapalo Banda,mock.unza-nas-gsep.y2.010@example.test,Mock study cohort - Geographical Sciences; Environmental and Planning,2,UNZA-NAS-GSEP,202690785
+Mock UNZA-NAS-GSEP Y3 011 Chanda Phiri,mock.unza-nas-gsep.y3.011@example.test,Mock study cohort - Geographical Sciences; Environmental and Planning,3,UNZA-NAS-GSEP,202690786
+Mock UNZA-NAS-GSEP Y4 012 Mutinta Phiri,mock.unza-nas-gsep.y4.012@example.test,Mock study cohort - Geographical Sciences; Environmental and Planning,4,UNZA-NAS-GSEP,202690787
+Mock UNZA-NAS-GSEP Y1 013 Mwila Phiri,mock.unza-nas-gsep.y1.013@example.test,Mock study cohort - Geographical Sciences; Environmental and Planning,1,UNZA-NAS-GSEP,202690788
+Mock UNZA-NAS-GSEP Y2 014 Thandiwe Phiri,mock.unza-nas-gsep.y2.014@example.test,Mock study cohort - Geographical Sciences; Environmental and Planning,2,UNZA-NAS-GSEP,202690789
+Mock UNZA-NAS-GSEP Y3 015 Bwalya Phiri,mock.unza-nas-gsep.y3.015@example.test,Mock study cohort - Geographical Sciences; Environmental and Planning,3,UNZA-NAS-GSEP,202690790
+Mock UNZA-NAS-MSAS Y1 001 Chanda Banda,mock.unza-nas-msas.y1.001@example.test,Mock study cohort - Mathematics; Statistics; and Actuarial Sciences,1,UNZA-NAS-MSAS,202690791
+Mock UNZA-NAS-MSAS Y2 002 Mutinta Banda,mock.unza-nas-msas.y2.002@example.test,Mock study cohort - Mathematics; Statistics; and Actuarial Sciences,2,UNZA-NAS-MSAS,202690792
+Mock UNZA-NAS-MSAS Y3 003 Mwila Banda,mock.unza-nas-msas.y3.003@example.test,Mock study cohort - Mathematics; Statistics; and Actuarial Sciences,3,UNZA-NAS-MSAS,202690793
+Mock UNZA-NAS-MSAS Y4 004 Thandiwe Banda,mock.unza-nas-msas.y4.004@example.test,Mock study cohort - Mathematics; Statistics; and Actuarial Sciences,4,UNZA-NAS-MSAS,202690794
+Mock UNZA-NAS-MSAS Y1 005 Bwalya Banda,mock.unza-nas-msas.y1.005@example.test,Mock study cohort - Mathematics; Statistics; and Actuarial Sciences,1,UNZA-NAS-MSAS,202690795
+Mock UNZA-NAS-MSAS Y2 006 Luyando Banda,mock.unza-nas-msas.y2.006@example.test,Mock study cohort - Mathematics; Statistics; and Actuarial Sciences,2,UNZA-NAS-MSAS,202690796
+Mock UNZA-NAS-MSAS Y3 007 Musonda Banda,mock.unza-nas-msas.y3.007@example.test,Mock study cohort - Mathematics; Statistics; and Actuarial Sciences,3,UNZA-NAS-MSAS,202690797
+Mock UNZA-NAS-MSAS Y4 008 Mwaka Banda,mock.unza-nas-msas.y4.008@example.test,Mock study cohort - Mathematics; Statistics; and Actuarial Sciences,4,UNZA-NAS-MSAS,202690798
+Mock UNZA-NAS-MSAS Y1 009 Chipo Banda,mock.unza-nas-msas.y1.009@example.test,Mock study cohort - Mathematics; Statistics; and Actuarial Sciences,1,UNZA-NAS-MSAS,202690799
+Mock UNZA-NAS-MSAS Y2 010 Mapalo Banda,mock.unza-nas-msas.y2.010@example.test,Mock study cohort - Mathematics; Statistics; and Actuarial Sciences,2,UNZA-NAS-MSAS,202690800

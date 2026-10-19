@@ -1,0 +1,101 @@
+name,email,program,year,department,studentId
+Mock UNZA-HSS-GMS Y1 001 Chanda Banda,mock.unza-hss-gms.y1.001@example.test,Mock study cohort - Government and Management Studies,1,UNZA-HSS-GMS,202690401
+Mock UNZA-HSS-GMS Y2 002 Mutinta Banda,mock.unza-hss-gms.y2.002@example.test,Mock study cohort - Government and Management Studies,2,UNZA-HSS-GMS,202690402
+Mock UNZA-HSS-GMS Y3 003 Mwila Banda,mock.unza-hss-gms.y3.003@example.test,Mock study cohort - Government and Management Studies,3,UNZA-HSS-GMS,202690403
+Mock UNZA-HSS-GMS Y4 004 Thandiwe Banda,mock.unza-hss-gms.y4.004@example.test,Mock study cohort - Government and Management Studies,4,UNZA-HSS-GMS,202690404
+Mock UNZA-HSS-GMS Y1 005 Bwalya Banda,mock.unza-hss-gms.y1.005@example.test,Mock study cohort - Government and Management Studies,1,UNZA-HSS-GMS,202690405
+Mock UNZA-HSS-GMS Y2 006 Luyando Banda,mock.unza-hss-gms.y2.006@example.test,Mock study cohort - Government and Management Studies,2,UNZA-HSS-GMS,202690406
+Mock UNZA-HSS-GMS Y3 007 Musonda Banda,mock.unza-hss-gms.y3.007@example.test,Mock study cohort - Government and Management Studies,3,UNZA-HSS-GMS,202690407
+Mock UNZA-HSS-GMS Y4 008 Mwaka Banda,mock.unza-hss-gms.y4.008@example.test,Mock study cohort - Government and Management Studies,4,UNZA-HSS-GMS,202690408
+Mock UNZA-HSS-GMS Y1 009 Chipo Banda,mock.unza-hss-gms.y1.009@example.test,Mock study cohort - Government and Management Studies,1,UNZA-HSS-GMS,202690409
+Mock UNZA-HSS-GMS Y2 010 Mapalo Banda,mock.unza-hss-gms.y2.010@example.test,Mock study cohort - Government and Management Studies,2,UNZA-HSS-GMS,202690410
+Mock UNZA-HSS-GMS Y3 011 Chanda Phiri,mock.unza-hss-gms.y3.011@example.test,Mock study cohort - Government and Management Studies,3,UNZA-HSS-GMS,202690411
+Mock UNZA-HSS-GMS Y4 012 Mutinta Phiri,mock.unza-hss-gms.y4.012@example.test,Mock study cohort - Government and Management Studies,4,UNZA-HSS-GMS,202690412
+Mock UNZA-HSS-GMS Y1 013 Mwila Phiri,mock.unza-hss-gms.y1.013@example.test,Mock study cohort - Government and Management Studies,1,UNZA-HSS-GMS,202690413
+Mock UNZA-HSS-GMS Y2 014 Thandiwe Phiri,mock.unza-hss-gms.y2.014@example.test,Mock study cohort - Government and Management Studies,2,UNZA-HSS-GMS,202690414
+Mock UNZA-HSS-GMS Y3 015 Bwalya Phiri,mock.unza-hss-gms.y3.015@example.test,Mock study cohort - Government and Management Studies,3,UNZA-HSS-GMS,202690415
+Mock UNZA-HSS-HAS Y1 001 Chanda Banda,mock.unza-hss-has.y1.001@example.test,Mock study cohort - Historical and Archaeological Studies,1,UNZA-HSS-HAS,202690416
+Mock UNZA-HSS-HAS Y2 002 Mutinta Banda,mock.unza-hss-has.y2.002@example.test,Mock study cohort - Historical and Archaeological Studies,2,UNZA-HSS-HAS,202690417
+Mock UNZA-HSS-HAS Y3 003 Mwila Banda,mock.unza-hss-has.y3.003@example.test,Mock study cohort - Historical and Archaeological Studies,3,UNZA-HSS-HAS,202690418
+Mock UNZA-HSS-HAS Y4 004 Thandiwe Banda,mock.unza-hss-has.y4.004@example.test,Mock study cohort - Historical and Archaeological Studies,4,UNZA-HSS-HAS,202690419
+Mock UNZA-HSS-HAS Y1 005 Bwalya Banda,mock.unza-hss-has.y1.005@example.test,Mock study cohort - Historical and Archaeological Studies,1,UNZA-HSS-HAS,202690420
+Mock UNZA-HSS-HAS Y2 006 Luyando Banda,mock.unza-hss-has.y2.006@example.test,Mock study cohort - Historical and Archaeological Studies,2,UNZA-HSS-HAS,202690421
+Mock UNZA-HSS-HAS Y3 007 Musonda Banda,mock.unza-hss-has.y3.007@example.test,Mock study cohort - Historical and Archaeological Studies,3,UNZA-HSS-HAS,202690422
+Mock UNZA-HSS-HAS Y4 008 Mwaka Banda,mock.unza-hss-has.y4.008@example.test,Mock study cohort - Historical and Archaeological Studies,4,UNZA-HSS-HAS,202690423
+Mock UNZA-HSS-HAS Y1 009 Chipo Banda,mock.unza-hss-has.y1.009@example.test,Mock study cohort - Historical and Archaeological Studies,1,UNZA-HSS-HAS,202690424
+Mock UNZA-HSS-HAS Y2 010 Mapalo Banda,mock.unza-hss-has.y2.010@example.test,Mock study cohort - Historical and Archaeological Studies,2,UNZA-HSS-HAS,202690425
+Mock UNZA-HSS-HAS Y3 011 Chanda Phiri,mock.unza-hss-has.y3.011@example.test,Mock study cohort - Historical and Archaeological Studies,3,UNZA-HSS-HAS,202690426
+Mock UNZA-HSS-HAS Y4 012 Mutinta Phiri,mock.unza-hss-has.y4.012@example.test,Mock study cohort - Historical and Archaeological Studies,4,UNZA-HSS-HAS,202690427
+Mock UNZA-HSS-HAS Y1 013 Mwila Phiri,mock.unza-hss-has.y1.013@example.test,Mock study cohort - Historical and Archaeological Studies,1,UNZA-HSS-HAS,202690428
+Mock UNZA-HSS-HAS Y2 014 Thandiwe Phiri,mock.unza-hss-has.y2.014@example.test,Mock study cohort - Historical and Archaeological Studies,2,UNZA-HSS-HAS,202690429
+Mock UNZA-HSS-HAS Y3 015 Bwalya Phiri,mock.unza-hss-has.y3.015@example.test,Mock study cohort - Historical and Archaeological Studies,3,UNZA-HSS-HAS,202690430
+Mock UNZA-HSS-ALLS Y1 001 Chanda Banda,mock.unza-hss-alls.y1.001@example.test,Mock study cohort - Arts; Languages and Literary Studies,1,UNZA-HSS-ALLS,202690431
+Mock UNZA-HSS-ALLS Y2 002 Mutinta Banda,mock.unza-hss-alls.y2.002@example.test,Mock study cohort - Arts; Languages and Literary Studies,2,UNZA-HSS-ALLS,202690432
+Mock UNZA-HSS-ALLS Y3 003 Mwila Banda,mock.unza-hss-alls.y3.003@example.test,Mock study cohort - Arts; Languages and Literary Studies,3,UNZA-HSS-ALLS,202690433
+Mock UNZA-HSS-ALLS Y4 004 Thandiwe Banda,mock.unza-hss-alls.y4.004@example.test,Mock study cohort - Arts; Languages and Literary Studies,4,UNZA-HSS-ALLS,202690434
+Mock UNZA-HSS-ALLS Y1 005 Bwalya Banda,mock.unza-hss-alls.y1.005@example.test,Mock study cohort - Arts; Languages and Literary Studies,1,UNZA-HSS-ALLS,202690435
+Mock UNZA-HSS-ALLS Y2 006 Luyando Banda,mock.unza-hss-alls.y2.006@example.test,Mock study cohort - Arts; Languages and Literary Studies,2,UNZA-HSS-ALLS,202690436
+Mock UNZA-HSS-ALLS Y3 007 Musonda Banda,mock.unza-hss-alls.y3.007@example.test,Mock study cohort - Arts; Languages and Literary Studies,3,UNZA-HSS-ALLS,202690437
+Mock UNZA-HSS-ALLS Y4 008 Mwaka Banda,mock.unza-hss-alls.y4.008@example.test,Mock study cohort - Arts; Languages and Literary Studies,4,UNZA-HSS-ALLS,202690438
+Mock UNZA-HSS-ALLS Y1 009 Chipo Banda,mock.unza-hss-alls.y1.009@example.test,Mock study cohort - Arts; Languages and Literary Studies,1,UNZA-HSS-ALLS,202690439
+Mock UNZA-HSS-ALLS Y2 010 Mapalo Banda,mock.unza-hss-alls.y2.010@example.test,Mock study cohort - Arts; Languages and Literary Studies,2,UNZA-HSS-ALLS,202690440
+Mock UNZA-HSS-ALLS Y3 011 Chanda Phiri,mock.unza-hss-alls.y3.011@example.test,Mock study cohort - Arts; Languages and Literary Studies,3,UNZA-HSS-ALLS,202690441
+Mock UNZA-HSS-ALLS Y4 012 Mutinta Phiri,mock.unza-hss-alls.y4.012@example.test,Mock study cohort - Arts; Languages and Literary Studies,4,UNZA-HSS-ALLS,202690442
+Mock UNZA-HSS-ALLS Y1 013 Mwila Phiri,mock.unza-hss-alls.y1.013@example.test,Mock study cohort - Arts; Languages and Literary Studies,1,UNZA-HSS-ALLS,202690443
+Mock UNZA-HSS-ALLS Y2 014 Thandiwe Phiri,mock.unza-hss-alls.y2.014@example.test,Mock study cohort - Arts; Languages and Literary Studies,2,UNZA-HSS-ALLS,202690444
+Mock UNZA-HSS-ALLS Y3 015 Bwalya Phiri,mock.unza-hss-alls.y3.015@example.test,Mock study cohort - Arts; Languages and Literary Studies,3,UNZA-HSS-ALLS,202690445
+Mock UNZA-HSS-MCS Y1 001 Chanda Banda,mock.unza-hss-mcs.y1.001@example.test,Mock study cohort - Media and Communication Studies,1,UNZA-HSS-MCS,202690446
+Mock UNZA-HSS-MCS Y2 002 Mutinta Banda,mock.unza-hss-mcs.y2.002@example.test,Mock study cohort - Media and Communication Studies,2,UNZA-HSS-MCS,202690447
+Mock UNZA-HSS-MCS Y3 003 Mwila Banda,mock.unza-hss-mcs.y3.003@example.test,Mock study cohort - Media and Communication Studies,3,UNZA-HSS-MCS,202690448
+Mock UNZA-HSS-MCS Y4 004 Thandiwe Banda,mock.unza-hss-mcs.y4.004@example.test,Mock study cohort - Media and Communication Studies,4,UNZA-HSS-MCS,202690449
+Mock UNZA-HSS-MCS Y1 005 Bwalya Banda,mock.unza-hss-mcs.y1.005@example.test,Mock study cohort - Media and Communication Studies,1,UNZA-HSS-MCS,202690450
+Mock UNZA-HSS-MCS Y2 006 Luyando Banda,mock.unza-hss-mcs.y2.006@example.test,Mock study cohort - Media and Communication Studies,2,UNZA-HSS-MCS,202690451
+Mock UNZA-HSS-MCS Y3 007 Musonda Banda,mock.unza-hss-mcs.y3.007@example.test,Mock study cohort - Media and Communication Studies,3,UNZA-HSS-MCS,202690452
+Mock UNZA-HSS-MCS Y4 008 Mwaka Banda,mock.unza-hss-mcs.y4.008@example.test,Mock study cohort - Media and Communication Studies,4,UNZA-HSS-MCS,202690453
+Mock UNZA-HSS-MCS Y1 009 Chipo Banda,mock.unza-hss-mcs.y1.009@example.test,Mock study cohort - Media and Communication Studies,1,UNZA-HSS-MCS,202690454
+Mock UNZA-HSS-MCS Y2 010 Mapalo Banda,mock.unza-hss-mcs.y2.010@example.test,Mock study cohort - Media and Communication Studies,2,UNZA-HSS-MCS,202690455
+Mock UNZA-HSS-MCS Y3 011 Chanda Phiri,mock.unza-hss-mcs.y3.011@example.test,Mock study cohort - Media and Communication Studies,3,UNZA-HSS-MCS,202690456
+Mock UNZA-HSS-MCS Y4 012 Mutinta Phiri,mock.unza-hss-mcs.y4.012@example.test,Mock study cohort - Media and Communication Studies,4,UNZA-HSS-MCS,202690457
+Mock UNZA-HSS-MCS Y1 013 Mwila Phiri,mock.unza-hss-mcs.y1.013@example.test,Mock study cohort - Media and Communication Studies,1,UNZA-HSS-MCS,202690458
+Mock UNZA-HSS-MCS Y2 014 Thandiwe Phiri,mock.unza-hss-mcs.y2.014@example.test,Mock study cohort - Media and Communication Studies,2,UNZA-HSS-MCS,202690459
+Mock UNZA-HSS-MCS Y3 015 Bwalya Phiri,mock.unza-hss-mcs.y3.015@example.test,Mock study cohort - Media and Communication Studies,3,UNZA-HSS-MCS,202690460
+Mock UNZA-HSS-PAE Y1 001 Chanda Banda,mock.unza-hss-pae.y1.001@example.test,Mock study cohort - Philosophy and Applied Ethics,1,UNZA-HSS-PAE,202690461
+Mock UNZA-HSS-PAE Y2 002 Mutinta Banda,mock.unza-hss-pae.y2.002@example.test,Mock study cohort - Philosophy and Applied Ethics,2,UNZA-HSS-PAE,202690462
+Mock UNZA-HSS-PAE Y3 003 Mwila Banda,mock.unza-hss-pae.y3.003@example.test,Mock study cohort - Philosophy and Applied Ethics,3,UNZA-HSS-PAE,202690463
+Mock UNZA-HSS-PAE Y4 004 Thandiwe Banda,mock.unza-hss-pae.y4.004@example.test,Mock study cohort - Philosophy and Applied Ethics,4,UNZA-HSS-PAE,202690464
+Mock UNZA-HSS-PAE Y1 005 Bwalya Banda,mock.unza-hss-pae.y1.005@example.test,Mock study cohort - Philosophy and Applied Ethics,1,UNZA-HSS-PAE,202690465
+Mock UNZA-HSS-PAE Y2 006 Luyando Banda,mock.unza-hss-pae.y2.006@example.test,Mock study cohort - Philosophy and Applied Ethics,2,UNZA-HSS-PAE,202690466
+Mock UNZA-HSS-PAE Y3 007 Musonda Banda,mock.unza-hss-pae.y3.007@example.test,Mock study cohort - Philosophy and Applied Ethics,3,UNZA-HSS-PAE,202690467
+Mock UNZA-HSS-PAE Y4 008 Mwaka Banda,mock.unza-hss-pae.y4.008@example.test,Mock study cohort - Philosophy and Applied Ethics,4,UNZA-HSS-PAE,202690468
+Mock UNZA-HSS-PAE Y1 009 Chipo Banda,mock.unza-hss-pae.y1.009@example.test,Mock study cohort - Philosophy and Applied Ethics,1,UNZA-HSS-PAE,202690469
+Mock UNZA-HSS-PAE Y2 010 Mapalo Banda,mock.unza-hss-pae.y2.010@example.test,Mock study cohort - Philosophy and Applied Ethics,2,UNZA-HSS-PAE,202690470
+Mock UNZA-HSS-PAE Y3 011 Chanda Phiri,mock.unza-hss-pae.y3.011@example.test,Mock study cohort - Philosophy and Applied Ethics,3,UNZA-HSS-PAE,202690471
+Mock UNZA-HSS-PAE Y4 012 Mutinta Phiri,mock.unza-hss-pae.y4.012@example.test,Mock study cohort - Philosophy and Applied Ethics,4,UNZA-HSS-PAE,202690472
+Mock UNZA-HSS-PAE Y1 013 Mwila Phiri,mock.unza-hss-pae.y1.013@example.test,Mock study cohort - Philosophy and Applied Ethics,1,UNZA-HSS-PAE,202690473
+Mock UNZA-HSS-PAE Y2 014 Thandiwe Phiri,mock.unza-hss-pae.y2.014@example.test,Mock study cohort - Philosophy and Applied Ethics,2,UNZA-HSS-PAE,202690474
+Mock UNZA-HSS-PAE Y3 015 Bwalya Phiri,mock.unza-hss-pae.y3.015@example.test,Mock study cohort - Philosophy and Applied Ethics,3,UNZA-HSS-PAE,202690475
+Mock UNZA-HSS-PBS Y1 001 Chanda Banda,mock.unza-hss-pbs.y1.001@example.test,Mock study cohort - Psychology and Behavioural Science,1,UNZA-HSS-PBS,202690476
+Mock UNZA-HSS-PBS Y2 002 Mutinta Banda,mock.unza-hss-pbs.y2.002@example.test,Mock study cohort - Psychology and Behavioural Science,2,UNZA-HSS-PBS,202690477
+Mock UNZA-HSS-PBS Y3 003 Mwila Banda,mock.unza-hss-pbs.y3.003@example.test,Mock study cohort - Psychology and Behavioural Science,3,UNZA-HSS-PBS,202690478
+Mock UNZA-HSS-PBS Y4 004 Thandiwe Banda,mock.unza-hss-pbs.y4.004@example.test,Mock study cohort - Psychology and Behavioural Science,4,UNZA-HSS-PBS,202690479
+Mock UNZA-HSS-PBS Y1 005 Bwalya Banda,mock.unza-hss-pbs.y1.005@example.test,Mock study cohort - Psychology and Behavioural Science,1,UNZA-HSS-PBS,202690480
+Mock UNZA-HSS-PBS Y2 006 Luyando Banda,mock.unza-hss-pbs.y2.006@example.test,Mock study cohort - Psychology and Behavioural Science,2,UNZA-HSS-PBS,202690481
+Mock UNZA-HSS-PBS Y3 007 Musonda Banda,mock.unza-hss-pbs.y3.007@example.test,Mock study cohort - Psychology and Behavioural Science,3,UNZA-HSS-PBS,202690482
+Mock UNZA-HSS-PBS Y4 008 Mwaka Banda,mock.unza-hss-pbs.y4.008@example.test,Mock study cohort - Psychology and Behavioural Science,4,UNZA-HSS-PBS,202690483
+Mock UNZA-HSS-PBS Y1 009 Chipo Banda,mock.unza-hss-pbs.y1.009@example.test,Mock study cohort - Psychology and Behavioural Science,1,UNZA-HSS-PBS,202690484
+Mock UNZA-HSS-PBS Y2 010 Mapalo Banda,mock.unza-hss-pbs.y2.010@example.test,Mock study cohort - Psychology and Behavioural Science,2,UNZA-HSS-PBS,202690485
+Mock UNZA-HSS-PBS Y3 011 Chanda Phiri,mock.unza-hss-pbs.y3.011@example.test,Mock study cohort - Psychology and Behavioural Science,3,UNZA-HSS-PBS,202690486
+Mock UNZA-HSS-PBS Y4 012 Mutinta Phiri,mock.unza-hss-pbs.y4.012@example.test,Mock study cohort - Psychology and Behavioural Science,4,UNZA-HSS-PBS,202690487
+Mock UNZA-HSS-PBS Y1 013 Mwila Phiri,mock.unza-hss-pbs.y1.013@example.test,Mock study cohort - Psychology and Behavioural Science,1,UNZA-HSS-PBS,202690488
+Mock UNZA-HSS-PBS Y2 014 Thandiwe Phiri,mock.unza-hss-pbs.y2.014@example.test,Mock study cohort - Psychology and Behavioural Science,2,UNZA-HSS-PBS,202690489
+Mock UNZA-HSS-PBS Y3 015 Bwalya Phiri,mock.unza-hss-pbs.y3.015@example.test,Mock study cohort - Psychology and Behavioural Science,3,UNZA-HSS-PBS,202690490
+Mock UNZA-HSS-SWS Y1 001 Chanda Banda,mock.unza-hss-sws.y1.001@example.test,Mock study cohort - Social Work and Sociology,1,UNZA-HSS-SWS,202690491
+Mock UNZA-HSS-SWS Y2 002 Mutinta Banda,mock.unza-hss-sws.y2.002@example.test,Mock study cohort - Social Work and Sociology,2,UNZA-HSS-SWS,202690492
+Mock UNZA-HSS-SWS Y3 003 Mwila Banda,mock.unza-hss-sws.y3.003@example.test,Mock study cohort - Social Work and Sociology,3,UNZA-HSS-SWS,202690493
+Mock UNZA-HSS-SWS Y4 004 Thandiwe Banda,mock.unza-hss-sws.y4.004@example.test,Mock study cohort - Social Work and Sociology,4,UNZA-HSS-SWS,202690494
+Mock UNZA-HSS-SWS Y1 005 Bwalya Banda,mock.unza-hss-sws.y1.005@example.test,Mock study cohort - Social Work and Sociology,1,UNZA-HSS-SWS,202690495
+Mock UNZA-HSS-SWS Y2 006 Luyando Banda,mock.unza-hss-sws.y2.006@example.test,Mock study cohort - Social Work and Sociology,2,UNZA-HSS-SWS,202690496
+Mock UNZA-HSS-SWS Y3 007 Musonda Banda,mock.unza-hss-sws.y3.007@example.test,Mock study cohort - Social Work and Sociology,3,UNZA-HSS-SWS,202690497
+Mock UNZA-HSS-SWS Y4 008 Mwaka Banda,mock.unza-hss-sws.y4.008@example.test,Mock study cohort - Social Work and Sociology,4,UNZA-HSS-SWS,202690498
+Mock UNZA-HSS-SWS Y1 009 Chipo Banda,mock.unza-hss-sws.y1.009@example.test,Mock study cohort - Social Work and Sociology,1,UNZA-HSS-SWS,202690499
+Mock UNZA-HSS-SWS Y2 010 Mapalo Banda,mock.unza-hss-sws.y2.010@example.test,Mock study cohort - Social Work and Sociology,2,UNZA-HSS-SWS,202690500

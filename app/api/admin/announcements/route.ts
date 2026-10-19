@@ -20,7 +20,7 @@ export async function POST(request: Request) {
     const audience = ["all", "students", "staff"].includes(body.audience) ? body.audience : "all";
     const roles = audience === "students" ? ["student"] : audience === "staff" ? ["staff", "admin"] : ["student", "staff", "admin"];
     await Announcement.create({ title, message, priority, audience, publishedBy: access.session?.user.id });
-    const recipients = await User.find({ role: { $in: roles }, status: { $ne: "inactive" } }).select("_id").lean();
+    const recipients = await User.find({ role: { $in: roles }, status: "active" }).select("_id").lean();
     if (recipients.length > 0) {
       await Notification.insertMany(recipients.map((recipient) => ({
         user: recipient._id,

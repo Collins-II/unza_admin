@@ -1,0 +1,101 @@
+name,email,program,year,department,studentId
+Mock UNZA-NAS-MSAS Y3 011 Chanda Phiri,mock.unza-nas-msas.y3.011@example.test,Mock study cohort - Mathematics; Statistics; and Actuarial Sciences,3,UNZA-NAS-MSAS,202690801
+Mock UNZA-NAS-MSAS Y4 012 Mutinta Phiri,mock.unza-nas-msas.y4.012@example.test,Mock study cohort - Mathematics; Statistics; and Actuarial Sciences,4,UNZA-NAS-MSAS,202690802
+Mock UNZA-NAS-MSAS Y1 013 Mwila Phiri,mock.unza-nas-msas.y1.013@example.test,Mock study cohort - Mathematics; Statistics; and Actuarial Sciences,1,UNZA-NAS-MSAS,202690803
+Mock UNZA-NAS-MSAS Y2 014 Thandiwe Phiri,mock.unza-nas-msas.y2.014@example.test,Mock study cohort - Mathematics; Statistics; and Actuarial Sciences,2,UNZA-NAS-MSAS,202690804
+Mock UNZA-NAS-MSAS Y3 015 Bwalya Phiri,mock.unza-nas-msas.y3.015@example.test,Mock study cohort - Mathematics; Statistics; and Actuarial Sciences,3,UNZA-NAS-MSAS,202690805
+Mock UNZA-NAS-CHEM Y1 001 Chanda Banda,mock.unza-nas-chem.y1.001@example.test,Mock study cohort - Pure and Applied Chemistry,1,UNZA-NAS-CHEM,202690806
+Mock UNZA-NAS-CHEM Y2 002 Mutinta Banda,mock.unza-nas-chem.y2.002@example.test,Mock study cohort - Pure and Applied Chemistry,2,UNZA-NAS-CHEM,202690807
+Mock UNZA-NAS-CHEM Y3 003 Mwila Banda,mock.unza-nas-chem.y3.003@example.test,Mock study cohort - Pure and Applied Chemistry,3,UNZA-NAS-CHEM,202690808
+Mock UNZA-NAS-CHEM Y4 004 Thandiwe Banda,mock.unza-nas-chem.y4.004@example.test,Mock study cohort - Pure and Applied Chemistry,4,UNZA-NAS-CHEM,202690809
+Mock UNZA-NAS-CHEM Y1 005 Bwalya Banda,mock.unza-nas-chem.y1.005@example.test,Mock study cohort - Pure and Applied Chemistry,1,UNZA-NAS-CHEM,202690810
+Mock UNZA-NAS-CHEM Y2 006 Luyando Banda,mock.unza-nas-chem.y2.006@example.test,Mock study cohort - Pure and Applied Chemistry,2,UNZA-NAS-CHEM,202690811
+Mock UNZA-NAS-CHEM Y3 007 Musonda Banda,mock.unza-nas-chem.y3.007@example.test,Mock study cohort - Pure and Applied Chemistry,3,UNZA-NAS-CHEM,202690812
+Mock UNZA-NAS-CHEM Y4 008 Mwaka Banda,mock.unza-nas-chem.y4.008@example.test,Mock study cohort - Pure and Applied Chemistry,4,UNZA-NAS-CHEM,202690813
+Mock UNZA-NAS-CHEM Y1 009 Chipo Banda,mock.unza-nas-chem.y1.009@example.test,Mock study cohort - Pure and Applied Chemistry,1,UNZA-NAS-CHEM,202690814
+Mock UNZA-NAS-CHEM Y2 010 Mapalo Banda,mock.unza-nas-chem.y2.010@example.test,Mock study cohort - Pure and Applied Chemistry,2,UNZA-NAS-CHEM,202690815
+Mock UNZA-NAS-CHEM Y3 011 Chanda Phiri,mock.unza-nas-chem.y3.011@example.test,Mock study cohort - Pure and Applied Chemistry,3,UNZA-NAS-CHEM,202690816
+Mock UNZA-NAS-CHEM Y4 012 Mutinta Phiri,mock.unza-nas-chem.y4.012@example.test,Mock study cohort - Pure and Applied Chemistry,4,UNZA-NAS-CHEM,202690817
+Mock UNZA-NAS-CHEM Y1 013 Mwila Phiri,mock.unza-nas-chem.y1.013@example.test,Mock study cohort - Pure and Applied Chemistry,1,UNZA-NAS-CHEM,202690818
+Mock UNZA-NAS-CHEM Y2 014 Thandiwe Phiri,mock.unza-nas-chem.y2.014@example.test,Mock study cohort - Pure and Applied Chemistry,2,UNZA-NAS-CHEM,202690819
+Mock UNZA-NAS-CHEM Y3 015 Bwalya Phiri,mock.unza-nas-chem.y3.015@example.test,Mock study cohort - Pure and Applied Chemistry,3,UNZA-NAS-CHEM,202690820
+Mock UNZA-NAS-PHYS Y1 001 Chanda Banda,mock.unza-nas-phys.y1.001@example.test,Mock study cohort - Pure and Applied Physics,1,UNZA-NAS-PHYS,202690821
+Mock UNZA-NAS-PHYS Y2 002 Mutinta Banda,mock.unza-nas-phys.y2.002@example.test,Mock study cohort - Pure and Applied Physics,2,UNZA-NAS-PHYS,202690822
+Mock UNZA-NAS-PHYS Y3 003 Mwila Banda,mock.unza-nas-phys.y3.003@example.test,Mock study cohort - Pure and Applied Physics,3,UNZA-NAS-PHYS,202690823
+Mock UNZA-NAS-PHYS Y4 004 Thandiwe Banda,mock.unza-nas-phys.y4.004@example.test,Mock study cohort - Pure and Applied Physics,4,UNZA-NAS-PHYS,202690824
+Mock UNZA-NAS-PHYS Y1 005 Bwalya Banda,mock.unza-nas-phys.y1.005@example.test,Mock study cohort - Pure and Applied Physics,1,UNZA-NAS-PHYS,202690825
+Mock UNZA-NAS-PHYS Y2 006 Luyando Banda,mock.unza-nas-phys.y2.006@example.test,Mock study cohort - Pure and Applied Physics,2,UNZA-NAS-PHYS,202690826
+Mock UNZA-NAS-PHYS Y3 007 Musonda Banda,mock.unza-nas-phys.y3.007@example.test,Mock study cohort - Pure and Applied Physics,3,UNZA-NAS-PHYS,202690827
+Mock UNZA-NAS-PHYS Y4 008 Mwaka Banda,mock.unza-nas-phys.y4.008@example.test,Mock study cohort - Pure and Applied Physics,4,UNZA-NAS-PHYS,202690828
+Mock UNZA-NAS-PHYS Y1 009 Chipo Banda,mock.unza-nas-phys.y1.009@example.test,Mock study cohort - Pure and Applied Physics,1,UNZA-NAS-PHYS,202690829
+Mock UNZA-NAS-PHYS Y2 010 Mapalo Banda,mock.unza-nas-phys.y2.010@example.test,Mock study cohort - Pure and Applied Physics,2,UNZA-NAS-PHYS,202690830
+Mock UNZA-NAS-PHYS Y3 011 Chanda Phiri,mock.unza-nas-phys.y3.011@example.test,Mock study cohort - Pure and Applied Physics,3,UNZA-NAS-PHYS,202690831
+Mock UNZA-NAS-PHYS Y4 012 Mutinta Phiri,mock.unza-nas-phys.y4.012@example.test,Mock study cohort - Pure and Applied Physics,4,UNZA-NAS-PHYS,202690832
+Mock UNZA-NAS-PHYS Y1 013 Mwila Phiri,mock.unza-nas-phys.y1.013@example.test,Mock study cohort - Pure and Applied Physics,1,UNZA-NAS-PHYS,202690833
+Mock UNZA-NAS-PHYS Y2 014 Thandiwe Phiri,mock.unza-nas-phys.y2.014@example.test,Mock study cohort - Pure and Applied Physics,2,UNZA-NAS-PHYS,202690834
+Mock UNZA-NAS-PHYS Y3 015 Bwalya Phiri,mock.unza-nas-phys.y3.015@example.test,Mock study cohort - Pure and Applied Physics,3,UNZA-NAS-PHYS,202690835
+Mock UNZA-PH-ENVH Y1 001 Chanda Banda,mock.unza-ph-envh.y1.001@example.test,Mock study cohort - Environmental Health,1,UNZA-PH-ENVH,202690836
+Mock UNZA-PH-ENVH Y2 002 Mutinta Banda,mock.unza-ph-envh.y2.002@example.test,Mock study cohort - Environmental Health,2,UNZA-PH-ENVH,202690837
+Mock UNZA-PH-ENVH Y3 003 Mwila Banda,mock.unza-ph-envh.y3.003@example.test,Mock study cohort - Environmental Health,3,UNZA-PH-ENVH,202690838
+Mock UNZA-PH-ENVH Y4 004 Thandiwe Banda,mock.unza-ph-envh.y4.004@example.test,Mock study cohort - Environmental Health,4,UNZA-PH-ENVH,202690839
+Mock UNZA-PH-ENVH Y1 005 Bwalya Banda,mock.unza-ph-envh.y1.005@example.test,Mock study cohort - Environmental Health,1,UNZA-PH-ENVH,202690840
+Mock UNZA-PH-ENVH Y2 006 Luyando Banda,mock.unza-ph-envh.y2.006@example.test,Mock study cohort - Environmental Health,2,UNZA-PH-ENVH,202690841
+Mock UNZA-PH-ENVH Y3 007 Musonda Banda,mock.unza-ph-envh.y3.007@example.test,Mock study cohort - Environmental Health,3,UNZA-PH-ENVH,202690842
+Mock UNZA-PH-ENVH Y4 008 Mwaka Banda,mock.unza-ph-envh.y4.008@example.test,Mock study cohort - Environmental Health,4,UNZA-PH-ENVH,202690843
+Mock UNZA-PH-ENVH Y1 009 Chipo Banda,mock.unza-ph-envh.y1.009@example.test,Mock study cohort - Environmental Health,1,UNZA-PH-ENVH,202690844
+Mock UNZA-PH-ENVH Y2 010 Mapalo Banda,mock.unza-ph-envh.y2.010@example.test,Mock study cohort - Environmental Health,2,UNZA-PH-ENVH,202690845
+Mock UNZA-PH-ENVH Y3 011 Chanda Phiri,mock.unza-ph-envh.y3.011@example.test,Mock study cohort - Environmental Health,3,UNZA-PH-ENVH,202690846
+Mock UNZA-PH-ENVH Y4 012 Mutinta Phiri,mock.unza-ph-envh.y4.012@example.test,Mock study cohort - Environmental Health,4,UNZA-PH-ENVH,202690847
+Mock UNZA-PH-ENVH Y1 013 Mwila Phiri,mock.unza-ph-envh.y1.013@example.test,Mock study cohort - Environmental Health,1,UNZA-PH-ENVH,202690848
+Mock UNZA-PH-ENVH Y2 014 Thandiwe Phiri,mock.unza-ph-envh.y2.014@example.test,Mock study cohort - Environmental Health,2,UNZA-PH-ENVH,202690849
+Mock UNZA-PH-ENVH Y3 015 Bwalya Phiri,mock.unza-ph-envh.y3.015@example.test,Mock study cohort - Environmental Health,3,UNZA-PH-ENVH,202690850
+Mock UNZA-PH-EPBS Y1 001 Chanda Banda,mock.unza-ph-epbs.y1.001@example.test,Mock study cohort - Epidemiology and Biostatistics,1,UNZA-PH-EPBS,202690851
+Mock UNZA-PH-EPBS Y2 002 Mutinta Banda,mock.unza-ph-epbs.y2.002@example.test,Mock study cohort - Epidemiology and Biostatistics,2,UNZA-PH-EPBS,202690852
+Mock UNZA-PH-EPBS Y3 003 Mwila Banda,mock.unza-ph-epbs.y3.003@example.test,Mock study cohort - Epidemiology and Biostatistics,3,UNZA-PH-EPBS,202690853
+Mock UNZA-PH-EPBS Y4 004 Thandiwe Banda,mock.unza-ph-epbs.y4.004@example.test,Mock study cohort - Epidemiology and Biostatistics,4,UNZA-PH-EPBS,202690854
+Mock UNZA-PH-EPBS Y1 005 Bwalya Banda,mock.unza-ph-epbs.y1.005@example.test,Mock study cohort - Epidemiology and Biostatistics,1,UNZA-PH-EPBS,202690855
+Mock UNZA-PH-EPBS Y2 006 Luyando Banda,mock.unza-ph-epbs.y2.006@example.test,Mock study cohort - Epidemiology and Biostatistics,2,UNZA-PH-EPBS,202690856
+Mock UNZA-PH-EPBS Y3 007 Musonda Banda,mock.unza-ph-epbs.y3.007@example.test,Mock study cohort - Epidemiology and Biostatistics,3,UNZA-PH-EPBS,202690857
+Mock UNZA-PH-EPBS Y4 008 Mwaka Banda,mock.unza-ph-epbs.y4.008@example.test,Mock study cohort - Epidemiology and Biostatistics,4,UNZA-PH-EPBS,202690858
+Mock UNZA-PH-EPBS Y1 009 Chipo Banda,mock.unza-ph-epbs.y1.009@example.test,Mock study cohort - Epidemiology and Biostatistics,1,UNZA-PH-EPBS,202690859
+Mock UNZA-PH-EPBS Y2 010 Mapalo Banda,mock.unza-ph-epbs.y2.010@example.test,Mock study cohort - Epidemiology and Biostatistics,2,UNZA-PH-EPBS,202690860
+Mock UNZA-PH-EPBS Y3 011 Chanda Phiri,mock.unza-ph-epbs.y3.011@example.test,Mock study cohort - Epidemiology and Biostatistics,3,UNZA-PH-EPBS,202690861
+Mock UNZA-PH-EPBS Y4 012 Mutinta Phiri,mock.unza-ph-epbs.y4.012@example.test,Mock study cohort - Epidemiology and Biostatistics,4,UNZA-PH-EPBS,202690862
+Mock UNZA-PH-EPBS Y1 013 Mwila Phiri,mock.unza-ph-epbs.y1.013@example.test,Mock study cohort - Epidemiology and Biostatistics,1,UNZA-PH-EPBS,202690863
+Mock UNZA-PH-EPBS Y2 014 Thandiwe Phiri,mock.unza-ph-epbs.y2.014@example.test,Mock study cohort - Epidemiology and Biostatistics,2,UNZA-PH-EPBS,202690864
+Mock UNZA-PH-EPBS Y3 015 Bwalya Phiri,mock.unza-ph-epbs.y3.015@example.test,Mock study cohort - Epidemiology and Biostatistics,3,UNZA-PH-EPBS,202690865
+Mock UNZA-PH-HPM Y1 001 Chanda Banda,mock.unza-ph-hpm.y1.001@example.test,Mock study cohort - Health Policy and Management,1,UNZA-PH-HPM,202690866
+Mock UNZA-PH-HPM Y2 002 Mutinta Banda,mock.unza-ph-hpm.y2.002@example.test,Mock study cohort - Health Policy and Management,2,UNZA-PH-HPM,202690867
+Mock UNZA-PH-HPM Y3 003 Mwila Banda,mock.unza-ph-hpm.y3.003@example.test,Mock study cohort - Health Policy and Management,3,UNZA-PH-HPM,202690868
+Mock UNZA-PH-HPM Y4 004 Thandiwe Banda,mock.unza-ph-hpm.y4.004@example.test,Mock study cohort - Health Policy and Management,4,UNZA-PH-HPM,202690869
+Mock UNZA-PH-HPM Y1 005 Bwalya Banda,mock.unza-ph-hpm.y1.005@example.test,Mock study cohort - Health Policy and Management,1,UNZA-PH-HPM,202690870
+Mock UNZA-PH-HPM Y2 006 Luyando Banda,mock.unza-ph-hpm.y2.006@example.test,Mock study cohort - Health Policy and Management,2,UNZA-PH-HPM,202690871
+Mock UNZA-PH-HPM Y3 007 Musonda Banda,mock.unza-ph-hpm.y3.007@example.test,Mock study cohort - Health Policy and Management,3,UNZA-PH-HPM,202690872
+Mock UNZA-PH-HPM Y4 008 Mwaka Banda,mock.unza-ph-hpm.y4.008@example.test,Mock study cohort - Health Policy and Management,4,UNZA-PH-HPM,202690873
+Mock UNZA-PH-HPM Y1 009 Chipo Banda,mock.unza-ph-hpm.y1.009@example.test,Mock study cohort - Health Policy and Management,1,UNZA-PH-HPM,202690874
+Mock UNZA-PH-HPM Y2 010 Mapalo Banda,mock.unza-ph-hpm.y2.010@example.test,Mock study cohort - Health Policy and Management,2,UNZA-PH-HPM,202690875
+Mock UNZA-PH-HPM Y3 011 Chanda Phiri,mock.unza-ph-hpm.y3.011@example.test,Mock study cohort - Health Policy and Management,3,UNZA-PH-HPM,202690876
+Mock UNZA-PH-HPM Y4 012 Mutinta Phiri,mock.unza-ph-hpm.y4.012@example.test,Mock study cohort - Health Policy and Management,4,UNZA-PH-HPM,202690877
+Mock UNZA-PH-HPM Y1 013 Mwila Phiri,mock.unza-ph-hpm.y1.013@example.test,Mock study cohort - Health Policy and Management,1,UNZA-PH-HPM,202690878
+Mock UNZA-PH-HPM Y2 014 Thandiwe Phiri,mock.unza-ph-hpm.y2.014@example.test,Mock study cohort - Health Policy and Management,2,UNZA-PH-HPM,202690879
+Mock UNZA-PH-HPM Y3 015 Bwalya Phiri,mock.unza-ph-hpm.y3.015@example.test,Mock study cohort - Health Policy and Management,3,UNZA-PH-HPM,202690880
+Mock UNZA-PH-HPE Y1 001 Chanda Banda,mock.unza-ph-hpe.y1.001@example.test,Mock study cohort - Health Promotion and Education,1,UNZA-PH-HPE,202690881
+Mock UNZA-PH-HPE Y2 002 Mutinta Banda,mock.unza-ph-hpe.y2.002@example.test,Mock study cohort - Health Promotion and Education,2,UNZA-PH-HPE,202690882
+Mock UNZA-PH-HPE Y3 003 Mwila Banda,mock.unza-ph-hpe.y3.003@example.test,Mock study cohort - Health Promotion and Education,3,UNZA-PH-HPE,202690883
+Mock UNZA-PH-HPE Y4 004 Thandiwe Banda,mock.unza-ph-hpe.y4.004@example.test,Mock study cohort - Health Promotion and Education,4,UNZA-PH-HPE,202690884
+Mock UNZA-PH-HPE Y1 005 Bwalya Banda,mock.unza-ph-hpe.y1.005@example.test,Mock study cohort - Health Promotion and Education,1,UNZA-PH-HPE,202690885
+Mock UNZA-PH-HPE Y2 006 Luyando Banda,mock.unza-ph-hpe.y2.006@example.test,Mock study cohort - Health Promotion and Education,2,UNZA-PH-HPE,202690886
+Mock UNZA-PH-HPE Y3 007 Musonda Banda,mock.unza-ph-hpe.y3.007@example.test,Mock study cohort - Health Promotion and Education,3,UNZA-PH-HPE,202690887
+Mock UNZA-PH-HPE Y4 008 Mwaka Banda,mock.unza-ph-hpe.y4.008@example.test,Mock study cohort - Health Promotion and Education,4,UNZA-PH-HPE,202690888
+Mock UNZA-PH-HPE Y1 009 Chipo Banda,mock.unza-ph-hpe.y1.009@example.test,Mock study cohort - Health Promotion and Education,1,UNZA-PH-HPE,202690889
+Mock UNZA-PH-HPE Y2 010 Mapalo Banda,mock.unza-ph-hpe.y2.010@example.test,Mock study cohort - Health Promotion and Education,2,UNZA-PH-HPE,202690890
+Mock UNZA-PH-HPE Y3 011 Chanda Phiri,mock.unza-ph-hpe.y3.011@example.test,Mock study cohort - Health Promotion and Education,3,UNZA-PH-HPE,202690891
+Mock UNZA-PH-HPE Y4 012 Mutinta Phiri,mock.unza-ph-hpe.y4.012@example.test,Mock study cohort - Health Promotion and Education,4,UNZA-PH-HPE,202690892
+Mock UNZA-PH-HPE Y1 013 Mwila Phiri,mock.unza-ph-hpe.y1.013@example.test,Mock study cohort - Health Promotion and Education,1,UNZA-PH-HPE,202690893
+Mock UNZA-PH-HPE Y2 014 Thandiwe Phiri,mock.unza-ph-hpe.y2.014@example.test,Mock study cohort - Health Promotion and Education,2,UNZA-PH-HPE,202690894
+Mock UNZA-PH-HPE Y3 015 Bwalya Phiri,mock.unza-ph-hpe.y3.015@example.test,Mock study cohort - Health Promotion and Education,3,UNZA-PH-HPE,202690895
+Mock UNZA-PH-POPS Y1 001 Chanda Banda,mock.unza-ph-pops.y1.001@example.test,Mock study cohort - Population Studies,1,UNZA-PH-POPS,202690896
+Mock UNZA-PH-POPS Y2 002 Mutinta Banda,mock.unza-ph-pops.y2.002@example.test,Mock study cohort - Population Studies,2,UNZA-PH-POPS,202690897
+Mock UNZA-PH-POPS Y3 003 Mwila Banda,mock.unza-ph-pops.y3.003@example.test,Mock study cohort - Population Studies,3,UNZA-PH-POPS,202690898
+Mock UNZA-PH-POPS Y4 004 Thandiwe Banda,mock.unza-ph-pops.y4.004@example.test,Mock study cohort - Population Studies,4,UNZA-PH-POPS,202690899
+Mock UNZA-PH-POPS Y1 005 Bwalya Banda,mock.unza-ph-pops.y1.005@example.test,Mock study cohort - Population Studies,1,UNZA-PH-POPS,202690900

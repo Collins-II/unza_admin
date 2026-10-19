@@ -1,0 +1,101 @@
+name,email,program,year,department,studentId
+Mock UNZA-EDU-EAPS Y1 005 Bwalya Banda,mock.unza-edu-eaps.y1.005@example.test,Mock study cohort - Educational Administration and Policy Studies,1,UNZA-EDU-EAPS,202690101
+Mock UNZA-EDU-EAPS Y2 006 Luyando Banda,mock.unza-edu-eaps.y2.006@example.test,Mock study cohort - Educational Administration and Policy Studies,2,UNZA-EDU-EAPS,202690102
+Mock UNZA-EDU-EAPS Y3 007 Musonda Banda,mock.unza-edu-eaps.y3.007@example.test,Mock study cohort - Educational Administration and Policy Studies,3,UNZA-EDU-EAPS,202690103
+Mock UNZA-EDU-EAPS Y4 008 Mwaka Banda,mock.unza-edu-eaps.y4.008@example.test,Mock study cohort - Educational Administration and Policy Studies,4,UNZA-EDU-EAPS,202690104
+Mock UNZA-EDU-EAPS Y1 009 Chipo Banda,mock.unza-edu-eaps.y1.009@example.test,Mock study cohort - Educational Administration and Policy Studies,1,UNZA-EDU-EAPS,202690105
+Mock UNZA-EDU-EAPS Y2 010 Mapalo Banda,mock.unza-edu-eaps.y2.010@example.test,Mock study cohort - Educational Administration and Policy Studies,2,UNZA-EDU-EAPS,202690106
+Mock UNZA-EDU-EAPS Y3 011 Chanda Phiri,mock.unza-edu-eaps.y3.011@example.test,Mock study cohort - Educational Administration and Policy Studies,3,UNZA-EDU-EAPS,202690107
+Mock UNZA-EDU-EAPS Y4 012 Mutinta Phiri,mock.unza-edu-eaps.y4.012@example.test,Mock study cohort - Educational Administration and Policy Studies,4,UNZA-EDU-EAPS,202690108
+Mock UNZA-EDU-EAPS Y1 013 Mwila Phiri,mock.unza-edu-eaps.y1.013@example.test,Mock study cohort - Educational Administration and Policy Studies,1,UNZA-EDU-EAPS,202690109
+Mock UNZA-EDU-EAPS Y2 014 Thandiwe Phiri,mock.unza-edu-eaps.y2.014@example.test,Mock study cohort - Educational Administration and Policy Studies,2,UNZA-EDU-EAPS,202690110
+Mock UNZA-EDU-EAPS Y3 015 Bwalya Phiri,mock.unza-edu-eaps.y3.015@example.test,Mock study cohort - Educational Administration and Policy Studies,3,UNZA-EDU-EAPS,202690111
+Mock UNZA-EDU-EAPS Y4 016 Luyando Phiri,mock.unza-edu-eaps.y4.016@example.test,Mock study cohort - Educational Administration and Policy Studies,4,UNZA-EDU-EAPS,202690112
+Mock UNZA-EDU-EPSS Y1 001 Chanda Banda,mock.unza-edu-epss.y1.001@example.test,Mock study cohort - Educational Psychology; Sociology and Special Education,1,UNZA-EDU-EPSS,202690113
+Mock UNZA-EDU-EPSS Y2 002 Mutinta Banda,mock.unza-edu-epss.y2.002@example.test,Mock study cohort - Educational Psychology; Sociology and Special Education,2,UNZA-EDU-EPSS,202690114
+Mock UNZA-EDU-EPSS Y3 003 Mwila Banda,mock.unza-edu-epss.y3.003@example.test,Mock study cohort - Educational Psychology; Sociology and Special Education,3,UNZA-EDU-EPSS,202690115
+Mock UNZA-EDU-EPSS Y4 004 Thandiwe Banda,mock.unza-edu-epss.y4.004@example.test,Mock study cohort - Educational Psychology; Sociology and Special Education,4,UNZA-EDU-EPSS,202690116
+Mock UNZA-EDU-EPSS Y1 005 Bwalya Banda,mock.unza-edu-epss.y1.005@example.test,Mock study cohort - Educational Psychology; Sociology and Special Education,1,UNZA-EDU-EPSS,202690117
+Mock UNZA-EDU-EPSS Y2 006 Luyando Banda,mock.unza-edu-epss.y2.006@example.test,Mock study cohort - Educational Psychology; Sociology and Special Education,2,UNZA-EDU-EPSS,202690118
+Mock UNZA-EDU-EPSS Y3 007 Musonda Banda,mock.unza-edu-epss.y3.007@example.test,Mock study cohort - Educational Psychology; Sociology and Special Education,3,UNZA-EDU-EPSS,202690119
+Mock UNZA-EDU-EPSS Y4 008 Mwaka Banda,mock.unza-edu-epss.y4.008@example.test,Mock study cohort - Educational Psychology; Sociology and Special Education,4,UNZA-EDU-EPSS,202690120
+Mock UNZA-EDU-EPSS Y1 009 Chipo Banda,mock.unza-edu-epss.y1.009@example.test,Mock study cohort - Educational Psychology; Sociology and Special Education,1,UNZA-EDU-EPSS,202690121
+Mock UNZA-EDU-EPSS Y2 010 Mapalo Banda,mock.unza-edu-epss.y2.010@example.test,Mock study cohort - Educational Psychology; Sociology and Special Education,2,UNZA-EDU-EPSS,202690122
+Mock UNZA-EDU-EPSS Y3 011 Chanda Phiri,mock.unza-edu-epss.y3.011@example.test,Mock study cohort - Educational Psychology; Sociology and Special Education,3,UNZA-EDU-EPSS,202690123
+Mock UNZA-EDU-EPSS Y4 012 Mutinta Phiri,mock.unza-edu-epss.y4.012@example.test,Mock study cohort - Educational Psychology; Sociology and Special Education,4,UNZA-EDU-EPSS,202690124
+Mock UNZA-EDU-EPSS Y1 013 Mwila Phiri,mock.unza-edu-epss.y1.013@example.test,Mock study cohort - Educational Psychology; Sociology and Special Education,1,UNZA-EDU-EPSS,202690125
+Mock UNZA-EDU-EPSS Y2 014 Thandiwe Phiri,mock.unza-edu-epss.y2.014@example.test,Mock study cohort - Educational Psychology; Sociology and Special Education,2,UNZA-EDU-EPSS,202690126
+Mock UNZA-EDU-EPSS Y3 015 Bwalya Phiri,mock.unza-edu-epss.y3.015@example.test,Mock study cohort - Educational Psychology; Sociology and Special Education,3,UNZA-EDU-EPSS,202690127
+Mock UNZA-EDU-EPSS Y4 016 Luyando Phiri,mock.unza-edu-epss.y4.016@example.test,Mock study cohort - Educational Psychology; Sociology and Special Education,4,UNZA-EDU-EPSS,202690128
+Mock UNZA-EDU-LIS Y1 001 Chanda Banda,mock.unza-edu-lis.y1.001@example.test,Mock study cohort - Library Information Science,1,UNZA-EDU-LIS,202690129
+Mock UNZA-EDU-LIS Y2 002 Mutinta Banda,mock.unza-edu-lis.y2.002@example.test,Mock study cohort - Library Information Science,2,UNZA-EDU-LIS,202690130
+Mock UNZA-EDU-LIS Y3 003 Mwila Banda,mock.unza-edu-lis.y3.003@example.test,Mock study cohort - Library Information Science,3,UNZA-EDU-LIS,202690131
+Mock UNZA-EDU-LIS Y4 004 Thandiwe Banda,mock.unza-edu-lis.y4.004@example.test,Mock study cohort - Library Information Science,4,UNZA-EDU-LIS,202690132
+Mock UNZA-EDU-LIS Y1 005 Bwalya Banda,mock.unza-edu-lis.y1.005@example.test,Mock study cohort - Library Information Science,1,UNZA-EDU-LIS,202690133
+Mock UNZA-EDU-LIS Y2 006 Luyando Banda,mock.unza-edu-lis.y2.006@example.test,Mock study cohort - Library Information Science,2,UNZA-EDU-LIS,202690134
+Mock UNZA-EDU-LIS Y3 007 Musonda Banda,mock.unza-edu-lis.y3.007@example.test,Mock study cohort - Library Information Science,3,UNZA-EDU-LIS,202690135
+Mock UNZA-EDU-LIS Y4 008 Mwaka Banda,mock.unza-edu-lis.y4.008@example.test,Mock study cohort - Library Information Science,4,UNZA-EDU-LIS,202690136
+Mock UNZA-EDU-LIS Y1 009 Chipo Banda,mock.unza-edu-lis.y1.009@example.test,Mock study cohort - Library Information Science,1,UNZA-EDU-LIS,202690137
+Mock UNZA-EDU-LIS Y2 010 Mapalo Banda,mock.unza-edu-lis.y2.010@example.test,Mock study cohort - Library Information Science,2,UNZA-EDU-LIS,202690138
+Mock UNZA-EDU-LIS Y3 011 Chanda Phiri,mock.unza-edu-lis.y3.011@example.test,Mock study cohort - Library Information Science,3,UNZA-EDU-LIS,202690139
+Mock UNZA-EDU-LIS Y4 012 Mutinta Phiri,mock.unza-edu-lis.y4.012@example.test,Mock study cohort - Library Information Science,4,UNZA-EDU-LIS,202690140
+Mock UNZA-EDU-LIS Y1 013 Mwila Phiri,mock.unza-edu-lis.y1.013@example.test,Mock study cohort - Library Information Science,1,UNZA-EDU-LIS,202690141
+Mock UNZA-EDU-LIS Y2 014 Thandiwe Phiri,mock.unza-edu-lis.y2.014@example.test,Mock study cohort - Library Information Science,2,UNZA-EDU-LIS,202690142
+Mock UNZA-EDU-LIS Y3 015 Bwalya Phiri,mock.unza-edu-lis.y3.015@example.test,Mock study cohort - Library Information Science,3,UNZA-EDU-LIS,202690143
+Mock UNZA-EDU-LIS Y4 016 Luyando Phiri,mock.unza-edu-lis.y4.016@example.test,Mock study cohort - Library Information Science,4,UNZA-EDU-LIS,202690144
+Mock UNZA-EDU-LSSE Y1 001 Chanda Banda,mock.unza-edu-lsse.y1.001@example.test,Mock study cohort - Language and Social Sciences Education,1,UNZA-EDU-LSSE,202690145
+Mock UNZA-EDU-LSSE Y2 002 Mutinta Banda,mock.unza-edu-lsse.y2.002@example.test,Mock study cohort - Language and Social Sciences Education,2,UNZA-EDU-LSSE,202690146
+Mock UNZA-EDU-LSSE Y3 003 Mwila Banda,mock.unza-edu-lsse.y3.003@example.test,Mock study cohort - Language and Social Sciences Education,3,UNZA-EDU-LSSE,202690147
+Mock UNZA-EDU-LSSE Y4 004 Thandiwe Banda,mock.unza-edu-lsse.y4.004@example.test,Mock study cohort - Language and Social Sciences Education,4,UNZA-EDU-LSSE,202690148
+Mock UNZA-EDU-LSSE Y1 005 Bwalya Banda,mock.unza-edu-lsse.y1.005@example.test,Mock study cohort - Language and Social Sciences Education,1,UNZA-EDU-LSSE,202690149
+Mock UNZA-EDU-LSSE Y2 006 Luyando Banda,mock.unza-edu-lsse.y2.006@example.test,Mock study cohort - Language and Social Sciences Education,2,UNZA-EDU-LSSE,202690150
+Mock UNZA-EDU-LSSE Y3 007 Musonda Banda,mock.unza-edu-lsse.y3.007@example.test,Mock study cohort - Language and Social Sciences Education,3,UNZA-EDU-LSSE,202690151
+Mock UNZA-EDU-LSSE Y4 008 Mwaka Banda,mock.unza-edu-lsse.y4.008@example.test,Mock study cohort - Language and Social Sciences Education,4,UNZA-EDU-LSSE,202690152
+Mock UNZA-EDU-LSSE Y1 009 Chipo Banda,mock.unza-edu-lsse.y1.009@example.test,Mock study cohort - Language and Social Sciences Education,1,UNZA-EDU-LSSE,202690153
+Mock UNZA-EDU-LSSE Y2 010 Mapalo Banda,mock.unza-edu-lsse.y2.010@example.test,Mock study cohort - Language and Social Sciences Education,2,UNZA-EDU-LSSE,202690154
+Mock UNZA-EDU-LSSE Y3 011 Chanda Phiri,mock.unza-edu-lsse.y3.011@example.test,Mock study cohort - Language and Social Sciences Education,3,UNZA-EDU-LSSE,202690155
+Mock UNZA-EDU-LSSE Y4 012 Mutinta Phiri,mock.unza-edu-lsse.y4.012@example.test,Mock study cohort - Language and Social Sciences Education,4,UNZA-EDU-LSSE,202690156
+Mock UNZA-EDU-LSSE Y1 013 Mwila Phiri,mock.unza-edu-lsse.y1.013@example.test,Mock study cohort - Language and Social Sciences Education,1,UNZA-EDU-LSSE,202690157
+Mock UNZA-EDU-LSSE Y2 014 Thandiwe Phiri,mock.unza-edu-lsse.y2.014@example.test,Mock study cohort - Language and Social Sciences Education,2,UNZA-EDU-LSSE,202690158
+Mock UNZA-EDU-LSSE Y3 015 Bwalya Phiri,mock.unza-edu-lsse.y3.015@example.test,Mock study cohort - Language and Social Sciences Education,3,UNZA-EDU-LSSE,202690159
+Mock UNZA-EDU-LSSE Y4 016 Luyando Phiri,mock.unza-edu-lsse.y4.016@example.test,Mock study cohort - Language and Social Sciences Education,4,UNZA-EDU-LSSE,202690160
+Mock UNZA-EDU-MSED Y1 001 Chanda Banda,mock.unza-edu-msed.y1.001@example.test,Mock study cohort - Mathematics and Science Education,1,UNZA-EDU-MSED,202690161
+Mock UNZA-EDU-MSED Y2 002 Mutinta Banda,mock.unza-edu-msed.y2.002@example.test,Mock study cohort - Mathematics and Science Education,2,UNZA-EDU-MSED,202690162
+Mock UNZA-EDU-MSED Y3 003 Mwila Banda,mock.unza-edu-msed.y3.003@example.test,Mock study cohort - Mathematics and Science Education,3,UNZA-EDU-MSED,202690163
+Mock UNZA-EDU-MSED Y4 004 Thandiwe Banda,mock.unza-edu-msed.y4.004@example.test,Mock study cohort - Mathematics and Science Education,4,UNZA-EDU-MSED,202690164
+Mock UNZA-EDU-MSED Y1 005 Bwalya Banda,mock.unza-edu-msed.y1.005@example.test,Mock study cohort - Mathematics and Science Education,1,UNZA-EDU-MSED,202690165
+Mock UNZA-EDU-MSED Y2 006 Luyando Banda,mock.unza-edu-msed.y2.006@example.test,Mock study cohort - Mathematics and Science Education,2,UNZA-EDU-MSED,202690166
+Mock UNZA-EDU-MSED Y3 007 Musonda Banda,mock.unza-edu-msed.y3.007@example.test,Mock study cohort - Mathematics and Science Education,3,UNZA-EDU-MSED,202690167
+Mock UNZA-EDU-MSED Y4 008 Mwaka Banda,mock.unza-edu-msed.y4.008@example.test,Mock study cohort - Mathematics and Science Education,4,UNZA-EDU-MSED,202690168
+Mock UNZA-EDU-MSED Y1 009 Chipo Banda,mock.unza-edu-msed.y1.009@example.test,Mock study cohort - Mathematics and Science Education,1,UNZA-EDU-MSED,202690169
+Mock UNZA-EDU-MSED Y2 010 Mapalo Banda,mock.unza-edu-msed.y2.010@example.test,Mock study cohort - Mathematics and Science Education,2,UNZA-EDU-MSED,202690170
+Mock UNZA-EDU-MSED Y3 011 Chanda Phiri,mock.unza-edu-msed.y3.011@example.test,Mock study cohort - Mathematics and Science Education,3,UNZA-EDU-MSED,202690171
+Mock UNZA-EDU-MSED Y4 012 Mutinta Phiri,mock.unza-edu-msed.y4.012@example.test,Mock study cohort - Mathematics and Science Education,4,UNZA-EDU-MSED,202690172
+Mock UNZA-EDU-MSED Y1 013 Mwila Phiri,mock.unza-edu-msed.y1.013@example.test,Mock study cohort - Mathematics and Science Education,1,UNZA-EDU-MSED,202690173
+Mock UNZA-EDU-MSED Y2 014 Thandiwe Phiri,mock.unza-edu-msed.y2.014@example.test,Mock study cohort - Mathematics and Science Education,2,UNZA-EDU-MSED,202690174
+Mock UNZA-EDU-MSED Y3 015 Bwalya Phiri,mock.unza-edu-msed.y3.015@example.test,Mock study cohort - Mathematics and Science Education,3,UNZA-EDU-MSED,202690175
+Mock UNZA-EDU-MSED Y4 016 Luyando Phiri,mock.unza-edu-msed.y4.016@example.test,Mock study cohort - Mathematics and Science Education,4,UNZA-EDU-MSED,202690176
+Mock UNZA-EDU-PRED Y1 001 Chanda Banda,mock.unza-edu-pred.y1.001@example.test,Mock study cohort - Primary Education,1,UNZA-EDU-PRED,202690177
+Mock UNZA-EDU-PRED Y2 002 Mutinta Banda,mock.unza-edu-pred.y2.002@example.test,Mock study cohort - Primary Education,2,UNZA-EDU-PRED,202690178
+Mock UNZA-EDU-PRED Y3 003 Mwila Banda,mock.unza-edu-pred.y3.003@example.test,Mock study cohort - Primary Education,3,UNZA-EDU-PRED,202690179
+Mock UNZA-EDU-PRED Y4 004 Thandiwe Banda,mock.unza-edu-pred.y4.004@example.test,Mock study cohort - Primary Education,4,UNZA-EDU-PRED,202690180
+Mock UNZA-EDU-PRED Y1 005 Bwalya Banda,mock.unza-edu-pred.y1.005@example.test,Mock study cohort - Primary Education,1,UNZA-EDU-PRED,202690181
+Mock UNZA-EDU-PRED Y2 006 Luyando Banda,mock.unza-edu-pred.y2.006@example.test,Mock study cohort - Primary Education,2,UNZA-EDU-PRED,202690182
+Mock UNZA-EDU-PRED Y3 007 Musonda Banda,mock.unza-edu-pred.y3.007@example.test,Mock study cohort - Primary Education,3,UNZA-EDU-PRED,202690183
+Mock UNZA-EDU-PRED Y4 008 Mwaka Banda,mock.unza-edu-pred.y4.008@example.test,Mock study cohort - Primary Education,4,UNZA-EDU-PRED,202690184
+Mock UNZA-EDU-PRED Y1 009 Chipo Banda,mock.unza-edu-pred.y1.009@example.test,Mock study cohort - Primary Education,1,UNZA-EDU-PRED,202690185
+Mock UNZA-EDU-PRED Y2 010 Mapalo Banda,mock.unza-edu-pred.y2.010@example.test,Mock study cohort - Primary Education,2,UNZA-EDU-PRED,202690186
+Mock UNZA-EDU-PRED Y3 011 Chanda Phiri,mock.unza-edu-pred.y3.011@example.test,Mock study cohort - Primary Education,3,UNZA-EDU-PRED,202690187
+Mock UNZA-EDU-PRED Y4 012 Mutinta Phiri,mock.unza-edu-pred.y4.012@example.test,Mock study cohort - Primary Education,4,UNZA-EDU-PRED,202690188
+Mock UNZA-EDU-PRED Y1 013 Mwila Phiri,mock.unza-edu-pred.y1.013@example.test,Mock study cohort - Primary Education,1,UNZA-EDU-PRED,202690189
+Mock UNZA-EDU-PRED Y2 014 Thandiwe Phiri,mock.unza-edu-pred.y2.014@example.test,Mock study cohort - Primary Education,2,UNZA-EDU-PRED,202690190
+Mock UNZA-EDU-PRED Y3 015 Bwalya Phiri,mock.unza-edu-pred.y3.015@example.test,Mock study cohort - Primary Education,3,UNZA-EDU-PRED,202690191
+Mock UNZA-EDU-PRED Y4 016 Luyando Phiri,mock.unza-edu-pred.y4.016@example.test,Mock study cohort - Primary Education,4,UNZA-EDU-PRED,202690192
+Mock UNZA-EDU-RELS Y1 001 Chanda Banda,mock.unza-edu-rels.y1.001@example.test,Mock study cohort - Religious Studies,1,UNZA-EDU-RELS,202690193
+Mock UNZA-EDU-RELS Y2 002 Mutinta Banda,mock.unza-edu-rels.y2.002@example.test,Mock study cohort - Religious Studies,2,UNZA-EDU-RELS,202690194
+Mock UNZA-EDU-RELS Y3 003 Mwila Banda,mock.unza-edu-rels.y3.003@example.test,Mock study cohort - Religious Studies,3,UNZA-EDU-RELS,202690195
+Mock UNZA-EDU-RELS Y4 004 Thandiwe Banda,mock.unza-edu-rels.y4.004@example.test,Mock study cohort - Religious Studies,4,UNZA-EDU-RELS,202690196
+Mock UNZA-EDU-RELS Y1 005 Bwalya Banda,mock.unza-edu-rels.y1.005@example.test,Mock study cohort - Religious Studies,1,UNZA-EDU-RELS,202690197
+Mock UNZA-EDU-RELS Y2 006 Luyando Banda,mock.unza-edu-rels.y2.006@example.test,Mock study cohort - Religious Studies,2,UNZA-EDU-RELS,202690198
+Mock UNZA-EDU-RELS Y3 007 Musonda Banda,mock.unza-edu-rels.y3.007@example.test,Mock study cohort - Religious Studies,3,UNZA-EDU-RELS,202690199
+Mock UNZA-EDU-RELS Y4 008 Mwaka Banda,mock.unza-edu-rels.y4.008@example.test,Mock study cohort - Religious Studies,4,UNZA-EDU-RELS,202690200

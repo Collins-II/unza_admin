@@ -6,15 +6,11 @@ import Course from "@/lib/database/models/Course";
 import Department from "@/lib/database/models/Department";
 import Room from "@/lib/database/models/Room";
 import TimetableAllocation from "@/lib/database/models/TimetableAllocation";
-
-function isAllowed(request: Request) {
-  const configuredKey = process.env.STUDENT_APP_API_KEY;
-  const receivedKey = request.headers.get("x-student-app-key");
-  return Boolean(configuredKey && receivedKey && receivedKey === configuredKey);
-}
+import { requireStudentIntegrationKey } from "@/lib/studentIntegrationAuth";
 
 export async function GET(request: Request) {
-  if (!isAllowed(request)) return NextResponse.json({ error: "Student app integration credentials are required." }, { status: 401 });
+  const denied = requireStudentIntegrationKey(request);
+  if (denied) return denied;
 
   try {
     const params = new URL(request.url).searchParams;
@@ -35,7 +31,7 @@ export async function GET(request: Request) {
         ...(params.get("academicYear") ? { academicYear: params.get("academicYear") } : {}),
         ...(params.get("semester") ? { semester: params.get("semester") } : {}),
         ...(params.get("department") ? { department: params.get("department") } : {}),
-      }).populate("department", "code name").populate("course", "code title level").populate("room", "name code building capacity spaceType latitude longitude location").lean(),
+      }).select("-streamStudentIds").populate("department", "code name").populate("course", "code title level").populate("room", "name code building capacity spaceType latitude longitude location").lean(),
       Announcement.find({ audience: { $in: ["all", "students"] } }).select("title message priority createdAt").sort({ createdAt: -1 }).limit(30).lean(),
       Course.find({ active: true, ...(params.get("department") ? { department: params.get("department") } : {}) }).select("code title department level credits semester lecturer").sort({ code: 1 }).lean(),
     ]);

@@ -1,0 +1,101 @@
+name,email,program,year,department,studentId
+Mock UNZA-HSS-SWS Y3 011 Chanda Phiri,mock.unza-hss-sws.y3.011@example.test,Mock study cohort - Social Work and Sociology,3,UNZA-HSS-SWS,202690501
+Mock UNZA-HSS-SWS Y4 012 Mutinta Phiri,mock.unza-hss-sws.y4.012@example.test,Mock study cohort - Social Work and Sociology,4,UNZA-HSS-SWS,202690502
+Mock UNZA-HSS-SWS Y1 013 Mwila Phiri,mock.unza-hss-sws.y1.013@example.test,Mock study cohort - Social Work and Sociology,1,UNZA-HSS-SWS,202690503
+Mock UNZA-HSS-SWS Y2 014 Thandiwe Phiri,mock.unza-hss-sws.y2.014@example.test,Mock study cohort - Social Work and Sociology,2,UNZA-HSS-SWS,202690504
+Mock UNZA-HSS-SWS Y3 015 Bwalya Phiri,mock.unza-hss-sws.y3.015@example.test,Mock study cohort - Social Work and Sociology,3,UNZA-HSS-SWS,202690505
+Mock UNZA-LAW-PRIV Y1 001 Chanda Banda,mock.unza-law-priv.y1.001@example.test,Mock study cohort - Private Law,1,UNZA-LAW-PRIV,202690506
+Mock UNZA-LAW-PRIV Y2 002 Mutinta Banda,mock.unza-law-priv.y2.002@example.test,Mock study cohort - Private Law,2,UNZA-LAW-PRIV,202690507
+Mock UNZA-LAW-PRIV Y3 003 Mwila Banda,mock.unza-law-priv.y3.003@example.test,Mock study cohort - Private Law,3,UNZA-LAW-PRIV,202690508
+Mock UNZA-LAW-PRIV Y4 004 Thandiwe Banda,mock.unza-law-priv.y4.004@example.test,Mock study cohort - Private Law,4,UNZA-LAW-PRIV,202690509
+Mock UNZA-LAW-PRIV Y1 005 Bwalya Banda,mock.unza-law-priv.y1.005@example.test,Mock study cohort - Private Law,1,UNZA-LAW-PRIV,202690510
+Mock UNZA-LAW-PRIV Y2 006 Luyando Banda,mock.unza-law-priv.y2.006@example.test,Mock study cohort - Private Law,2,UNZA-LAW-PRIV,202690511
+Mock UNZA-LAW-PRIV Y3 007 Musonda Banda,mock.unza-law-priv.y3.007@example.test,Mock study cohort - Private Law,3,UNZA-LAW-PRIV,202690512
+Mock UNZA-LAW-PRIV Y4 008 Mwaka Banda,mock.unza-law-priv.y4.008@example.test,Mock study cohort - Private Law,4,UNZA-LAW-PRIV,202690513
+Mock UNZA-LAW-PRIV Y1 009 Chipo Banda,mock.unza-law-priv.y1.009@example.test,Mock study cohort - Private Law,1,UNZA-LAW-PRIV,202690514
+Mock UNZA-LAW-PRIV Y2 010 Mapalo Banda,mock.unza-law-priv.y2.010@example.test,Mock study cohort - Private Law,2,UNZA-LAW-PRIV,202690515
+Mock UNZA-LAW-PRIV Y3 011 Chanda Phiri,mock.unza-law-priv.y3.011@example.test,Mock study cohort - Private Law,3,UNZA-LAW-PRIV,202690516
+Mock UNZA-LAW-PRIV Y4 012 Mutinta Phiri,mock.unza-law-priv.y4.012@example.test,Mock study cohort - Private Law,4,UNZA-LAW-PRIV,202690517
+Mock UNZA-LAW-PRIV Y1 013 Mwila Phiri,mock.unza-law-priv.y1.013@example.test,Mock study cohort - Private Law,1,UNZA-LAW-PRIV,202690518
+Mock UNZA-LAW-PRIV Y2 014 Thandiwe Phiri,mock.unza-law-priv.y2.014@example.test,Mock study cohort - Private Law,2,UNZA-LAW-PRIV,202690519
+Mock UNZA-LAW-PRIV Y3 015 Bwalya Phiri,mock.unza-law-priv.y3.015@example.test,Mock study cohort - Private Law,3,UNZA-LAW-PRIV,202690520
+Mock UNZA-LAW-PUB Y1 001 Chanda Banda,mock.unza-law-pub.y1.001@example.test,Mock study cohort - Public Law,1,UNZA-LAW-PUB,202690521
+Mock UNZA-LAW-PUB Y2 002 Mutinta Banda,mock.unza-law-pub.y2.002@example.test,Mock study cohort - Public Law,2,UNZA-LAW-PUB,202690522
+Mock UNZA-LAW-PUB Y3 003 Mwila Banda,mock.unza-law-pub.y3.003@example.test,Mock study cohort - Public Law,3,UNZA-LAW-PUB,202690523
+Mock UNZA-LAW-PUB Y4 004 Thandiwe Banda,mock.unza-law-pub.y4.004@example.test,Mock study cohort - Public Law,4,UNZA-LAW-PUB,202690524
+Mock UNZA-LAW-PUB Y1 005 Bwalya Banda,mock.unza-law-pub.y1.005@example.test,Mock study cohort - Public Law,1,UNZA-LAW-PUB,202690525
+Mock UNZA-LAW-PUB Y2 006 Luyando Banda,mock.unza-law-pub.y2.006@example.test,Mock study cohort - Public Law,2,UNZA-LAW-PUB,202690526
+Mock UNZA-LAW-PUB Y3 007 Musonda Banda,mock.unza-law-pub.y3.007@example.test,Mock study cohort - Public Law,3,UNZA-LAW-PUB,202690527
+Mock UNZA-LAW-PUB Y4 008 Mwaka Banda,mock.unza-law-pub.y4.008@example.test,Mock study cohort - Public Law,4,UNZA-LAW-PUB,202690528
+Mock UNZA-LAW-PUB Y1 009 Chipo Banda,mock.unza-law-pub.y1.009@example.test,Mock study cohort - Public Law,1,UNZA-LAW-PUB,202690529
+Mock UNZA-LAW-PUB Y2 010 Mapalo Banda,mock.unza-law-pub.y2.010@example.test,Mock study cohort - Public Law,2,UNZA-LAW-PUB,202690530
+Mock UNZA-LAW-PUB Y3 011 Chanda Phiri,mock.unza-law-pub.y3.011@example.test,Mock study cohort - Public Law,3,UNZA-LAW-PUB,202690531
+Mock UNZA-LAW-PUB Y4 012 Mutinta Phiri,mock.unza-law-pub.y4.012@example.test,Mock study cohort - Public Law,4,UNZA-LAW-PUB,202690532
+Mock UNZA-LAW-PUB Y1 013 Mwila Phiri,mock.unza-law-pub.y1.013@example.test,Mock study cohort - Public Law,1,UNZA-LAW-PUB,202690533
+Mock UNZA-LAW-PUB Y2 014 Thandiwe Phiri,mock.unza-law-pub.y2.014@example.test,Mock study cohort - Public Law,2,UNZA-LAW-PUB,202690534
+Mock UNZA-LAW-PUB Y3 015 Bwalya Phiri,mock.unza-law-pub.y3.015@example.test,Mock study cohort - Public Law,3,UNZA-LAW-PUB,202690535
+Mock UNZA-MED-ANAT Y1 001 Chanda Banda,mock.unza-med-anat.y1.001@example.test,Mock study cohort - Anatomy,1,UNZA-MED-ANAT,202690536
+Mock UNZA-MED-ANAT Y2 002 Mutinta Banda,mock.unza-med-anat.y2.002@example.test,Mock study cohort - Anatomy,2,UNZA-MED-ANAT,202690537
+Mock UNZA-MED-ANAT Y3 003 Mwila Banda,mock.unza-med-anat.y3.003@example.test,Mock study cohort - Anatomy,3,UNZA-MED-ANAT,202690538
+Mock UNZA-MED-ANAT Y4 004 Thandiwe Banda,mock.unza-med-anat.y4.004@example.test,Mock study cohort - Anatomy,4,UNZA-MED-ANAT,202690539
+Mock UNZA-MED-ANAT Y1 005 Bwalya Banda,mock.unza-med-anat.y1.005@example.test,Mock study cohort - Anatomy,1,UNZA-MED-ANAT,202690540
+Mock UNZA-MED-ANAT Y2 006 Luyando Banda,mock.unza-med-anat.y2.006@example.test,Mock study cohort - Anatomy,2,UNZA-MED-ANAT,202690541
+Mock UNZA-MED-ANAT Y3 007 Musonda Banda,mock.unza-med-anat.y3.007@example.test,Mock study cohort - Anatomy,3,UNZA-MED-ANAT,202690542
+Mock UNZA-MED-ANAT Y4 008 Mwaka Banda,mock.unza-med-anat.y4.008@example.test,Mock study cohort - Anatomy,4,UNZA-MED-ANAT,202690543
+Mock UNZA-MED-ANAT Y1 009 Chipo Banda,mock.unza-med-anat.y1.009@example.test,Mock study cohort - Anatomy,1,UNZA-MED-ANAT,202690544
+Mock UNZA-MED-ANAT Y2 010 Mapalo Banda,mock.unza-med-anat.y2.010@example.test,Mock study cohort - Anatomy,2,UNZA-MED-ANAT,202690545
+Mock UNZA-MED-ANAT Y3 011 Chanda Phiri,mock.unza-med-anat.y3.011@example.test,Mock study cohort - Anatomy,3,UNZA-MED-ANAT,202690546
+Mock UNZA-MED-ANAT Y4 012 Mutinta Phiri,mock.unza-med-anat.y4.012@example.test,Mock study cohort - Anatomy,4,UNZA-MED-ANAT,202690547
+Mock UNZA-MED-ANAT Y1 013 Mwila Phiri,mock.unza-med-anat.y1.013@example.test,Mock study cohort - Anatomy,1,UNZA-MED-ANAT,202690548
+Mock UNZA-MED-ANAT Y2 014 Thandiwe Phiri,mock.unza-med-anat.y2.014@example.test,Mock study cohort - Anatomy,2,UNZA-MED-ANAT,202690549
+Mock UNZA-MED-ANAT Y3 015 Bwalya Phiri,mock.unza-med-anat.y3.015@example.test,Mock study cohort - Anatomy,3,UNZA-MED-ANAT,202690550
+Mock UNZA-MED-IMED Y1 001 Chanda Banda,mock.unza-med-imed.y1.001@example.test,Mock study cohort - Internal Medicine,1,UNZA-MED-IMED,202690551
+Mock UNZA-MED-IMED Y2 002 Mutinta Banda,mock.unza-med-imed.y2.002@example.test,Mock study cohort - Internal Medicine,2,UNZA-MED-IMED,202690552
+Mock UNZA-MED-IMED Y3 003 Mwila Banda,mock.unza-med-imed.y3.003@example.test,Mock study cohort - Internal Medicine,3,UNZA-MED-IMED,202690553
+Mock UNZA-MED-IMED Y4 004 Thandiwe Banda,mock.unza-med-imed.y4.004@example.test,Mock study cohort - Internal Medicine,4,UNZA-MED-IMED,202690554
+Mock UNZA-MED-IMED Y1 005 Bwalya Banda,mock.unza-med-imed.y1.005@example.test,Mock study cohort - Internal Medicine,1,UNZA-MED-IMED,202690555
+Mock UNZA-MED-IMED Y2 006 Luyando Banda,mock.unza-med-imed.y2.006@example.test,Mock study cohort - Internal Medicine,2,UNZA-MED-IMED,202690556
+Mock UNZA-MED-IMED Y3 007 Musonda Banda,mock.unza-med-imed.y3.007@example.test,Mock study cohort - Internal Medicine,3,UNZA-MED-IMED,202690557
+Mock UNZA-MED-IMED Y4 008 Mwaka Banda,mock.unza-med-imed.y4.008@example.test,Mock study cohort - Internal Medicine,4,UNZA-MED-IMED,202690558
+Mock UNZA-MED-IMED Y1 009 Chipo Banda,mock.unza-med-imed.y1.009@example.test,Mock study cohort - Internal Medicine,1,UNZA-MED-IMED,202690559
+Mock UNZA-MED-IMED Y2 010 Mapalo Banda,mock.unza-med-imed.y2.010@example.test,Mock study cohort - Internal Medicine,2,UNZA-MED-IMED,202690560
+Mock UNZA-MED-IMED Y3 011 Chanda Phiri,mock.unza-med-imed.y3.011@example.test,Mock study cohort - Internal Medicine,3,UNZA-MED-IMED,202690561
+Mock UNZA-MED-IMED Y4 012 Mutinta Phiri,mock.unza-med-imed.y4.012@example.test,Mock study cohort - Internal Medicine,4,UNZA-MED-IMED,202690562
+Mock UNZA-MED-IMED Y1 013 Mwila Phiri,mock.unza-med-imed.y1.013@example.test,Mock study cohort - Internal Medicine,1,UNZA-MED-IMED,202690563
+Mock UNZA-MED-IMED Y2 014 Thandiwe Phiri,mock.unza-med-imed.y2.014@example.test,Mock study cohort - Internal Medicine,2,UNZA-MED-IMED,202690564
+Mock UNZA-MED-IMED Y3 015 Bwalya Phiri,mock.unza-med-imed.y3.015@example.test,Mock study cohort - Internal Medicine,3,UNZA-MED-IMED,202690565
+Mock UNZA-MED-MEDD Y1 001 Chanda Banda,mock.unza-med-medd.y1.001@example.test,Mock study cohort - Medical Education Development,1,UNZA-MED-MEDD,202690566
+Mock UNZA-MED-MEDD Y2 002 Mutinta Banda,mock.unza-med-medd.y2.002@example.test,Mock study cohort - Medical Education Development,2,UNZA-MED-MEDD,202690567
+Mock UNZA-MED-MEDD Y3 003 Mwila Banda,mock.unza-med-medd.y3.003@example.test,Mock study cohort - Medical Education Development,3,UNZA-MED-MEDD,202690568
+Mock UNZA-MED-MEDD Y4 004 Thandiwe Banda,mock.unza-med-medd.y4.004@example.test,Mock study cohort - Medical Education Development,4,UNZA-MED-MEDD,202690569
+Mock UNZA-MED-MEDD Y1 005 Bwalya Banda,mock.unza-med-medd.y1.005@example.test,Mock study cohort - Medical Education Development,1,UNZA-MED-MEDD,202690570
+Mock UNZA-MED-MEDD Y2 006 Luyando Banda,mock.unza-med-medd.y2.006@example.test,Mock study cohort - Medical Education Development,2,UNZA-MED-MEDD,202690571
+Mock UNZA-MED-MEDD Y3 007 Musonda Banda,mock.unza-med-medd.y3.007@example.test,Mock study cohort - Medical Education Development,3,UNZA-MED-MEDD,202690572
+Mock UNZA-MED-MEDD Y4 008 Mwaka Banda,mock.unza-med-medd.y4.008@example.test,Mock study cohort - Medical Education Development,4,UNZA-MED-MEDD,202690573
+Mock UNZA-MED-MEDD Y1 009 Chipo Banda,mock.unza-med-medd.y1.009@example.test,Mock study cohort - Medical Education Development,1,UNZA-MED-MEDD,202690574
+Mock UNZA-MED-MEDD Y2 010 Mapalo Banda,mock.unza-med-medd.y2.010@example.test,Mock study cohort - Medical Education Development,2,UNZA-MED-MEDD,202690575
+Mock UNZA-MED-MEDD Y3 011 Chanda Phiri,mock.unza-med-medd.y3.011@example.test,Mock study cohort - Medical Education Development,3,UNZA-MED-MEDD,202690576
+Mock UNZA-MED-MEDD Y4 012 Mutinta Phiri,mock.unza-med-medd.y4.012@example.test,Mock study cohort - Medical Education Development,4,UNZA-MED-MEDD,202690577
+Mock UNZA-MED-MEDD Y1 013 Mwila Phiri,mock.unza-med-medd.y1.013@example.test,Mock study cohort - Medical Education Development,1,UNZA-MED-MEDD,202690578
+Mock UNZA-MED-MEDD Y2 014 Thandiwe Phiri,mock.unza-med-medd.y2.014@example.test,Mock study cohort - Medical Education Development,2,UNZA-MED-MEDD,202690579
+Mock UNZA-MED-MEDD Y3 015 Bwalya Phiri,mock.unza-med-medd.y3.015@example.test,Mock study cohort - Medical Education Development,3,UNZA-MED-MEDD,202690580
+Mock UNZA-MED-OBGY Y1 001 Chanda Banda,mock.unza-med-obgy.y1.001@example.test,Mock study cohort - Obstetrics and Gynaecology,1,UNZA-MED-OBGY,202690581
+Mock UNZA-MED-OBGY Y2 002 Mutinta Banda,mock.unza-med-obgy.y2.002@example.test,Mock study cohort - Obstetrics and Gynaecology,2,UNZA-MED-OBGY,202690582
+Mock UNZA-MED-OBGY Y3 003 Mwila Banda,mock.unza-med-obgy.y3.003@example.test,Mock study cohort - Obstetrics and Gynaecology,3,UNZA-MED-OBGY,202690583
+Mock UNZA-MED-OBGY Y4 004 Thandiwe Banda,mock.unza-med-obgy.y4.004@example.test,Mock study cohort - Obstetrics and Gynaecology,4,UNZA-MED-OBGY,202690584
+Mock UNZA-MED-OBGY Y1 005 Bwalya Banda,mock.unza-med-obgy.y1.005@example.test,Mock study cohort - Obstetrics and Gynaecology,1,UNZA-MED-OBGY,202690585
+Mock UNZA-MED-OBGY Y2 006 Luyando Banda,mock.unza-med-obgy.y2.006@example.test,Mock study cohort - Obstetrics and Gynaecology,2,UNZA-MED-OBGY,202690586
+Mock UNZA-MED-OBGY Y3 007 Musonda Banda,mock.unza-med-obgy.y3.007@example.test,Mock study cohort - Obstetrics and Gynaecology,3,UNZA-MED-OBGY,202690587
+Mock UNZA-MED-OBGY Y4 008 Mwaka Banda,mock.unza-med-obgy.y4.008@example.test,Mock study cohort - Obstetrics and Gynaecology,4,UNZA-MED-OBGY,202690588
+Mock UNZA-MED-OBGY Y1 009 Chipo Banda,mock.unza-med-obgy.y1.009@example.test,Mock study cohort - Obstetrics and Gynaecology,1,UNZA-MED-OBGY,202690589
+Mock UNZA-MED-OBGY Y2 010 Mapalo Banda,mock.unza-med-obgy.y2.010@example.test,Mock study cohort - Obstetrics and Gynaecology,2,UNZA-MED-OBGY,202690590
+Mock UNZA-MED-OBGY Y3 011 Chanda Phiri,mock.unza-med-obgy.y3.011@example.test,Mock study cohort - Obstetrics and Gynaecology,3,UNZA-MED-OBGY,202690591
+Mock UNZA-MED-OBGY Y4 012 Mutinta Phiri,mock.unza-med-obgy.y4.012@example.test,Mock study cohort - Obstetrics and Gynaecology,4,UNZA-MED-OBGY,202690592
+Mock UNZA-MED-OBGY Y1 013 Mwila Phiri,mock.unza-med-obgy.y1.013@example.test,Mock study cohort - Obstetrics and Gynaecology,1,UNZA-MED-OBGY,202690593
+Mock UNZA-MED-OBGY Y2 014 Thandiwe Phiri,mock.unza-med-obgy.y2.014@example.test,Mock study cohort - Obstetrics and Gynaecology,2,UNZA-MED-OBGY,202690594
+Mock UNZA-MED-OBGY Y3 015 Bwalya Phiri,mock.unza-med-obgy.y3.015@example.test,Mock study cohort - Obstetrics and Gynaecology,3,UNZA-MED-OBGY,202690595
+Mock UNZA-MED-PAED Y1 001 Chanda Banda,mock.unza-med-paed.y1.001@example.test,Mock study cohort - Paediatrics and Child Health,1,UNZA-MED-PAED,202690596
+Mock UNZA-MED-PAED Y2 002 Mutinta Banda,mock.unza-med-paed.y2.002@example.test,Mock study cohort - Paediatrics and Child Health,2,UNZA-MED-PAED,202690597
+Mock UNZA-MED-PAED Y3 003 Mwila Banda,mock.unza-med-paed.y3.003@example.test,Mock study cohort - Paediatrics and Child Health,3,UNZA-MED-PAED,202690598
+Mock UNZA-MED-PAED Y4 004 Thandiwe Banda,mock.unza-med-paed.y4.004@example.test,Mock study cohort - Paediatrics and Child Health,4,UNZA-MED-PAED,202690599
+Mock UNZA-MED-PAED Y1 005 Bwalya Banda,mock.unza-med-paed.y1.005@example.test,Mock study cohort - Paediatrics and Child Health,1,UNZA-MED-PAED,202690600

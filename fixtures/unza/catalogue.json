@@ -1,0 +1,83 @@
+{
+  "verifiedAt": "2026-10-19",
+  "scopeNote": "Sourced exclusively from the public University of Zambia website (www.unza.zm), verified 2026-10-19. The /schools listing page enumerates 12 schools; all 12 were fetched directly and every department/section explicitly listed on each school's own public page is included below (65 departments total) — this is university-wide coverage of the public site's declared school/department structure, not a claim of exhaustiveness beyond what unza.zm publishes. Department 'code' values are LOCAL identifiers in the form UNZA-<SCHOOL>-<DEPT> generated only for this system; they are NOT official UNZA codes — UNZA does not publish official department codes on its public site. No official per-course catalogue (course codes, titles, semester, credits, enrolment, or lecturers) could be found published on unza.zm: checked school pages, department pages, undergraduate/postgraduate programme pages, and the site's internal search (/search/node) for 'course code', 'prospectus', 'handbook', and 'course outline' — none returned a public course-level catalogue with codes. Per instruction, no course codes/titles are invented or inferred; the 'courses' array is therefore intentionally left empty. Scheduling fields (semester, credits, enrolment, lecturers) are out of scope and left unset throughout.",
+  "departments": [
+    { "code": "UNZA-AGR-AEEE", "name": "Agricultural Economics and Extension Education", "faculty": "School of Agricultural Sciences", "sourceUrl": "https://www.unza.zm/agricultural-sciences/agricultural-economics-and-extension-education" },
+    { "code": "UNZA-AGR-ANSC", "name": "Animal Sciences", "faculty": "School of Agricultural Sciences", "sourceUrl": "https://www.unza.zm/agricultural-sciences/animal-sciences" },
+    { "code": "UNZA-AGR-FSNT", "name": "Food Science and Nutrition", "faculty": "School of Agricultural Sciences", "sourceUrl": "https://www.unza.zm/agricultural-sciences/food-science-and-nutrition" },
+    { "code": "UNZA-AGR-PLSC", "name": "Plant Sciences", "faculty": "School of Agricultural Sciences", "sourceUrl": "https://www.unza.zm/agricultural-sciences/plant-sciences" },
+    { "code": "UNZA-AGR-LMGT", "name": "Land Management", "faculty": "School of Agricultural Sciences", "sourceUrl": "https://www.unza.zm/agricultural-sciences/land-management" },
+
+    { "code": "UNZA-EDU-CELL", "name": "Community Education and Lifelong Learning", "faculty": "School of Education", "sourceUrl": "https://www.unza.zm/education/community-education-and-lifelong-learning" },
+    { "code": "UNZA-EDU-EAPS", "name": "Educational Administration and Policy Studies", "faculty": "School of Education", "sourceUrl": "https://www.unza.zm/education/educational-administration-and-policy-studies" },
+    { "code": "UNZA-EDU-EPSS", "name": "Educational Psychology, Sociology and Special Education", "faculty": "School of Education", "sourceUrl": "https://www.unza.zm/education/educational-psychology-sociology-and-special-education" },
+    { "code": "UNZA-EDU-LIS", "name": "Library Information Science", "faculty": "School of Education", "sourceUrl": "https://www.unza.zm/education/library-information-science" },
+    { "code": "UNZA-EDU-LSSE", "name": "Language and Social Sciences Education", "faculty": "School of Education", "sourceUrl": "https://www.unza.zm/education/language-and-social-sciences-education" },
+    { "code": "UNZA-EDU-MSED", "name": "Mathematics and Science Education", "faculty": "School of Education", "sourceUrl": "https://www.unza.zm/education/mathematics-and-science-education" },
+    { "code": "UNZA-EDU-PRED", "name": "Primary Education", "faculty": "School of Education", "sourceUrl": "https://www.unza.zm/education/primary-education" },
+    { "code": "UNZA-EDU-RELS", "name": "Religious Studies", "faculty": "School of Education", "sourceUrl": "https://www.unza.zm/education/religious-studies" },
+
+    { "code": "UNZA-GSB-ABF", "name": "Accounting, Banking, and Finance", "faculty": "Graduate School of Business", "sourceUrl": "https://www.unza.zm/graduate-school-of-business/dept-accounting-banking-and-finance" },
+    { "code": "UNZA-GSB-BMM", "name": "Business Management, and Marketing", "faculty": "Graduate School of Business", "sourceUrl": "https://www.unza.zm/graduate-school-of-business/dept-business-management-and-marketing" },
+    { "code": "UNZA-GSB-OPSC", "name": "Operations, Projects, and Supply Chain Management", "faculty": "Graduate School of Business", "sourceUrl": "https://www.unza.zm/graduate-school-of-business/dept-operations-projects-and-supply-chain-management" },
+
+    { "code": "UNZA-ENG-AGEN", "name": "Agricultural Engineering", "faculty": "School of Engineering", "sourceUrl": "https://www.unza.zm/engineering/agricultural-engineering" },
+    { "code": "UNZA-ENG-CEE", "name": "Civil and Environmental Engineering", "faculty": "School of Engineering", "sourceUrl": "https://www.unza.zm/engineering/civil-and-environmental-engineering" },
+    { "code": "UNZA-ENG-EEE", "name": "Electrical and Electronic Engineering", "faculty": "School of Engineering", "sourceUrl": "https://www.unza.zm/engineering/electrical-and-electronic-engineering" },
+    { "code": "UNZA-ENG-GMAT", "name": "Geomatic Engineering", "faculty": "School of Engineering", "sourceUrl": "https://www.unza.zm/engineering/geomatic-engineering" },
+    { "code": "UNZA-ENG-MECH", "name": "Mechanical Engineering", "faculty": "School of Engineering", "sourceUrl": "https://www.unza.zm/engineering/mechanical-engineering" },
+
+    { "code": "UNZA-HS-BMS", "name": "Biomedical Sciences", "faculty": "School of Health Sciences", "sourceUrl": "https://www.unza.zm/health-sciences/biomedical-sciences" },
+    { "code": "UNZA-HS-PHAR", "name": "Pharmacy", "faculty": "School of Health Sciences", "sourceUrl": "https://www.unza.zm/health-sciences/pharmacy" },
+    { "code": "UNZA-HS-PHYT", "name": "Physiotherapy", "faculty": "School of Health Sciences", "sourceUrl": "https://www.unza.zm/health-sciences/physiotherapy" },
+
+    { "code": "UNZA-HSS-ECON", "name": "Economics", "faculty": "School of Humanities and Social Sciences", "sourceUrl": "https://www.unza.zm/humanities/economics" },
+    { "code": "UNZA-HSS-GMS", "name": "Government and Management Studies", "faculty": "School of Humanities and Social Sciences", "sourceUrl": "https://www.unza.zm/humanities/government-and-management-studies" },
+    { "code": "UNZA-HSS-HAS", "name": "Historical and Archaeological Studies", "faculty": "School of Humanities and Social Sciences", "sourceUrl": "https://www.unza.zm/humanities/historical-and-archaeological-studies" },
+    { "code": "UNZA-HSS-ALLS", "name": "Arts, Languages and Literary Studies", "faculty": "School of Humanities and Social Sciences", "sourceUrl": "https://www.unza.zm/humanities/literature-and-languages" },
+    { "code": "UNZA-HSS-MCS", "name": "Media and Communication Studies", "faculty": "School of Humanities and Social Sciences", "sourceUrl": "https://www.unza.zm/humanities/media-and-communication-studies" },
+    { "code": "UNZA-HSS-PAE", "name": "Philosophy and Applied Ethics", "faculty": "School of Humanities and Social Sciences", "sourceUrl": "https://www.unza.zm/humanities/philosophy-and-applied-ethics" },
+    { "code": "UNZA-HSS-PBS", "name": "Psychology and Behavioural Science", "faculty": "School of Humanities and Social Sciences", "sourceUrl": "https://www.unza.zm/humanities/psychology" },
+    { "code": "UNZA-HSS-SWS", "name": "Social Work and Sociology", "faculty": "School of Humanities and Social Sciences", "sourceUrl": "https://www.unza.zm/humanities/social-work-and-sociology" },
+
+    { "code": "UNZA-LAW-PRIV", "name": "Private Law", "faculty": "School of Law", "sourceUrl": "https://www.unza.zm/law/private-law" },
+    { "code": "UNZA-LAW-PUB", "name": "Public Law", "faculty": "School of Law", "sourceUrl": "https://www.unza.zm/law/public-law" },
+
+    { "code": "UNZA-MED-ANAT", "name": "Anatomy", "faculty": "School of Medicine", "sourceUrl": "https://www.unza.zm/medicine/anatomy" },
+    { "code": "UNZA-MED-IMED", "name": "Internal Medicine", "faculty": "School of Medicine", "sourceUrl": "https://www.unza.zm/medicine/internal-medicine" },
+    { "code": "UNZA-MED-MEDD", "name": "Medical Education Development", "faculty": "School of Medicine", "sourceUrl": "https://www.unza.zm/medicine/medical-education-development" },
+    { "code": "UNZA-MED-OBGY", "name": "Obstetrics and Gynaecology", "faculty": "School of Medicine", "sourceUrl": "https://www.unza.zm/medicine/obstetrics-and-gynaecology" },
+    { "code": "UNZA-MED-PAED", "name": "Paediatrics and Child Health", "faculty": "School of Medicine", "sourceUrl": "https://www.unza.zm/medicine/paediatrics-and-child-health" },
+    { "code": "UNZA-MED-PATH", "name": "Pathology and Microbiology", "faculty": "School of Medicine", "sourceUrl": "https://www.unza.zm/medicine/pathology-and-microbiology" },
+    { "code": "UNZA-MED-PHSL", "name": "Physiological Sciences", "faculty": "School of Medicine", "sourceUrl": "https://www.unza.zm/medicine/physiological-sciences" },
+    { "code": "UNZA-MED-PHAR", "name": "Pharmacy", "faculty": "School of Medicine", "sourceUrl": "https://www.unza.zm/medicine/pharmacy" },
+    { "code": "UNZA-MED-PHYT", "name": "Physiotherapy", "faculty": "School of Medicine", "sourceUrl": "https://www.unza.zm/medicine/physiotherapy" },
+    { "code": "UNZA-MED-PSYC", "name": "Psychiatry", "faculty": "School of Medicine", "sourceUrl": "https://www.unza.zm/medicine/psychiatry" },
+    { "code": "UNZA-MED-SURG", "name": "Surgery", "faculty": "School of Medicine", "sourceUrl": "https://www.unza.zm/medicine/surgery" },
+
+    { "code": "UNZA-MIN-GEOL", "name": "Geology", "faculty": "School of Mines", "sourceUrl": "https://www.unza.zm/mines/geology" },
+    { "code": "UNZA-MIN-MNEN", "name": "Mining Engineering", "faculty": "School of Mines", "sourceUrl": "https://www.unza.zm/mines/mining-engineering" },
+    { "code": "UNZA-MIN-METE", "name": "Metallurgical Engineering", "faculty": "School of Mines", "sourceUrl": "https://www.unza.zm/mines/metallurgical-engineering" },
+
+    { "code": "UNZA-NAS-BIOT", "name": "Biosciences and Biotechnology", "faculty": "School of Natural and Applied Sciences", "sourceUrl": "https://www.unza.zm/natural-and-applied-sciences/biosciences-and-biotechnology" },
+    { "code": "UNZA-NAS-COMP", "name": "Computing and Informatics", "faculty": "School of Natural and Applied Sciences", "sourceUrl": "https://www.unza.zm/natural-and-applied-sciences/computing-and-informatics" },
+    { "code": "UNZA-NAS-GSEP", "name": "Geographical Sciences, Environmental and Planning", "faculty": "School of Natural and Applied Sciences", "sourceUrl": "https://www.unza.zm/natural-and-applied-sciences/geographical-sciences-environmental-and-planning" },
+    { "code": "UNZA-NAS-MSAS", "name": "Mathematics, Statistics, and Actuarial Sciences", "faculty": "School of Natural and Applied Sciences", "sourceUrl": "https://www.unza.zm/natural-and-applied-sciences/mathematics-statistics-and-actuarial-science" },
+    { "code": "UNZA-NAS-CHEM", "name": "Pure and Applied Chemistry", "faculty": "School of Natural and Applied Sciences", "sourceUrl": "https://www.unza.zm/natural-and-applied-sciences/pure-and-applied-chemistry" },
+    { "code": "UNZA-NAS-PHYS", "name": "Pure and Applied Physics", "faculty": "School of Natural and Applied Sciences", "sourceUrl": "https://www.unza.zm/natural-and-applied-sciences/pure-and-applied-physics" },
+
+    { "code": "UNZA-PH-ENVH", "name": "Environmental Health", "faculty": "School of Public Health", "sourceUrl": "https://www.unza.zm/public-health/environmental-health" },
+    { "code": "UNZA-PH-EPBS", "name": "Epidemiology and Biostatistics", "faculty": "School of Public Health", "sourceUrl": "https://www.unza.zm/public-health/epidemiology-and-biostatistics" },
+    { "code": "UNZA-PH-HPM", "name": "Health Policy and Management", "faculty": "School of Public Health", "sourceUrl": "https://www.unza.zm/public-health/health-policy-and-management" },
+    { "code": "UNZA-PH-HPE", "name": "Health Promotion and Education", "faculty": "School of Public Health", "sourceUrl": "https://www.unza.zm/public-health/health-promotion-and-education" },
+    { "code": "UNZA-PH-POPS", "name": "Population Studies", "faculty": "School of Public Health", "sourceUrl": "https://www.unza.zm/public-health/population-studies" },
+    { "code": "UNZA-PH-CFM", "name": "Community and Family Medicine", "faculty": "School of Public Health", "sourceUrl": "https://www.unza.zm/public-health/community-and-family-medicine" },
+
+    { "code": "UNZA-VET-BMS", "name": "Biomedical Sciences", "faculty": "School of Veterinary Medicine", "sourceUrl": "https://www.unza.zm/veterinary-medicine/biomedical-sciences" },
+    { "code": "UNZA-VET-CSS", "name": "Central Services and Supply", "faculty": "School of Veterinary Medicine", "sourceUrl": "https://www.unza.zm/veterinary-medicine/central-services-and-supply" },
+    { "code": "UNZA-VET-CLST", "name": "Clinical Studies", "faculty": "School of Veterinary Medicine", "sourceUrl": "https://www.unza.zm/veterinary-medicine/clinical-studies" },
+    { "code": "UNZA-VET-DCON", "name": "Disease Control", "faculty": "School of Veterinary Medicine", "sourceUrl": "https://www.unza.zm/veterinary-medicine/disease-control" },
+    { "code": "UNZA-VET-PCST", "name": "Para-Clinical Studies", "faculty": "School of Veterinary Medicine", "sourceUrl": "https://www.unza.zm/veterinary-medicine/para-clinical-studies" }
+  ],
+  "courses": []
+}

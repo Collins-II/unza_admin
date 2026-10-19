@@ -5,7 +5,8 @@ export interface IUser extends Document {
   name: string;
   email: string;
   password?: string;
-  role: "staff" | "admin";
+  role: "staff" | "admin" | "student";
+  enrolledCourses: mongoose.Types.ObjectId[];
   department?: string;
   program?: string;
   year?: string;
@@ -30,6 +31,11 @@ export interface IUser extends Document {
     darkMode: boolean;
   };
   bootstrapKey?: string;
+  mustChangePassword?: boolean;
+  passwordChangedAt?: Date;
+  failedLoginAttempts?: number;
+  lockedUntil?: Date;
+  registeredBy?: mongoose.Types.ObjectId;
 }
 
 const userSchema = new Schema<IUser>(
@@ -47,12 +53,13 @@ const userSchema = new Schema<IUser>(
     password: { type: String, required: true, select: false },
     role: {
       type: String,
-      enum: ["staff", "admin"],
+      enum: ["staff", "admin", "student"],
       default: "staff",
     },
     department: { type: String, trim: true },
     program: { type: String, trim: true },
     year: { type: String, trim: true },
+    enrolledCourses: [{ type: Schema.Types.ObjectId, ref: "Course", index: true }],
     phone: { type: String, trim: true },
     status: {
       type: String,
@@ -86,8 +93,15 @@ const userSchema = new Schema<IUser>(
       darkMode: { type: Boolean, default: true },
     },
     bootstrapKey: { type: String, unique: true, sparse: true, select: false },
+    mustChangePassword: { type: Boolean, default: false },
+    passwordChangedAt: { type: Date },
+    failedLoginAttempts: { type: Number, default: 0, select: false },
+    lockedUntil: { type: Date, select: false },
+    registeredBy: { type: Schema.Types.ObjectId, ref: "User" },
   },
   { timestamps: true }
 );
+
+userSchema.index({ role: 1, status: 1, enrolledCourses: 1 });
 
 export default mongoose.models.User || mongoose.model<IUser>("User", userSchema);

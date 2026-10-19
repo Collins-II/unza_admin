@@ -2,12 +2,14 @@ import { getServerSession } from "next-auth";
 import { NextResponse } from "next/server";
 
 import { authOptions } from "@/lib/authOptions";
+import { connectToDatabase } from "@/lib/database";
+import User from "@/lib/database/models/User";
+import { isActiveStaff } from "@/lib/accountPolicy";
 
 export type AdminRole = "staff" | "admin";
 
 export async function requireAdminRole() {
   const session = await getServerSession(authOptions);
-  const role = session?.user?.role;
 
   if (!session?.user?.id) {
     return {
@@ -16,12 +18,15 @@ export async function requireAdminRole() {
     };
   }
 
-  if (role !== "staff" && role !== "admin") {
+  await connectToDatabase();
+  const current = await User.findById(session.user.id).select("role status").lean();
+  if (!current || !isActiveStaff(current)) {
     return {
       session: null,
       response: NextResponse.json({ error: "University staff access is required." }, { status: 403 }),
     };
   }
+  session.user.role = current.role;
 
   return { session, response: null };
 }

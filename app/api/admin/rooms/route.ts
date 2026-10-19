@@ -1,8 +1,12 @@
 import { NextResponse } from "next/server";
+import mongoose from "mongoose";
 
 import { requireAdminRole } from "@/lib/adminAuth";
 import { connectToDatabase } from "@/lib/database";
+import Course from "@/lib/database/models/Course";
 import Room from "@/lib/database/models/Room";
+import TimetableAllocation from "@/lib/database/models/TimetableAllocation";
+import { acquireTimetableConfigurationLock, releaseTimetableLock, renewTimetableLock } from "@/lib/timetableLock";
 
 const spaceTypes = ["lecture_room", "laboratory", "seminar_room", "office", "library", "clinic", "cafeteria", "residence", "administrative", "other"] as const;
 
@@ -21,8 +25,10 @@ export async function GET() {
 export async function POST(request: Request) {
   const access = await requireAdminRole();
   if (access.response) return access.response;
+  let lock: { key: string; token: string } | null = null;
   try {
     const body = await request.json();
+    if (!body || typeof body !== "object" || Array.isArray(body)) return NextResponse.json({ error: "A valid room record is required." }, { status: 400 });
     const name = typeof body.name === "string" ? body.name.trim() : "";
     const code = typeof body.code === "string" ? body.code.trim().toUpperCase() : "";
     const building = typeof body.building === "string" ? body.building.trim() : "";
@@ -33,12 +39,19 @@ export async function POST(request: Request) {
     if (!Number.isFinite(latitude) || latitude < -90 || latitude > 90 || !Number.isFinite(longitude) || longitude < -180 || longitude > 180 || (latitude === 0 && longitude === 0)) {
       return NextResponse.json({ error: "A real latitude and longitude are required for navigation. Use decimal degrees, not 0,0." }, { status: 400 });
     }
+    const capacity = Number(body.capacity);
+    if (!Number.isInteger(capacity) || capacity < 0 || (["lecture_room", "laboratory", "seminar_room"].includes(spaceType) && capacity < 1)) {
+      return NextResponse.json({ error: "Teaching-space capacity must be a positive whole number." }, { status: 400 });
+    }
     await connectToDatabase();
+    lock = await acquireTimetableConfigurationLock();
+    if (!lock) return NextResponse.json({ error: "A timetable update is in progress. Retry after it finishes." }, { status: 409 });
+    await renewTimetableLock(lock);
     const room = await Room.create({
       name, code, building,
       spaceType,
       floor: Number(body.floor) || 0,
-      capacity: Number(body.capacity) || 0,
+      capacity,
       category: typeof body.category === "string" ? body.category : "lecture_hall",
       latitude,
       longitude,
@@ -50,15 +63,18 @@ export async function POST(request: Request) {
     return NextResponse.json({ room }, { status: 201 });
   } catch (error) {
     return NextResponse.json({ error: error instanceof Error ? error.message : "Unable to create room." }, { status: 500 });
+  } finally {
+    if (lock) await releaseTimetableLock(lock);
   }
 }
 
 export async function PATCH(request: Request) {
   const access = await requireAdminRole();
   if (access.response) return access.response;
+  let lock: { key: string; token: string } | null = null;
   try {
     const body = await request.json();
-    if (typeof body.id !== "string") return NextResponse.json({ error: "Room id is required." }, { status: 400 });
+    if (!body || typeof body !== "object" || Array.isArray(body) || typeof body.id !== "string" || !mongoose.isValidObjectId(body.id)) return NextResponse.json({ error: "A valid room id is required." }, { status: 400 });
     const hasLatitude = body.latitude !== undefined;
     const hasLongitude = body.longitude !== undefined;
     const hasSpaceType = body.spaceType !== undefined;
@@ -72,6 +88,19 @@ export async function PATCH(request: Request) {
       return NextResponse.json({ error: "A real latitude and longitude are required for navigation. Use decimal degrees, not 0,0." }, { status: 400 });
     }
     await connectToDatabase();
+    lock = await acquireTimetableConfigurationLock();
+    if (!lock) return NextResponse.json({ error: "A timetable update is in progress. Retry after it finishes." }, { status: 409 });
+    const current = await Room.findById(body.id).lean();
+    if (!current) return NextResponse.json({ error: "Room not found." }, { status: 404 });
+    const changesSchedulingData = hasLatitude || hasSpaceType ||
+      (typeof body.isAvailable === "boolean" && body.isAvailable !== current.isAvailable);
+    if (changesSchedulingData && await TimetableAllocation.exists({ room: current._id, status: { $ne: "cancelled" } })) {
+      return NextResponse.json({ error: "Cancel existing allocations in this room before changing its availability, location, or teaching-space type." }, { status: 409 });
+    }
+    if (changesSchedulingData && await Course.exists({ preferredVenues: current._id, active: true })) {
+      return NextResponse.json({ error: "Remove this room from active course preferences before changing its availability, location, or teaching-space type." }, { status: 409 });
+    }
+    await renewTimetableLock(lock);
     const room = await Room.findByIdAndUpdate(
       body.id,
       {
@@ -85,5 +114,7 @@ export async function PATCH(request: Request) {
     return NextResponse.json({ room });
   } catch (error) {
     return NextResponse.json({ error: error instanceof Error ? error.message : "Unable to update room." }, { status: 500 });
+  } finally {
+    if (lock) await releaseTimetableLock(lock);
   }
 }
