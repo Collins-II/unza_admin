@@ -6,6 +6,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { BookOpen, Building2, CalendarDays, GraduationCap, LayoutDashboard, LogOut, Megaphone, Network, Users } from "lucide-react";
 import { AccountManagement, AnnouncementManagement, CourseManagement, DepartmentManagement, Overview, RoomManagement, Timetable } from "@/components/admin/AdminSections";
 import { StudentManagement } from "@/components/admin/StudentManagement";
+import { BookingsManagement } from "@/components/admin/BookingsManagement";
 import { UnzaCatalogue } from "@/components/admin/UnzaCatalogue";
 import { RecordSelect } from "@/components/admin/RecordSelect";
 import { AdminActivityContext } from "@/components/admin/DataWorkspace";
@@ -15,6 +16,7 @@ import "./admin.css";
 const tabs: { id: Tab; label: string; icon: typeof LayoutDashboard; description: string }[] = [
   { id: "overview", label: "Operations", icon: LayoutDashboard, description: "A live overview of university operations and your selected planning cycle." },
   { id: "timetable", label: "University timetable", icon: CalendarDays, description: "Review allocations, manage drafts and publish conflict-checked schedules." },
+  { id: "bookings", label: "Room bookings", icon: CalendarDays, description: "Review student room requests and manage booking confirmations." },
   { id: "departments", label: "Departments", icon: Network, description: "Manage academic structure, schools and sourced department information." },
   { id: "courses", label: "Courses", icon: BookOpen, description: "Find courses, manage student rosters and configure teaching requirements." },
   { id: "students", label: "Students", icon: GraduationCap, description: "Search the full student register, manage access and process new intakes." },
@@ -24,7 +26,7 @@ const tabs: { id: Tab; label: string; icon: typeof LayoutDashboard; description:
 ];
 const emptyCourse = { code: "", title: "", department: "", level: "Undergraduate", semester: "Semester 1", credits: "3", expectedEnrollment: "50", sessionsPerWeek: "2", sessionMinutes: "120", lecturer: "" };
 const emptyDepartment = { code: "", name: "", faculty: "", headOfDepartment: "" };
-const emptyRoom = { name: "", code: "", building: "", capacity: "50", floor: "0", latitude: "", longitude: "", spaceType: "lecture_room", category: "general" };
+const emptyRoom = { name: "", code: "", building: "", capacity: "50", floor: "0", latitude: "", longitude: "", spaceType: "", category: "general" };
 const emptyAccount = { name: "", staffId: "", email: "", department: "", password: "", role: "staff" };
 
 export default function AdminPage() {
@@ -81,7 +83,7 @@ export default function AdminPage() {
     return () => window.removeEventListener("beforeunload", warn);
   }, [saving, workspaceBusy]);
 
-  const mutate = async (url: string, method: "POST" | "PATCH", body: unknown, message: string, after?: () => void) => {
+  const mutate = async (url: string, method: "POST" | "PATCH", body: unknown, message: string | ((data: Record<string, unknown>) => string), after?: () => void) => {
     if (mutationPending.current) return false;
     mutationPending.current = true;
     setSaving(true); setError(""); setNotice("");
@@ -90,7 +92,7 @@ export default function AdminPage() {
       const data = await response.json();
       if (!response.ok) throw new Error(data.error || "The operation could not be completed.");
       after?.();
-      setNotice(message);
+      setNotice(typeof message === "function" ? message(data) : message);
       setRevision((value) => value + 1);
       void load();
       return true;
@@ -128,11 +130,15 @@ export default function AdminPage() {
         {(saving || workspaceBusy) && <p role="status" className="mb-3 text-sm text-emerald-700">Processing your request. Keep this page open until the result appears...</p>}
         <fieldset disabled={saving || workspaceBusy} inert={saving || workspaceBusy} className="min-w-0">
           {tab === "overview" && <>{summaryLoading && <p role="status" className="mb-3 text-xs text-slate-500">Updating operations summary...</p>}{metrics ? <Overview metrics={metrics} setTab={selectTab} /> : <div className="ui-card" role="status">{error ? "Summary unavailable. Refresh to retry." : "Loading operations summary..."}</div>}</>}
-          {tab === "timetable" && <Timetable revision={revision} form={allocationForm} setForm={setAllocationForm} academicYear={academicYear} semester={semester} departmentFilter={departmentFilter} onGenerated={(message) => { setNotice(message); setRevision((value) => value + 1); void load(); }} onSubmit={(event) => { event.preventDefault(); void mutate("/api/admin/allocations", "POST", { ...allocationForm, academicYear, semester, status: "draft" }, "Class saved as a draft.", () => setAllocationForm({ ...allocationForm, course: "", room: "", notes: "" })); }} onCancel={(id) => { if (window.confirm("Cancel this allocation? It will be removed from active student timetables.")) void mutate("/api/admin/allocations", "PATCH", { id, status: "cancelled" }, "Class allocation cancelled."); }} onPublish={(id) => { if (window.confirm("Publish the complete course schedule? All weekly sessions will be validated before publication.")) void mutate("/api/admin/allocations", "PATCH", { id, status: "published" }, "Complete course schedule published."); }} />}
+          {tab === "timetable" && <Timetable revision={revision} form={allocationForm} setForm={setAllocationForm} academicYear={academicYear} semester={semester} departmentFilter={departmentFilter} onGenerated={(message) => { setNotice(message); setRevision((value) => value + 1); void load(); }} onSubmit={(event) => { event.preventDefault(); void mutate("/api/admin/allocations", "POST", { ...allocationForm, academicYear, semester, status: "draft" }, "Class saved as a draft.", () => setAllocationForm({ ...allocationForm, course: "", room: "", notes: "" })); }} onCancel={(id) => { if (window.confirm("Cancel this allocation? It will be removed from active student timetables.")) void mutate("/api/admin/allocations", "PATCH", { id, status: "cancelled" }, "Class allocation cancelled."); }} onPublish={(id) => { if (window.confirm("Publish the complete course schedule? This takes priority over conflicting pending and confirmed room bookings, which will be cancelled.")) void mutate("/api/admin/allocations", "PATCH", { id, status: "published" }, (data) => `Complete course schedule published.${Number(data.cancelledBookings) > 0 ? ` ${data.cancelledBookings} conflicting booking${Number(data.cancelledBookings) === 1 ? " was" : "s were"} cancelled.` : ""}`); }} />}
+          {tab === "bookings" && <BookingsManagement revision={revision} onStatusChange={(id, status) => {
+            if (status === "cancelled" && !window.confirm("Cancel this student room booking?")) return;
+            void mutate("/api/admin/bookings", "PATCH", { id, status }, status === "confirmed" ? "Booking confirmed." : "Booking cancelled.");
+          }} />}
           {tab === "departments" && <DepartmentManagement revision={revision} form={departmentForm} setForm={setDepartmentForm} onUpdate={updateDepartment} onSubmit={(event) => { event.preventDefault(); void mutate("/api/admin/departments", "POST", departmentForm, "Department created.", () => setDepartmentForm({ ...emptyDepartment })); }} />}
           {tab === "courses" && <div className="space-y-5"><CourseManagement revision={revision} form={courseForm} setForm={setCourseForm} academicYear={academicYear} onConfigure={configureCourse} onSubmit={(event) => { event.preventDefault(); void mutate("/api/admin/courses", "POST", { ...courseForm, credits: Number(courseForm.credits), expectedEnrollment: Number(courseForm.expectedEnrollment), sessionsPerWeek: Number(courseForm.sessionsPerWeek), sessionMinutes: Number(courseForm.sessionMinutes) }, "Course saved.", () => setCourseForm({ ...emptyCourse })); }} onSaveCourse={(course, patch) => mutate("/api/admin/courses", "PATCH", { id: course._id, ...patch }, `${course.code} scheduling settings updated.`)} /><details className="admin-composer ui-card"><summary>Verified UNZA catalogue and source information</summary><div className="mt-5"><UnzaCatalogue onImported={() => { setRevision((value) => value + 1); void load(); }} /></div></details></div>}
           {tab === "students" && <StudentManagement />}
-          {tab === "rooms" && <RoomManagement revision={revision} form={roomForm} setForm={setRoomForm} onSubmit={(event) => { event.preventDefault(); void mutate("/api/admin/rooms", "POST", { ...roomForm, capacity: Number(roomForm.capacity), floor: Number(roomForm.floor), latitude: Number(roomForm.latitude), longitude: Number(roomForm.longitude) }, "Campus location registered.", () => setRoomForm({ ...emptyRoom })); }} />}
+          {tab === "rooms" && <RoomManagement revision={revision} form={roomForm} setForm={setRoomForm} onClassify={(room, spaceType) => mutate("/api/admin/rooms", "PATCH", { id: room._id, spaceType }, "Location classification saved. Only lecture rooms are student-bookable.")} onSubmit={(event) => { event.preventDefault(); void mutate("/api/admin/rooms", "POST", { ...roomForm, capacity: Number(roomForm.capacity), floor: Number(roomForm.floor), latitude: Number(roomForm.latitude), longitude: Number(roomForm.longitude) }, "Campus location registered.", () => setRoomForm({ ...emptyRoom })); }} />}
           {tab === "accounts" && session.user.role === "admin" && <AccountManagement revision={revision} form={accountForm} setForm={setAccountForm} onSubmit={(event) => { event.preventDefault(); void mutate("/api/admin/users", "POST", accountForm, "Staff account provisioned.", () => setAccountForm({ ...emptyAccount })); }} />}
           {tab === "announcements" && <AnnouncementManagement revision={revision} form={announcementForm} setForm={setAnnouncementForm} onSubmit={(event) => { event.preventDefault(); if (window.confirm("Publish this announcement to the selected audience?")) void mutate("/api/admin/announcements", "POST", { ...announcementForm, priority: "high" }, "Announcement published.", () => setAnnouncementForm({ title: "", message: "", audience: announcementForm.audience })); }} />}
         </fieldset>

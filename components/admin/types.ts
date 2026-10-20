@@ -1,4 +1,4 @@
-export type Tab = "overview" | "timetable" | "departments" | "courses" | "students" | "rooms" | "accounts" | "announcements";
+export type Tab = "overview" | "timetable" | "bookings" | "departments" | "courses" | "students" | "rooms" | "accounts" | "announcements";
 export type Department = { _id: string; code: string; name: string; faculty: string; headOfDepartment?: string; active?: boolean; sourceUrl?: string; verifiedAt?: string };
 export type Course = { _id: string; code: string; title: string; level: string; semester: string; expectedEnrollment: number; lecturer?: string; sessionsPerWeek?: number; sessionMinutes?: number; preferredSpaceTypes?: string[]; preferredVenues?: Pick<Room, "_id" | "code" | "name" | "building" | "capacity" | "latitude" | "longitude">[]; department?: Department; sourceUrl?: string; verifiedAt?: string; active?: boolean; catalogueOnly?: boolean };
 export type Room = { _id: string; name: string; code: string; building: string; capacity?: number; latitude?: number; longitude?: number; spaceType?: string; isAvailable?: boolean };

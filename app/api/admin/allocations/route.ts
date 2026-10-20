@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 
 import { requireAdminRole } from "@/lib/adminAuth";
 import { connectToDatabase } from "@/lib/database";
+import Booking from "@/lib/database/models/Booking";
 import Course from "@/lib/database/models/Course";
 import Department from "@/lib/database/models/Department";
 import Room from "@/lib/database/models/Room";
@@ -12,6 +13,7 @@ import { isTimeRangeValid, rangesOverlap, timeToMinutes, WEEKDAYS } from "@/lib/
 import { distanceMeters } from "@/lib/timetableGenerator";
 import { acquireTimetableMutationLock, releaseTimetableMutationLock, renewTimetableMutationLock, type TimetableMutationLock } from "@/lib/timetableLock";
 import { validateTimetableForPublishing } from "@/lib/timetableValidation";
+import { findTimetableConflictingBookings, type TimetableSlot } from "@/lib/bookingValidation";
 import { auditedMutation } from "@/lib/audit";
 
 type AllocationInput = {
@@ -205,6 +207,9 @@ export async function PATCH(request: Request) {
   const access = await requireAdminRole();
   if (access.response) return access.response;
   let lock: TimetableMutationLock | null = null;
+  let scheduledRoomIds: string[] = [];
+  let scheduledStudentIds: string[] = [];
+  let scheduleSlots: TimetableSlot[] = [];
   try {
     const body = await request.json();
     if (!body || typeof body !== "object" || typeof body.id !== "string" || !mongoose.isValidObjectId(body.id) ||
@@ -281,6 +286,15 @@ export async function PATCH(request: Request) {
       if (validationErrors.length) {
         return NextResponse.json({ error: "Publication is blocked until this course is complete and conflict-free.", details: validationErrors }, { status: 409 });
       }
+      scheduledRoomIds = [...new Set(publishAllocations.map((allocation) => allocation.roomId))];
+      scheduledStudentIds = [...new Set(publishAllocations.flatMap((allocation) => allocation.studentIds))];
+      scheduleSlots = publishAllocations.map((allocation) => ({
+        roomId: allocation.roomId,
+        dayOfWeek: allocation.dayOfWeek,
+        startTime: allocation.startTime,
+        endTime: allocation.endTime,
+        studentIds: allocation.studentIds,
+      }));
       const conflict = await findConflict({
         id: body.id,
         academicYear: refreshed.academicYear,
@@ -296,10 +310,37 @@ export async function PATCH(request: Request) {
     }
 
     await renewTimetableMutationLock(lock);
-    await auditedMutation(access.session.user.id, `allocation.${body.status}`, body.id, {
+    let cancelledBookings = 0;
+    const auditDetails = {
       academicYear: refreshed.academicYear, semester: refreshed.semester, courseId: String(refreshed.course),
-    }, async (session) => {
+      cancelledBookings: "0",
+    };
+    await auditedMutation(access.session.user.id, `allocation.${body.status}`, body.id, auditDetails, async (session) => {
       if (body.status === "published") {
+        const activeBookings = await Booking.find({
+          status: { $in: ["pending", "confirmed"] },
+          endTime: { $gt: new Date() },
+          $or: [{ room: { $in: scheduledRoomIds } }, { user: { $in: scheduledStudentIds } }],
+        }).select("room user startTime endTime").session(session).lean();
+        const conflicts = findTimetableConflictingBookings(
+          activeBookings.map((booking) => ({
+            id: String(booking._id),
+            roomId: String(booking.room),
+            userId: String(booking.user),
+            startTime: booking.startTime,
+            endTime: booking.endTime,
+          })),
+          scheduleSlots
+        );
+        if (conflicts.length) {
+          const cancellation = await Booking.updateMany(
+            { _id: { $in: conflicts.map((booking) => booking.id) }, status: { $in: ["pending", "confirmed"] } },
+            { $set: { status: "cancelled", cancellationReason: "timetable_conflict" } },
+            { session }
+          );
+          cancelledBookings = cancellation.modifiedCount;
+          auditDetails.cancelledBookings = String(cancelledBookings);
+        }
         await TimetableAllocation.updateMany(
           { course: refreshed.course, academicYear: refreshed.academicYear, semester: refreshed.semester, status: "draft" },
           { $set: { status: "published" } },
@@ -317,7 +358,7 @@ export async function PATCH(request: Request) {
     });
     const allocation = await TimetableAllocation.findById(body.id)
       .populate("department", "code name").populate("course", "code title").populate("room", "name code building capacity").lean();
-    return NextResponse.json({ allocation });
+    return NextResponse.json({ allocation, cancelledBookings });
   } catch (error) {
     return NextResponse.json({ error: error instanceof Error ? error.message : "Unable to update allocation." }, { status: 500 });
   } finally {

@@ -57,7 +57,7 @@ export function TimetableGenerator({ academicYear, semester, departmentFilter, o
   };
 
   const run = async (mode: "preview" | "save" | "publish") => {
-    if (mode === "publish" && !window.confirm("Publish this complete timetable? It will become available to students after validation.")) return;
+    if (mode === "publish" && !window.confirm("Publish this complete timetable? It will take priority over room bookings and automatically cancel any conflicting pending or confirmed bookings.")) return;
     setBusy(mode);
     setWorkspaceBusy?.(true);
     setError("");
@@ -78,7 +78,10 @@ export function TimetableGenerator({ academicYear, semester, departmentFilter, o
       setPreviewPage(0);
       setStreamPage(0);
       if (mode !== "preview") {
-        onSaved(`${data.saved} class sessions ${mode === "publish" ? "published" : "saved as drafts"} for ${scopeLabel}.`);
+        const bookingNotice = mode === "publish" && data.cancelledBookings
+          ? ` ${data.cancelledBookings} conflicting booking${data.cancelledBookings === 1 ? " was" : "s were"} cancelled.`
+          : "";
+        onSaved(`${data.saved} class sessions ${mode === "publish" ? "published" : "saved as drafts"} for ${scopeLabel}.${bookingNotice}`);
         setResult(null);
       }
     } catch (generationError) {
@@ -126,8 +129,8 @@ export function TimetableGenerator({ academicYear, semester, departmentFilter, o
       {error && <p className="mt-4 border-2 border-rose-700 bg-rose-50 p-3 text-sm font-bold text-rose-800">{error}</p>}
       {result && (
         <div className="mt-5 space-y-4">
-          <div className="grid gap-3 sm:grid-cols-4">
-            {[["Courses scheduled", result.stats.courses - result.stats.unscheduledCourses], ["Class sessions", result.stats.sessions], ["Courses split into streams", result.stats.splitCourses], ["Not fully placed", result.stats.unscheduledCourses]].map(([label, value]) => <div key={label} className="ui-card-muted"><strong className="text-xl">{value}</strong><p className="text-xs text-gray-500">{label}</p></div>)}
+          <div className="grid grid-cols-2 gap-2 sm:grid-cols-4 sm:gap-3">
+            {[["Courses scheduled", result.stats.courses - result.stats.unscheduledCourses], ["Class sessions", result.stats.sessions], ["Courses split into streams", result.stats.splitCourses], ["Not fully placed", result.stats.unscheduledCourses]].map(([label, value]) => <div key={label} className="ui-card-muted admin-metric-card min-w-0"><strong className="break-words text-lg tabular-nums sm:text-xl">{value}</strong><p className="text-[11px] leading-4 text-gray-500 sm:text-xs">{label}</p></div>)}
           </div>
           {streamed.length > 0 && <div><h4 className="mb-2 text-sm font-semibold">Auto-created streams</h4><div className="data-table-scroll"><table className="data-table"><thead><tr><th>Course</th><th>Stream</th><th>Students</th></tr></thead><tbody>{streamed.slice(streamPage * 25, (streamPage + 1) * 25).map((session) => <tr key={`${session.courseId}${session.stream}`}><td>{session.courseCode}</td><td>{session.stream} of {session.streamCount}</td><td>{session.streamSize}</td></tr>)}</tbody></table></div><div className="mt-2 flex items-center justify-end gap-3 text-xs"><button type="button" disabled={streamPage === 0} onClick={() => setStreamPage(streamPage - 1)}>Previous streams</button><span>{streamPage + 1} / {Math.ceil(streamed.length / 25)}</span><button type="button" disabled={(streamPage + 1) * 25 >= streamed.length} onClick={() => setStreamPage(streamPage + 1)}>Next streams</button></div></div>}
           {result.unscheduled.length > 0 && <div className="border-2 border-amber-600 bg-amber-50 p-3 text-sm"><h4 className="font-black uppercase">Needs attention</h4><ul className="mt-2 list-disc pl-5">{result.unscheduled.map((item) => <li key={item.courseId}><strong>{item.courseCode}</strong>: {item.reason} ({item.studentsUnplaced} students unplaced)</li>)}</ul></div>}

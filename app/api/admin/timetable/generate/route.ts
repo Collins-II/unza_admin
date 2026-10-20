@@ -6,11 +6,13 @@ import { connectToDatabase } from "@/lib/database";
 import Course from "@/lib/database/models/Course";
 import Room from "@/lib/database/models/Room";
 import TimetableAllocation from "@/lib/database/models/TimetableAllocation";
+import Booking from "@/lib/database/models/Booking";
 import User from "@/lib/database/models/User";
 import { DEFAULT_VENUE_RADIUS_M, TEACHING_SPACES, generateTimetable, type FixedAllocation, type GeneratorCourse, type GeneratorRoom } from "@/lib/timetableGenerator";
 import { WEEKDAYS, isTimeRangeValid } from "@/lib/timetable";
 import { acquireTimetableMutationLock, releaseTimetableMutationLock, renewTimetableMutationLock, type TimetableMutationLock } from "@/lib/timetableLock";
 import { validateTimetableForPublishing } from "@/lib/timetableValidation";
+import { findTimetableConflictingBookings, type TimetableSlot } from "@/lib/bookingValidation";
 import AuditEvent from "@/lib/database/models/AuditEvent";
 import { recordAudit } from "@/lib/audit";
 
@@ -222,6 +224,10 @@ export async function POST(request: Request) {
     }
 
     let saved = 0;
+    let cancelledBookings = 0;
+    let scheduleSlots: TimetableSlot[] = [];
+    let scheduledRoomIds: string[] = [];
+    let scheduledStudentIds: string[] = [];
     if (!body.dryRun && !result.unscheduled.length && (result.sessions.length > 0 || body.publish)) {
       const departmentByCourse = new Map(courseDocs.map((course) => [idOf(course), idOf(course.department)]));
       const documents = result.sessions.map((session) => ({
@@ -282,6 +288,15 @@ export async function POST(request: Request) {
             studentIds: allocation.streamStudentIds.map(String),
           })),
         ];
+        scheduledRoomIds = [...new Set(publishAllocations.map((allocation) => allocation.roomId))];
+        scheduledStudentIds = [...new Set(publishAllocations.flatMap((allocation) => allocation.studentIds))];
+        scheduleSlots = publishAllocations.map((allocation) => ({
+          roomId: allocation.roomId,
+          dayOfWeek: allocation.dayOfWeek,
+          startTime: allocation.startTime,
+          endTime: allocation.endTime,
+          studentIds: allocation.studentIds,
+        }));
         const validationErrors = validateTimetableForPublishing(
           publishCourses,
           publishAllocations,
@@ -316,11 +331,34 @@ export async function POST(request: Request) {
               { session: dbSession }
             );
             saved = documents.length + promoted.modifiedCount;
+            const activeBookings = await Booking.find({
+              status: { $in: ["pending", "confirmed"] },
+              endTime: { $gt: new Date() },
+              $or: [{ room: { $in: scheduledRoomIds } }, { user: { $in: scheduledStudentIds } }],
+            }).select("room user startTime endTime").session(dbSession).lean();
+            const conflictingBookings = findTimetableConflictingBookings(
+              activeBookings.map((booking) => ({
+                id: String(booking._id),
+                roomId: String(booking.room),
+                userId: String(booking.user),
+                startTime: booking.startTime,
+                endTime: booking.endTime,
+              })),
+              scheduleSlots
+            );
+            if (conflictingBookings.length) {
+              const cancellation = await Booking.updateMany(
+                { _id: { $in: conflictingBookings.map((booking) => booking.id) }, status: { $in: ["pending", "confirmed"] } },
+                { $set: { status: "cancelled", cancellationReason: "timetable_conflict" } },
+                { session: dbSession }
+              );
+              cancelledBookings = cancellation.modifiedCount;
+            }
           } else {
             saved = documents.length;
           }
           await recordAudit(dbSession, access.session.user.id, body.publish ? "timetable.publish" : "timetable.draft", `${body.academicYear}|${body.semester}`, {
-            courseCount: String(scopeIds.size), saved: String(saved),
+            courseCount: String(scopeIds.size), saved: String(saved), cancelledBookings: String(cancelledBookings),
           });
         });
       } finally {
@@ -328,7 +366,7 @@ export async function POST(request: Request) {
       }
     }
 
-    return NextResponse.json({ result: { ...result, sessions: preview }, saved, dryRun: Boolean(body.dryRun), publicationBlocked: result.unscheduled.length > 0 });
+    return NextResponse.json({ result: { ...result, sessions: preview }, saved, cancelledBookings, dryRun: Boolean(body.dryRun), publicationBlocked: result.unscheduled.length > 0 });
   } catch (error) {
     return NextResponse.json({ error: error instanceof Error ? error.message : "Unable to generate the timetable." }, { status: 500 });
   } finally {

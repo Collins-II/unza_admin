@@ -4,6 +4,7 @@ import mongoose from "mongoose";
 import { requireAdminRole } from "@/lib/adminAuth";
 import { connectToDatabase } from "@/lib/database";
 import Course from "@/lib/database/models/Course";
+import Booking from "@/lib/database/models/Booking";
 import Room from "@/lib/database/models/Room";
 import TimetableAllocation from "@/lib/database/models/TimetableAllocation";
 import { acquireTimetableConfigurationLock, releaseTimetableLock, renewTimetableLock } from "@/lib/timetableLock";
@@ -15,7 +16,7 @@ export async function GET() {
   if (access.response) return access.response;
   try {
     await connectToDatabase();
-    const rooms = (await Room.find().sort({ building: 1, name: 1 }).lean()).map((room) => ({ ...room, spaceType: room.spaceType || "lecture_room" }));
+    const rooms = await Room.find().sort({ building: 1, name: 1 }).lean();
     return NextResponse.json({ rooms });
   } catch (error) {
     return NextResponse.json({ error: error instanceof Error ? error.message : "Unable to load rooms." }, { status: 500 });
@@ -92,13 +93,18 @@ export async function PATCH(request: Request) {
     if (!lock) return NextResponse.json({ error: "A timetable update is in progress. Retry after it finishes." }, { status: 409 });
     const current = await Room.findById(body.id).lean();
     if (!current) return NextResponse.json({ error: "Room not found." }, { status: 404 });
-    const changesSchedulingData = hasLatitude || hasSpaceType ||
+    const changesSchedulingData = hasLatitude || (hasSpaceType && body.spaceType !== (current.spaceType || "lecture_room")) ||
       (typeof body.isAvailable === "boolean" && body.isAvailable !== current.isAvailable);
     if (changesSchedulingData && await TimetableAllocation.exists({ room: current._id, status: { $ne: "cancelled" } })) {
       return NextResponse.json({ error: "Cancel existing allocations in this room before changing its availability, location, or teaching-space type." }, { status: 409 });
     }
     if (changesSchedulingData && await Course.exists({ preferredVenues: current._id, active: true })) {
       return NextResponse.json({ error: "Remove this room from active course preferences before changing its availability, location, or teaching-space type." }, { status: 409 });
+    }
+    if (hasSpaceType && body.spaceType !== "lecture_room" && await Booking.exists({
+      room: current._id, status: { $in: ["pending", "confirmed"] }, endTime: { $gt: new Date() },
+    })) {
+      return NextResponse.json({ error: "Cancel active student bookings before reclassifying this lecture room." }, { status: 409 });
     }
     await renewTimetableLock(lock);
     const room = await Room.findByIdAndUpdate(
@@ -108,7 +114,7 @@ export async function PATCH(request: Request) {
         ...(hasLatitude ? { latitude, longitude, location: { type: "Point", coordinates: [longitude, latitude] } } : {}),
         ...(hasSpaceType ? { spaceType: body.spaceType } : {}),
       },
-      { new: true }
+      { new: true, runValidators: true }
     ).lean();
     if (!room) return NextResponse.json({ error: "Room not found." }, { status: 404 });
     return NextResponse.json({ room });

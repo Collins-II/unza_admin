@@ -9,6 +9,7 @@ import { DataWorkspace } from "./DataWorkspace";
 import { RecordSelect } from "./RecordSelect";
 import { TimetableGenerator } from "./TimetableGenerator";
 import { StudentRoster } from "./StudentRoster";
+import { adminFilterOptions } from "@/lib/adminData";
 
 const LocationPickerMap = dynamic(() => import("./LocationPickerMap"), { ssr: false, loading: () => <div className="h-64 animate-pulse rounded-xl bg-slate-100" /> });
 type FormProps = { form: Record<string, string>; setForm: (form: Record<string, string>) => void; onSubmit: (event: React.FormEvent) => void };
@@ -30,10 +31,37 @@ export function Overview({ metrics, setTab }: { metrics: Metrics; setTab: (tab: 
     { label: "Active courses", value: metrics.courses, icon: BookOpen, tab: "courses" },
     { label: "Campus locations", value: metrics.rooms, icon: Building2, tab: "rooms" },
     { label: "Published classes", value: metrics.publishedClasses, icon: CalendarDays, tab: "timetable" },
+    { label: "Pending room bookings", value: metrics.pendingBookings, icon: CalendarDays, tab: "bookings" },
     { label: "Staff accounts", value: metrics.staff, icon: Users, tab: "accounts" },
     { label: "Active students", value: metrics.students, icon: Users, tab: "students" },
   ] as const;
-  return <><div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">{cards.map(({ label, value, icon: Icon, tab }) => <button key={label} className="ui-card text-left transition hover:-translate-y-0.5" onClick={() => setTab(tab)}><div className="flex items-center justify-between"><span className="text-sm text-slate-500">{label}</span><span className="rounded-xl bg-emerald-50 p-2.5"><Icon size={20} className="text-emerald-700" /></span></div><p className="mt-3 text-3xl font-semibold tracking-tight">{value.toLocaleString()}</p></button>)}</div><section className="ui-card mt-5"><div className="flex flex-wrap items-center justify-between gap-3"><div><p className="ui-eyebrow">Selected planning cycle</p><h3 className="ui-title mt-1 text-2xl">Timetable health</h3></div><button className="ui-btn ui-btn-primary ui-btn-sm" onClick={() => setTab("timetable")}>Open scheduling workspace</button></div><div className="mt-5 grid gap-3 sm:grid-cols-3">{[[metrics.allocations, "Active allocations"], [metrics.scheduledRooms, "Rooms scheduled"], [metrics.scheduledDepartments, "Departments represented"]].map(([count, label]) => <div key={label} className="ui-card-muted"><strong className="text-xl">{count}</strong><p className="mt-1 text-xs text-slate-500">{label}</p></div>)}</div></section></>;
+  return <>
+    <div className="grid grid-cols-2 gap-2 sm:gap-4 xl:grid-cols-3">
+      {cards.map(({ label, value, icon: Icon, tab }) => (
+        <button key={label} className="ui-card admin-metric-card min-w-0 text-left transition hover:-translate-y-0.5" onClick={() => setTab(tab)}>
+          <div className="flex items-center justify-between gap-2">
+            <span className="min-w-0 text-xs leading-4 text-slate-500 sm:text-sm">{label}</span>
+            <span className="hidden shrink-0 rounded-xl bg-emerald-50 p-2.5 sm:block"><Icon size={20} className="text-emerald-700" /></span>
+          </div>
+          <p className="mt-2 break-words text-2xl font-semibold tracking-tight tabular-nums sm:mt-3 sm:text-3xl">{value.toLocaleString()}</p>
+        </button>
+      ))}
+    </div>
+    <section className="ui-card mt-5">
+      <div className="flex flex-wrap items-center justify-between gap-3">
+        <div><p className="ui-eyebrow">Selected planning cycle</p><h3 className="ui-title mt-1 text-2xl">Timetable health</h3></div>
+        <button className="ui-btn ui-btn-primary ui-btn-sm" onClick={() => setTab("timetable")}>Open scheduling workspace</button>
+      </div>
+      <div className="mt-4 grid grid-cols-3 gap-2 sm:mt-5 sm:gap-3">
+        {[[metrics.allocations, "Active allocations", "Allocations"], [metrics.scheduledRooms, "Rooms scheduled", "Rooms"], [metrics.scheduledDepartments, "Departments represented", "Depts."]].map(([count, label, compactLabel]) => (
+          <div key={label} className="ui-card-muted admin-metric-card min-w-0">
+            <strong className="break-words text-lg tabular-nums sm:text-xl">{count}</strong>
+            <p className="mt-1 break-words text-[11px] leading-4 text-slate-500 sm:text-xs"><span className="sm:hidden" aria-label={String(label)}>{compactLabel}</span><span className="hidden sm:inline">{label}</span></p>
+          </div>
+        ))}
+      </div>
+    </section>
+  </>;
 }
 export function Timetable({ form, setForm, academicYear, semester, departmentFilter, onGenerated, onSubmit, onCancel, onPublish, revision }: FormProps & {
   academicYear: string; semester: string; departmentFilter: string; revision: number;
@@ -88,7 +116,30 @@ function CourseCard({ course, academicYear, onSave }: { course: Course; academic
     </div>}
   </div>;
 }
-export function RoomManagement({ form, setForm, onSubmit, revision }: FormProps & { revision: number }) {
+function RoomClassification({ room, onClassify }: { room: Room; onClassify: (room: Room, spaceType: string) => Promise<boolean> }) {
+  const [spaceType, setSpaceType] = useState(room.spaceType || "");
+  const [busy, setBusy] = useState(false);
+  return <div className="space-y-3">
+    <strong>{room.code} · {room.name}</strong>
+    <p className="text-sm">{room.building} · {room.capacity || 0} seats · {room.spaceType?.replaceAll("_", " ") || "Unclassified - staff review required"}</p>
+    <p className="text-xs text-slate-500">Coordinates: {room.latitude ?? "Not set"}, {room.longitude ?? "Not set"}</p>
+    <p className="text-sm text-slate-600">Students can book only locations explicitly classified as lecture rooms. A legacy category does not grant booking access. Verify the location before classifying it; existing allocations, course preferences and bookings are protected.</p>
+    <form className="flex flex-wrap items-end gap-3" onSubmit={(event) => {
+      event.preventDefault();
+      setBusy(true);
+      void onClassify(room, spaceType).finally(() => setBusy(false));
+    }}>
+      <label><span className="ui-label">Approved location type</span>
+        <select required className="ui-input" value={spaceType} disabled={busy} onChange={(event) => setSpaceType(event.target.value)}>
+          <option value="" disabled>Unclassified - select a verified type</option>
+          {adminFilterOptions.spaceType.map((type) => <option key={type} value={type}>{type.replaceAll("_", " ")}</option>)}
+        </select>
+      </label>
+      <button className="ui-btn ui-btn-primary ui-btn-sm" disabled={busy || !spaceType || spaceType === room.spaceType}>{busy ? "Saving..." : "Save classification"}</button>
+    </form>
+  </div>;
+}
+export function RoomManagement({ form, setForm, onSubmit, revision, onClassify }: FormProps & { revision: number; onClassify: (room: Room, spaceType: string) => Promise<boolean> }) {
   const [locating, setLocating] = useState(false);
   const [locationError, setLocationError] = useState("");
   const latitude = Number(form.latitude), longitude = Number(form.longitude);
@@ -101,8 +152,8 @@ export function RoomManagement({ form, setForm, onSubmit, revision }: FormProps 
   };
   return <div className="space-y-5"><DataWorkspace<Room> resource="rooms" revision={revision} actions={[
     { label: "Bring online", url: "/api/admin/rooms", body: { isAvailable: true } }, { label: "Take offline", url: "/api/admin/rooms", body: { isAvailable: false } },
-  ]} renderDetails={(room) => <div><strong>{room.code} · {room.name}</strong><p className="mt-2 text-sm">{room.building} · {room.capacity || 0} seats · {(room.spaceType || "lecture_room").replaceAll("_", " ")}</p><p className="mt-1 text-xs text-slate-500">Coordinates: {room.latitude ?? "Not set"}, {room.longitude ?? "Not set"}</p></div>} />
-    <Composer title="Register a campus location"><form onSubmit={onSubmit} className="grid gap-5 md:grid-cols-2"><div className="space-y-3"><label><span className="ui-label">Place type</span><select className="ui-input" value={form.spaceType} onChange={(event) => setForm({ ...form, spaceType: event.target.value })}>{["lecture_room", "laboratory", "seminar_room", "office", "administrative", "library", "clinic", "cafeteria", "residence", "other"].map((type) => <option key={type} value={type}>{type.replaceAll("_", " ")}</option>)}</select></label><LocationPickerMap selectedCoords={selectedCoords} onSelectCoords={selectCoords} /><button type="button" disabled={locating} onClick={useLocation} className="ui-btn ui-btn-secondary">{locating ? "Finding location..." : "Use current location"}</button>{locationError && <p role="alert" className="text-sm text-rose-700">{locationError}</p>}<div className="grid grid-cols-2 gap-3">{["latitude", "longitude"].map((key) => <label key={key}><span className="ui-label">{key}</span><input className="ui-input" type="number" step="any" value={form[key]} onChange={(event) => setForm({ ...form, [key]: event.target.value })} required /></label>)}</div></div><div className="space-y-3"><Fields form={form} setForm={setForm} fields={[["name", "Location name"], ["code", "Location code"], ["building", "Building"], ["capacity", "Capacity / seats", "number"], ["floor", "Floor (optional)", "number"], ["category", "Category (optional)"]]} /><button className="ui-btn ui-btn-primary">Register location</button></div></form></Composer></div>;
+  ]} renderDetails={(room) => <RoomClassification key={room._id} room={room} onClassify={onClassify} />} />
+    <Composer title="Register a campus location"><form onSubmit={onSubmit} className="grid gap-5 md:grid-cols-2"><div className="space-y-3"><label><span className="ui-label">Place type</span>    <select required className="ui-input" value={form.spaceType} onChange={(event) => setForm({ ...form, spaceType: event.target.value })}><option value="" disabled>Select a verified location type</option>{adminFilterOptions.spaceType.map((type) => <option key={type} value={type}>{type.replaceAll("_", " ")}</option>)}</select></label><LocationPickerMap selectedCoords={selectedCoords} onSelectCoords={selectCoords} /><button type="button" disabled={locating} onClick={useLocation} className="ui-btn ui-btn-secondary">{locating ? "Finding location..." : "Use current location"}</button>{locationError && <p role="alert" className="text-sm text-rose-700">{locationError}</p>}<div className="grid grid-cols-2 gap-3">{["latitude", "longitude"].map((key) => <label key={key}><span className="ui-label">{key}</span><input className="ui-input" type="number" step="any" value={form[key]} onChange={(event) => setForm({ ...form, [key]: event.target.value })} required /></label>)}</div></div><div className="space-y-3"><Fields form={form} setForm={setForm} fields={[["name", "Location name"], ["code", "Location code"], ["building", "Building"], ["capacity", "Capacity / seats", "number"], ["floor", "Floor (optional)", "number"], ["category", "Category (optional)"]]} /><button className="ui-btn ui-btn-primary">Register location</button></div></form></Composer></div>;
 }
 export function AccountManagement({ form, setForm, onSubmit, revision }: FormProps & { revision: number }) {
   return <div className="space-y-5"><DataWorkspace<StaffAccount> resource="accounts" revision={revision} actions={[

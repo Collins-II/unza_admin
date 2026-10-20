@@ -1,5 +1,5 @@
 {
-  "name": "campus_app",
+  "name": "campus_admin_app",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "eslint",
     "test": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON --experimental-strip-types --test tests/*.test.ts",
+    "test:bookings": "node --experimental-test-module-mocks --experimental-transform-types --test tests/studentBookings.test.mjs",
     "mock:students": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON --experimental-strip-types scripts/generate-mock-students.mjs",
     "release:check": "node scripts/check-production.mjs",
     "test:live-auth": "node scripts/test-live-auth.mjs"

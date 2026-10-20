@@ -21,9 +21,7 @@ export async function GET(request: Request) {
     const [rawRooms, departments, allocations, announcements, courses] = await Promise.all([
       Room.find({
         isAvailable: true,
-        ...(typeFilter === "lecture_room"
-          ? { $or: [{ spaceType: "lecture_room" }, { spaceType: { $exists: false } }] }
-          : typeFilter ? { spaceType: typeFilter } : {}),
+        ...(typeFilter ? { spaceType: typeFilter } : {}),
       }).select("name code building floor capacity spaceType category latitude longitude location equipment description").sort({ building: 1, name: 1 }).lean(),
       Department.find({ active: true }).select("code name faculty").sort({ faculty: 1, name: 1 }).lean(),
       TimetableAllocation.find({
@@ -35,7 +33,7 @@ export async function GET(request: Request) {
       Announcement.find({ audience: { $in: ["all", "students"] } }).select("title message priority createdAt").sort({ createdAt: -1 }).limit(30).lean(),
       Course.find({ active: true, ...(params.get("department") ? { department: params.get("department") } : {}) }).select("code title department level credits semester lecturer").sort({ code: 1 }).lean(),
     ]);
-    const rooms = rawRooms.map((room) => ({ ...room, spaceType: room.spaceType || "lecture_room" }));
+    const rooms = rawRooms;
 
     return NextResponse.json({
       version: 1,

@@ -1,7 +1,7 @@
 import mongoose, { Schema, type Document } from "mongoose";
 
 export interface IRoom extends Document {
-  spaceType: "lecture_room" | "laboratory" | "seminar_room" | "office" | "library" | "clinic" | "cafeteria" | "residence" | "administrative" | "other";
+  spaceType?: "lecture_room" | "laboratory" | "seminar_room" | "office" | "library" | "clinic" | "cafeteria" | "residence" | "administrative" | "other";
   name: string;
   code: string;
   building: string;
@@ -24,7 +24,6 @@ const roomSchema = new Schema<IRoom>(
     spaceType: {
       type: String,
       enum: ["lecture_room", "laboratory", "seminar_room", "office", "library", "clinic", "cafeteria", "residence", "administrative", "other"],
-      default: "lecture_room",
       index: true,
     },
     name: { type: String, required: true, trim: true },

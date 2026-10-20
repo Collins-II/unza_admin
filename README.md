@@ -4,6 +4,8 @@ This is the UNZA Central Administration application. It is a [Next.js](https://n
 
 ### High-volume administration workspace
 
+Mobile summary cards use compact multi-column layouts: overview metrics stay two abreast, timetable-health metrics share one three-card row, and generation-result metrics use two columns. Desktop spacing and layouts are preserved.
+
 All seven registers (students, departments, courses, campus locations, timetable allocations, staff accounts and announcements) use the same searchable table workspace:
 
 - Searches, filters, sorting and counts run on the server through `GET /api/admin/data`. Page sizes are 10, 25, 50 or 100; each sort has an ID tie-breaker. Allocation days sort in teaching-week order. The dashboard uses database aggregates, not the current table page.
@@ -95,6 +97,31 @@ x-student-app-key: <STUDENT_APP_API_KEY>
 ```
 
 The endpoint optionally accepts `academicYear` and `semester` and returns only allocations linked to that active student account. Keep `STUDENT_APP_API_KEY` on the server; do not expose it in a browser or mobile client.
+
+The student app can also list, create, and cancel room bookings through the shared booking system:
+
+```text
+GET   /api/integration/bookings?studentId=<STUDENT_ID>
+POST  /api/integration/bookings
+PATCH /api/integration/bookings/<BOOKING_ID>
+x-student-app-key: <STUDENT_APP_API_KEY>
+```
+
+Create requests send `studentId`, `roomId`, `purpose`, `startTime`, `endTime`, and the purpose-specific details below. Times must be timezone-qualified ISO timestamps on one Lusaka-local calendar date, aligned to whole minutes, and in the future. Every published timetable is authoritative: booking requests are rejected if the room is scheduled or the student has a class at that time. New bookings start as `pending`; pending and confirmed bookings reserve the room. When a valid timetable is published, overlapping pending or confirmed bookings are automatically cancelled in the same transaction as publication. The booking response and list include `cancellationReason: "timetable_conflict"` so the student app can explain that the class schedule takes priority. Students can edit or cancel only their own bookings; confirmation remains a staff operation. The student app must derive the student ID from its authenticated server-side session rather than trusting a browser-supplied ID, and must keep the integration key server-side.
+
+### Purpose-based booking authorization
+
+Only online rooms explicitly classified with `spaceType: "lecture_room"` are bookable. Legacy category labels do not authorize bookings: unclassified locations remain hidden until staff verify them. In **Campus locations**, expand a record, select its **Approved location type**, and **Save classification** to update the shared database. Existing allocations, active course preferences and active student bookings protect against incompatible reclassification; resolve them first. No automatic name-based classification or bulk data migration is performed. Laboratories, seminar rooms, libraries and other campus places are not student-bookable.
+
+- `purpose: "Tutorial Group"` requires **at least 48 hours** from submission to start, a positive integer `attendees`, and `tutorialGroup: { groupName, courseCode, topic, leaderName }`. Text limits are 120, 30, 1000 and 120 characters respectively.
+- `purpose: "Event"` requires **7–14 days** from submission to start (inclusive), an event `title` (1–120 characters), and a positive integer `attendees`.
+- Expected attendees must fit a known room capacity. Optional `conversationId` is for TG Study Circles only; the requester must be a member and the full circle must have at least 50 unique members. The central server verifies this against the shared database rather than trusting browser counts.
+- Staff and administrators review requests in **Room bookings**, filter by purpose, and inspect the TG details and submission time. Approval revalidates the purpose, original submission window, room, capacity, active student and current timetable/booking conflicts. Legacy incomplete requests cannot be newly confirmed; ask the student to resubmit. Cancellation remains available.
+- To edit, send the same complete payload as creation to `PATCH /api/integration/bookings/<id>`. Central admin records a new `requestedAt`, rechecks advance notice and resets status to `pending`, clearing the previous review. A request containing only `studentId` cancels rather than edits. Started/cancelled requests cannot be edited; started bookings cannot be student-cancelled.
+
+The student app's server requires `ADMIN_APP_URL` pointing to this app and a matching `STUDENT_APP_API_KEY`. Booking creation, modification, cancellation and retrieval must go through these integration endpoints, not independent writes to the booking collection. Both apps currently use the same database for student IDs, room IDs and Study Circle membership. Approval/cancellation actions record the reviewer and an atomic audit event. Timetable publication still overrides conflicting student reservations.
+
+Restart both development servers after updating these schemas so cached Mongoose models load the new fields. Run `npm test` for pure policy/conflict checks and `npm run test:bookings` (Node.js 24+) for mocked central creation, edit, cancellation, staff review and room-classification API tests. These tests do not mutate real bookings or room records.
 
 ### Student registration and sign-in
 

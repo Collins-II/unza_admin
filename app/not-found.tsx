@@ -7,7 +7,7 @@ export default function NotFound() {
         <p className="ui-eyebrow">404</p>
         <h1 className="ui-title mt-2">Page not found</h1>
         <p className="mt-2 text-sm text-gray-600">We could not find the page you were looking for.</p>
-        <Link href="/" className="ui-btn ui-btn-primary mt-6">Back to map</Link>
+        <Link href="/admin" className="ui-btn ui-btn-primary mt-6">Back to home</Link>
       </div>
     </main>
   );
