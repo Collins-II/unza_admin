@@ -17,7 +17,10 @@ export async function GET(request: Request) {
     if (!studentId) return NextResponse.json({ error: "Student ID is required." }, { status: 400, headers: NO_STORE });
     await connectToDatabase();
     const student = await User.findOne({ studentId, role: "student", status: "active" }).select("_id").lean();
-    if (!student) return NextResponse.json({ error: "Active student account was not found." }, { status: 404, headers: NO_STORE });
+    if (!student) return NextResponse.json({
+      error: "Active student account was not found.",
+      code: "STUDENT_NOT_FOUND",
+    }, { status: 404, headers: NO_STORE });
     const bookings = await Booking.find({ user: student._id }).populate("room", "name code building spaceType").sort({ createdAt: -1 }).limit(100).lean();
     return NextResponse.json({ studentId, bookings }, { headers: NO_STORE });
   } catch (error) {

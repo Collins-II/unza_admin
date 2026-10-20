@@ -85,6 +85,11 @@ export async function PATCH(request: Request) {
   try {
     const body = await request.json();
     if (!body || typeof body !== "object" || Array.isArray(body) || typeof body.id !== "string" || !mongoose.isValidObjectId(body.id)) return NextResponse.json({ error: "A valid course id is required." }, { status: 400 });
+    const hasActive = typeof body.active === "boolean";
+    if ((body.active !== undefined && !hasActive) ||
+      (!hasActive && !["preferredVenues", "preferredSpaceTypes", "sessionsPerWeek", "sessionMinutes", "expectedEnrollment", "lecturer"].some((field) => body[field] !== undefined))) {
+      return NextResponse.json({ error: "At least one valid course update is required." }, { status: 400 });
+    }
     await connectToDatabase();
     lock = await acquireTimetableConfigurationLock();
     if (!lock) return NextResponse.json({ error: "A timetable update is in progress. Retry after it finishes." }, { status: 409 });
@@ -138,6 +143,7 @@ export async function PATCH(request: Request) {
     course.sessionsPerWeek = sessionsPerWeek;
     course.sessionMinutes = sessionMinutes;
     course.expectedEnrollment = expectedEnrollment;
+    if (hasActive) course.active = body.active;
     if (typeof body.lecturer === "string") course.lecturer = body.lecturer.trim();
     await renewTimetableLock(lock);
     await course.save();

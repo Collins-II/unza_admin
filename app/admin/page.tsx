@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { signOut, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useRef, useState } from "react";
@@ -117,7 +118,7 @@ export default function AdminPage() {
   return <AdminActivityContext.Provider value={setWorkspaceBusy}><main className="admin-shell min-h-screen text-slate-800">
     <div className="mx-auto flex min-h-screen max-w-[1920px]">
       <aside className="admin-sidebar hidden w-60 shrink-0 flex-col p-5 text-white lg:flex">
-        <div className="mb-8 px-3 pt-3"><div className="mb-4 flex h-11 w-11 items-center justify-center rounded-2xl bg-emerald-400/15 text-emerald-300"><GraduationCap size={26} /></div><p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-emerald-300">University of Zambia</p><h1 className="mt-1 text-xl font-semibold">Central Admin</h1><p className="mt-1 text-xs text-emerald-100/50">Academic operations</p></div>
+        <div className="mb-8 px-3 pt-3"><Image src="/images/unza_logo.jpg" width={70} height={70} alt="University of Zambia" className="mb-4 rounded-xl bg-white p-1 object-contain" /><p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-emerald-300">University of Zambia</p><h1 className="mt-1 text-xl font-semibold">Central Admin</h1><p className="mt-1 text-xs text-emerald-100/50">Academic operations</p></div>
         <nav aria-label="Administration pages" className="space-y-1">{visibleTabs.map(({ id, label, icon: Icon }) => <button type="button" key={id} disabled={saving || workspaceBusy} aria-current={tab === id ? "page" : undefined} onClick={() => selectTab(id)} className={`admin-nav-item ${tab === id ? "is-active" : ""}`}><Icon size={18} />{label}</button>)}</nav>
         <div className="mt-auto border-t border-white/10 pt-5"><p className="truncate px-3 text-sm font-medium">{session.user.name}</p><p className="mb-3 px-3 text-xs capitalize text-emerald-100/50">{session.user.role}</p><button type="button" disabled={saving || workspaceBusy} onClick={() => void signOut({ callbackUrl: "/login" })} className="admin-nav-item"><LogOut size={17} />Sign out</button></div>
       </aside>

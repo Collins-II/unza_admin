@@ -37,13 +37,16 @@ moduleMock("../lib/database/models/Room.ts", { defaultExport: {
   findByIdAndUpdate(id, update, options) { calls.classification = { id, update, options }; return query({ ...room, ...update }); },
 } });
 moduleMock("../lib/database/models/Course.ts", { defaultExport: { exists: async () => preferredVenue } });
-moduleMock("../lib/database/models/User.ts", { defaultExport: { findOne: () => query(student) } });
+moduleMock("../lib/database/models/User.ts", { defaultExport: {
+  findOne(filter) { calls.studentFilter = filter; return query(student); },
+} });
 moduleMock("../lib/database/models/TimetableAllocation.ts", { defaultExport: {
   find(filter) { calls.timetableFilter = filter; return query(allocations); },
   exists: async () => activeAllocation,
 } });
 moduleMock("../lib/database/models/Booking.ts", { defaultExport: {
   exists: async () => activeReservation,
+  find(filter) { calls.bookingListFilter = filter; return query([record()]); },
   findOne(filter) { calls.bookingFilter = filter; return query(filter.user ? current : conflictingBooking); },
   findById: () => query(created || current),
   async create(draft) { calls.created = draft; created = { _id: bookingId, ...draft }; return created; },
@@ -119,6 +122,21 @@ afterEach(() => {
 test("integration authentication rejects requests before acquiring the schedule lock", async () => {
   assert.equal((await collectionApi.POST(request(draft(), "POST", "wrong-key"))).status, 401);
   assert.equal(calls.locked, undefined);
+});
+
+test("booking list identifies missing active student accounts explicitly", async () => {
+  const get = () => collectionApi.GET(new Request(`http://central.test/api/integration/bookings?studentId=${draft().studentId}`, {
+    headers: { "x-student-app-key": "test-key" },
+  }));
+  const response = await get();
+  assert.equal(response.status, 200);
+  assert.deepEqual(calls.studentFilter, { studentId: draft().studentId, role: "student", status: "active" });
+  assert.deepEqual(calls.bookingListFilter, { user: studentId });
+
+  student = null;
+  const missing = await get();
+  assert.equal(missing.status, 404);
+  assert.equal((await missing.json()).code, "STUDENT_NOT_FOUND");
 });
 
 test("central creation validates details, forces pending, records submission and releases the lock", async () => {

@@ -92,7 +92,10 @@ function DepartmentEditor({ department, onUpdate }: { department: Department; on
 export function CourseManagement({ form, setForm, academicYear, onSubmit, onSaveCourse, revision, onConfigure }: FormProps & {
   academicYear: string; revision: number; onSaveCourse: (course: Course, patch: CoursePatch) => Promise<boolean>; onConfigure: (course: Course) => void;
 }) {
-  return <div className="space-y-5"><DataWorkspace<Course> resource="courses" revision={revision} renderDetails={(course) => course.catalogueOnly ? <div><p>This sourced catalogue entry needs approved scheduling details before use.</p><button type="button" className="ui-btn ui-btn-secondary ui-btn-sm mt-3" onClick={() => onConfigure(course)}>Configure scheduling</button></div> : <CourseCard key={course._id} course={course} academicYear={academicYear} onSave={onSaveCourse} />} />
+  return <div className="space-y-5"><DataWorkspace<Course> resource="courses" revision={revision} actions={[
+    { label: "Activate", url: "/api/admin/courses", body: { active: true } },
+    { label: "Deactivate", url: "/api/admin/courses", body: { active: false }, warning: "Courses with active timetable allocations must be cancelled before deactivation. Partial results will be reported." },
+  ]} renderDetails={(course) => course.catalogueOnly ? <div><p>This sourced catalogue entry needs approved scheduling details before use.</p><button type="button" className="ui-btn ui-btn-secondary ui-btn-sm mt-3" onClick={() => onConfigure(course)}>Configure scheduling</button></div> : <CourseCard key={course._id} course={course} academicYear={academicYear} onSave={onSaveCourse} />} />
     <Composer title="Add or configure a course" forceOpen={Boolean(form.code)}><form onSubmit={onSubmit} className="grid gap-4 md:grid-cols-3"><Fields form={form} setForm={setForm} fields={[["code", "Course code"], ["title", "Course title"], ["level", "Level"], ["semester", "Semester"], ["credits", "Credits", "number"], ["expectedEnrollment", "Expected enrolment", "number"], ["sessionsPerWeek", "Sessions per week", "number"], ["sessionMinutes", "Session length (minutes)", "number"], ["lecturer", "Lecturer (optional)"]]} /><RecordSelect resource="departments" label="Department" filters={{ status: "active" }} value={form.department} onChange={(department) => setForm({ ...form, department })} required /><button className="ui-btn ui-btn-primary h-fit w-fit self-end">Save course</button></form></Composer>
   </div>;
 }
@@ -157,6 +160,9 @@ export function RoomManagement({ form, setForm, onSubmit, revision, onClassify }
 }
 export function AccountManagement({ form, setForm, onSubmit, revision }: FormProps & { revision: number }) {
   return <div className="space-y-5"><DataWorkspace<StaffAccount> resource="accounts" revision={revision} actions={[
-    { label: "Activate", url: "/api/admin/users", body: { status: "active" } }, { label: "Deactivate", url: "/api/admin/users", body: { status: "inactive" }, warning: "Selected staff lose access immediately. The final active administrator is protected. Partial results will be reported." },
+    { label: "Activate", url: "/api/admin/users", body: { status: "active" } },
+    { label: "Deactivate", url: "/api/admin/users", body: { status: "inactive" }, warning: "Selected staff lose access immediately. The final active administrator is protected. Partial results will be reported." },
+    { label: "Promote to administrator", url: "/api/admin/users", body: { role: "admin" }, warning: "Selected accounts gain administrator privileges immediately." },
+    { label: "Set staff role", url: "/api/admin/users", body: { role: "staff" }, warning: "Selected administrators lose administrator privileges immediately. The final active administrator is protected." },
   ]} /><Composer title="Provision a staff account"><form onSubmit={onSubmit} className="grid gap-4 md:grid-cols-2"><Fields form={form} setForm={setForm} fields={[["name", "Full name"], ["staffId", "Staff ID"], ["email", "University email", "email"], ["department", "Department / unit (optional)"], ["password", "Temporary password (12+ characters)", "password"]]} /><label><span className="ui-label">Role</span><select className="ui-input" value={form.role} onChange={(event) => setForm({ ...form, role: event.target.value })}><option value="staff">Staff</option><option value="admin">Administrator</option></select></label><button className="ui-btn ui-btn-primary w-fit">Create account</button></form></Composer></div>;
 }

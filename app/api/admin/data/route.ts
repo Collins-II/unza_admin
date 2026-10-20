@@ -7,7 +7,7 @@ import { cellValue, csvCell, DataQueryError, escapeSearch, MAX_EXPORT_ROWS, pars
 const headers = { "Cache-Control": "private, no-store" };
 type Stage = Record<string, unknown>;
 const projections = {
-  students: "name studentId email department program year status mustChangePassword enrolledCourses createdAt",
+  students: "name studentId email department program year phone status mustChangePassword enrolledCourses createdAt",
   accounts: "name studentId email department role status createdAt",
   departments: "code name faculty headOfDepartment active sourceUrl verifiedAt",
   courses: "code title department level semester credits expectedEnrollment lecturer sessionsPerWeek sessionMinutes preferredVenues preferredSpaceTypes active catalogueOnly sourceUrl verifiedAt",

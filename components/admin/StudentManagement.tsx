@@ -7,11 +7,52 @@ import { RecordSelect } from "./RecordSelect";
 import { csvCell } from "@/lib/adminData";
 
 type StudentRow = {
-  _id: string; name: string; studentId: string; email: string; program?: string; year?: string;
+  _id: string; name: string; studentId: string; email: string; program?: string; year?: string; phone?: string;
   department?: string; status: string; mustChangePassword: boolean; enrolledCourses: string[];
 };
 type Credential = { studentId: string; name: string; email?: string; temporaryPassword: string };
 const emptyForm = { name: "", email: "", studentId: "", program: "", year: "1", department: "", phone: "" };
+type StudentProfile = Omit<typeof emptyForm, "studentId">;
+
+function StudentProfileEditor({ student, onUpdate }: {
+  student: StudentRow;
+  onUpdate: (form: StudentProfile) => Promise<boolean>;
+}) {
+  const [editing, setEditing] = useState(false);
+  const [busy, setBusy] = useState(false);
+  const [form, setForm] = useState({
+    name: student.name,
+    email: student.email,
+    program: student.program || "",
+    year: student.year || "",
+    department: student.department || "",
+    phone: student.phone || "",
+  });
+
+  return <div className="space-y-3">
+    {editing ? <form onSubmit={(event) => {
+      event.preventDefault();
+      setBusy(true);
+      void onUpdate(form).then((success) => { if (success) setEditing(false); }).finally(() => setBusy(false));
+    }} className="grid gap-3 sm:grid-cols-2">
+      {([["name", "Full name"], ["email", "Email"], ["program", "Programme"], ["phone", "Phone"]] as const).map(([key, label]) => <label key={key}>
+        <span className="ui-label">{label}</span>
+        <input className="ui-input" type={key === "email" ? "email" : "text"} required={key === "name" || key === "email"} value={form[key]} onChange={(event) => setForm({ ...form, [key]: event.target.value })} />
+      </label>)}
+      <label><span className="ui-label">Study year</span><select className="ui-input" value={form.year} onChange={(event) => setForm({ ...form, year: event.target.value })}>
+        <option value="">Not specified</option>{Array.from({ length: 9 }, (_, index) => <option key={index + 1}>{index + 1}</option>)}
+      </select></label>
+      <RecordSelect resource="departments" label="Department" filters={{ status: "active" }} valueField="code" value={form.department} onChange={(department) => setForm({ ...form, department })} />
+      <div className="flex flex-wrap gap-2 sm:col-span-2">
+        <button type="submit" className="ui-btn ui-btn-primary ui-btn-sm" disabled={busy}>{busy ? "Saving..." : "Save profile"}</button>
+        <button type="button" className="ui-btn ui-btn-secondary ui-btn-sm" disabled={busy} onClick={() => setEditing(false)}>Discard</button>
+      </div>
+    </form> : <div className="space-y-3">
+      <div className="grid gap-4 sm:grid-cols-3"><div><strong>{student.name}</strong><p>{student.email}</p></div><div><p>{student.program || "Programme not specified"}</p><p>{student.department || "Department not specified"} · Year {student.year || "not specified"}</p></div><div><p>{student.enrolledCourses.length} course enrolments</p><p>{student.mustChangePassword ? "Password change required" : "Password updated"}</p></div></div>
+      <button type="button" className="ui-btn ui-btn-secondary ui-btn-sm" onClick={() => setEditing(true)}>Edit profile</button>
+    </div>}
+  </div>;
+}
 
 export function StudentManagement() {
   const setWorkspaceBusy = useContext(AdminActivityContext);
@@ -30,9 +71,9 @@ export function StudentManagement() {
     if (!response.ok && !(data.created || data.failed)) throw new Error(data.error || "The operation could not be completed.");
     return data;
   };
-  const run = async (action: () => Promise<void>) => {
+  const run = async (action: () => Promise<void>): Promise<boolean> => {
     setBusy(true); setWorkspaceBusy?.(true); setError(""); setNotice("");
-    try { await action(); } catch (failure) { setError(failure instanceof Error ? failure.message : "The operation could not be completed."); } finally { setBusy(false); setWorkspaceBusy?.(false); }
+    try { await action(); return true; } catch (failure) { setError(failure instanceof Error ? failure.message : "The operation could not be completed."); return false; } finally { setBusy(false); setWorkspaceBusy?.(false); }
   };
   const showResult = (data: { created?: Credential[]; failed?: { row: number; error: string }[] }) => {
     setCredentials(data.created || []);
@@ -74,12 +115,19 @@ export function StudentManagement() {
       <div className="flex flex-wrap items-center justify-between gap-3"><div><p className="ui-eyebrow">Shown once · keep secure</p><h3 className="ui-title text-xl">Temporary credentials</h3><p className="mt-2 text-xs text-slate-500">Passwords are hashed. Students must change them at first sign-in.</p></div><div className="flex gap-2"><button type="button" className="ui-btn ui-btn-secondary ui-btn-sm" onClick={() => downloadCsv(new Blob([[
         ["Student ID", "Name", "Temporary password"], ...credentials.map((item) => [item.studentId, item.name, item.temporaryPassword]),
       ].map((row) => row.map(csvCell).join(",")).join("\r\n")], { type: "text/csv" }), "student-credentials.csv")}>Download credentials</button><button type="button" className="ui-btn ui-btn-secondary ui-btn-sm" onClick={() => setCredentials([])}>Dismiss</button></div></div>
-      <div className="data-table-scroll mt-3"><table className="data-table"><thead><tr><th>Student ID</th><th>Name</th><th>Temporary password</th></tr></thead><tbody>{credentials.map((item) => <tr key={item.studentId}><td>{item.studentId}</td><td>{item.name}</td><td className="font-mono">{item.temporaryPassword}</td></tr>)}</tbody></table></div>
+      <div className="data-table-scroll mt-3" tabIndex={0} aria-label="Scrollable temporary credentials"><table className="data-table"><thead><tr><th>Student ID</th><th>Name</th><th>Temporary password</th></tr></thead><tbody>{credentials.map((item) => <tr key={item.studentId}><td>{item.studentId}</td><td>{item.name}</td><td className="font-mono">{item.temporaryPassword}</td></tr>)}</tbody></table></div>
     </section>}
     <DataWorkspace<StudentRow> resource="students" revision={revision} actions={[
       { label: "Activate", url: "/api/admin/students", body: { action: "set-status", status: "active" } },
       { label: "Deactivate", url: "/api/admin/students", body: { action: "set-status", status: "inactive" }, warning: "Selected students will lose sign-in access. Published timetable safeguards apply. Partial results will be reported." },
-    ]} renderDetails={(student) => <div className="space-y-3"><div className="grid gap-4 sm:grid-cols-3"><div><strong>{student.name}</strong><p>{student.email}</p></div><div><p>{student.program || "Programme not specified"}</p><p>{student.department} · Year {student.year || "not specified"}</p></div><div><p>{student.enrolledCourses.length} course enrolments</p><p>{student.mustChangePassword ? "Password change required" : "Password updated"}</p></div></div><button type="button" disabled={busy || student.status !== "active"} className="ui-btn ui-btn-secondary ui-btn-sm" onClick={() => resetPassword(student)}><KeyRound size={14} />Reset password</button></div>} />
+    ]} renderDetails={(student, refresh) => <div className="space-y-3">
+      <StudentProfileEditor student={student} onUpdate={(form) => run(async () => {
+        await send("PATCH", { id: student._id, action: "update", ...form });
+        setNotice(`${student.name}'s profile was updated.`);
+        refresh();
+      })} />
+      <button type="button" disabled={busy || student.status !== "active"} className="ui-btn ui-btn-secondary ui-btn-sm" onClick={() => resetPassword(student)}><KeyRound size={14} />Reset password</button>
+    </div>} />
     <details className="admin-composer ui-card"><summary>Register a student or import a batch</summary><div className="mt-5 grid gap-6 xl:grid-cols-2">
       <form onSubmit={register} className="space-y-3"><h3 className="ui-title text-xl">Register student</h3><p className="text-xs text-slate-500">Leave the ID blank for automatic allocation.</p>
         {([["name", "Full name"], ["email", "Student email"], ["studentId", "Student ID (optional)"], ["program", "Programme"], ["phone", "Phone (optional)"]] as const).map(([key, label]) => <label className="block" key={key}><span className="ui-label">{label}</span><input className="ui-input" type={key === "email" ? "email" : "text"} value={form[key]} onChange={(event) => setForm({ ...form, [key]: event.target.value })} required={key === "name" || key === "email"} /></label>)}
