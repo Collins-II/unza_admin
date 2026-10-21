@@ -60,6 +60,17 @@ export const adminFilterOptions: Record<string, string[]> = {
 };
 export const escapeSearch = (value: string) => value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 
+export function normalizeStudentRegisterRecord<T extends Record<string, unknown>>(record: T):
+  Omit<T, "enrolledCourses" | "mustChangePassword"> & { enrolledCourses: string[]; mustChangePassword: boolean } {
+  const enrolledCourses = record.enrolledCourses ?? [];
+  if (!Array.isArray(enrolledCourses)) throw new Error("Student course enrolments must be an array.");
+  return {
+    ...record,
+    enrolledCourses: enrolledCourses.map(String),
+    mustChangePassword: Boolean(record.mustChangePassword),
+  };
+}
+
 export function parseDataQuery(params: URLSearchParams) {
   const resource = params.get("resource");
   if (!resource || !Object.hasOwn(adminRegisters, resource)) throw new DataQueryError("Unknown data register.");

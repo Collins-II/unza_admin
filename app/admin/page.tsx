@@ -4,6 +4,7 @@ import Image from "next/image";
 import { signOut, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useRef, useState } from "react";
+import Loading from "../loading";
 import { BookOpen, Building2, CalendarDays, GraduationCap, LayoutDashboard, LogOut, Megaphone, Network, Users } from "lucide-react";
 import { AccountManagement, AnnouncementManagement, CourseManagement, DepartmentManagement, Overview, RoomManagement, Timetable } from "@/components/admin/AdminSections";
 import { StudentManagement } from "@/components/admin/StudentManagement";
@@ -114,7 +115,7 @@ export default function AdminPage() {
     setTab(next); setError(""); setNotice("");
     if (next === "overview") void load();
   };
-  if (!allowed) return <main className="ui-page flex items-center justify-center" role="status">Loading university administration...</main>;
+  if (!allowed) return <Loading />;
   return <AdminActivityContext.Provider value={setWorkspaceBusy}><main className="admin-shell min-h-screen text-slate-800">
     <div className="mx-auto flex min-h-screen max-w-[1920px]">
       <aside className="admin-sidebar hidden w-60 shrink-0 flex-col p-5 text-white lg:flex">

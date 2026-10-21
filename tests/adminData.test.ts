@@ -1,6 +1,31 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { adminRegisters, cellValue, csvCell, DataQueryError, escapeSearch, parseDataQuery } from "../lib/adminData.ts";
+import { adminRegisters, cellValue, csvCell, DataQueryError, escapeSearch, normalizeStudentRegisterRecord, parseDataQuery } from "../lib/adminData.ts";
+
+test("legacy student register records receive enrolment and password-state defaults without modifying stored data", () => {
+  for (const fields of [{}, { enrolledCourses: null }, { enrolledCourses: [] }]) {
+    const record = { _id: "student-id", name: "Student", ...fields };
+    const original = { ...record };
+    const normalized = normalizeStudentRegisterRecord(record);
+    assert.deepEqual(normalized.enrolledCourses, []);
+    assert.equal(normalized.enrolledCourses.length, 0);
+    assert.equal(normalized.mustChangePassword, false);
+    assert.equal(normalized.name, record.name);
+    assert.deepEqual(record, original);
+  }
+});
+
+test("student register preserves enrolment IDs and password state and reports malformed enrolments", () => {
+  const id = "0123456789abcdef01234567";
+  const enrolledCourses = [id, { toString: () => "abcdef0123456789abcdef01" }];
+  const normalized = normalizeStudentRegisterRecord({ enrolledCourses, mustChangePassword: true });
+  assert.deepEqual(normalized.enrolledCourses, [id, "abcdef0123456789abcdef01"]);
+  assert.equal(normalized.mustChangePassword, true);
+  assert.equal(enrolledCourses.length, 2);
+  for (const invalid of ["invalid", 1, {}]) {
+    assert.throws(() => normalizeStudentRegisterRecord({ enrolledCourses: invalid }), /enrolments must be an array/);
+  }
+});
 
 test("all seven admin registers have bounded stable paging and whitelisted sorting", () => {
   assert.equal(Object.keys(adminRegisters).length, 7);

@@ -1,3 +1,5 @@
+"use client";
+
 export default function Loading() {
   return (
     <div className="ui-page flex items-center justify-center">
@@ -5,4 +7,3 @@ export default function Loading() {
     </div>
   );
 }
-

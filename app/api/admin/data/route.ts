@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import mongoose from "mongoose";
 import { requireAdminRole, requireSystemAdmin } from "@/lib/adminAuth";
 import { connectToDatabase } from "@/lib/database";
-import { cellValue, csvCell, DataQueryError, escapeSearch, MAX_EXPORT_ROWS, parseDataQuery } from "@/lib/adminData";
+import { cellValue, csvCell, DataQueryError, escapeSearch, MAX_EXPORT_ROWS, normalizeStudentRegisterRecord, parseDataQuery } from "@/lib/adminData";
 
 const headers = { "Cache-Control": "private, no-store" };
 type Stage = Record<string, unknown>;
@@ -122,7 +122,8 @@ export async function GET(request: Request) {
       });
       return new Response(stream, { headers: { ...headers, "Content-Type": "text/csv; charset=utf-8", "Content-Disposition": `attachment; filename="${resource}.csv"` } });
     }
-    const records = await cursor.toArray();
+    const documents = await cursor.toArray();
+    const records = resource === "students" ? documents.map(normalizeStudentRegisterRecord) : documents;
     return NextResponse.json({ records, total, page, pageSize: query.limit }, { headers });
   } catch (error) {
     if (!(error instanceof DataQueryError)) console.error("Admin register query failed", { resource: params.get("resource"), error: error instanceof Error ? error.name : "Unknown" });

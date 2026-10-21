@@ -1,5 +1,7 @@
 .admin-shell { background: #f4f7fa; }
-.admin-sidebar { background: #0a2925; position: sticky; top: 0; height: 100dvh; }
+.admin-sidebar { background: #0a2925; position: sticky; top: 0; height: 100dvh; overflow-y: auto; }
+.admin-sidebar > div { flex-shrink: 0; }
+.admin-sidebar > nav { min-height: 0; overflow-y: auto; overscroll-behavior: contain; }
 .admin-nav-item { display: flex; align-items: center; gap: .7rem; width: 100%; border-radius: .7rem; padding: .8rem .85rem; color: #b7cbc6; font-size: .8rem; text-align: left; transition: background .15s, color .15s; }
 .admin-nav-item:hover { background: #ffffff0d; color: white; }
 .admin-nav-item.is-active { color: #ecfdf5; background: #ffffff15; box-shadow: inset 3px 0 #34d399; }
