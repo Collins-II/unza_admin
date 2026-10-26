@@ -12,6 +12,8 @@ import { auditedMutation } from "@/lib/audit";
 import { bookingConflictsWithTimetable, getCampusTimeSlot } from "@/lib/bookingValidation";
 import { acquireTimetableConfigurationLock, releaseTimetableLock } from "@/lib/timetableLock";
 import { BookingPolicyError, studyCircleAttendees } from "@/lib/studentBookingService";
+import { bookingAssessmentConflict } from "@/lib/assessmentSchedule";
+import { teachingOnDate, campusDateString } from "@/lib/termSchedule";
 
 export async function GET() {
   const access = await requireAdminRole();
@@ -70,9 +72,12 @@ export async function PATCH(request: Request) {
           dayOfWeek: slot.dayOfWeek,
           startTime: { $lt: slot.endTime },
           endTime: { $gt: slot.startTime },
-        }).select("room course dayOfWeek startTime endTime streamStudentIds").lean(),
+        }).select("academicYear semester room course dayOfWeek startTime endTime streamStudentIds").lean(),
       ]);
       if (!student) return NextResponse.json({ error: "The requester must be an active student." }, { status: 409 });
+      if (await bookingAssessmentConflict(String(current.room), String(current.user), current.startTime, current.endTime)) {
+        return NextResponse.json({ error: "This room or student is reserved for a dated assessment." }, { status: 409 });
+      }
       if (!room || !room.isAvailable) return NextResponse.json({ error: "This room is currently unavailable." }, { status: 409 });
       if (!isBookableLectureRoom(room)) return NextResponse.json({ error: "Students may book lecture rooms only." }, { status: 409 });
       if (current.conversation) attendees = await studyCircleAttendees(String(current.conversation), current.user, current.purpose);
@@ -80,7 +85,8 @@ export async function PATCH(request: Request) {
         return NextResponse.json({ error: "Expected attendees exceed the lecture room capacity." }, { status: 409 });
       }
       const enrolledCourses = new Set((student.enrolledCourses || []).map(String));
-      const timetableSlots = allocations.map((allocation) => ({
+      const datedAllocations = await teachingOnDate(allocations, campusDateString(current.startTime));
+      const timetableSlots = datedAllocations.map((allocation) => ({
         roomId: String(allocation.room),
         dayOfWeek: allocation.dayOfWeek,
         startTime: allocation.startTime,

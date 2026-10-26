@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import mongoose from "mongoose";
 
-import { requireAdminRole } from "@/lib/adminAuth";
+import { requireAdminRole, departmentDenied, departmentScope } from "@/lib/adminAuth";
 import { connectToDatabase } from "@/lib/database";
 import Booking from "@/lib/database/models/Booking";
 import Course from "@/lib/database/models/Course";
@@ -15,6 +15,10 @@ import { acquireTimetableMutationLock, releaseTimetableMutationLock, renewTimeta
 import { validateTimetableForPublishing } from "@/lib/timetableValidation";
 import { findTimetableConflictingBookings, type TimetableSlot } from "@/lib/bookingValidation";
 import { auditedMutation } from "@/lib/audit";
+import { teachingAssessmentConflict } from "@/lib/assessmentSchedule";
+import { AcademicCalendarError, requireApprovedTerm } from "@/lib/academicCalendarService";
+import { termContainsTeachingWeekday } from "@/lib/academicCalendar";
+import { validatePublicationReview, completePublicationReview, publicationErrorResponse } from "@/lib/publicationService";
 
 type AllocationInput = {
   id?: string;
@@ -92,12 +96,17 @@ function cohortFor(departmentCode: string, level: string) {
 }
 
 export async function GET(request: Request) {
-  const access = await requireAdminRole();
+  const access = await requireAdminRole({ departmental: true });
   if (access.response) return access.response;
   try {
     const params = new URL(request.url).searchParams;
+    if (params.get("department")) {
+      const denied = departmentDenied(access.session.user, params.get("department")!);
+      if (denied) return denied;
+    }
     await connectToDatabase();
     const allocations = await TimetableAllocation.find({
+      ...departmentScope(access.session.user),
       ...(params.get("academicYear") ? { academicYear: params.get("academicYear") } : {}),
       ...(params.get("semester") ? { semester: params.get("semester") } : {}),
       ...(params.get("department") ? { department: params.get("department") } : {}),
@@ -117,7 +126,7 @@ export async function GET(request: Request) {
 }
 
 export async function POST(request: Request) {
-  const access = await requireAdminRole();
+  let access = await requireAdminRole({ departmental: true });
   if (access.response) return access.response;
   let lock: TimetableMutationLock | null = null;
   try {
@@ -133,10 +142,23 @@ export async function POST(request: Request) {
     if (body.notes !== undefined && typeof body.notes !== "string") {
       return NextResponse.json({ error: "Allocation notes must be text." }, { status: 400 });
     }
+    if ((body.stream !== undefined && (typeof body.stream !== "string" || body.stream.trim().length > 40)) ||
+        (body.studentIds !== undefined && (!Array.isArray(body.studentIds) || !body.studentIds.length || body.studentIds.length > 10000 ||
+          body.studentIds.some((id) => typeof id !== "string" || !/^[a-f\d]{24}$/i.test(id)) ||
+          new Set(body.studentIds.map((id) => id.toLowerCase())).size !== body.studentIds.length)) ||
+        (Boolean(body.stream?.trim()) !== Boolean(body.studentIds?.length))) {
+      return NextResponse.json({ error: "A named stream requires distinct enrolled student IDs; omit both fields to allocate the full roster." }, { status: 400 });
+    }
     if (![body.department, body.course, body.room].every((id) => mongoose.isValidObjectId(id))) return NextResponse.json({ error: "Department, course, and room ids must be valid." }, { status: 400 });
+    const denied = departmentDenied(access.session.user, body.department!);
+    if (denied) return denied;
     await connectToDatabase();
     lock = await acquireTimetableMutationLock(body.academicYear!, body.semester!);
     if (!lock) return NextResponse.json({ error: "Another timetable change is in progress for this academic year and semester." }, { status: 409 });
+    access = await requireAdminRole({ departmental: true });
+    if (access.response) return access.response;
+    const lockedDenied = departmentDenied(access.session.user, body.department!);
+    if (lockedDenied) return lockedDenied;
     const [department, course, room] = await Promise.all([
       Department.findById(body.department).lean(),
       Course.findById(body.course).lean(),
@@ -156,7 +178,9 @@ export async function POST(request: Request) {
 
     const students = await User.find({ role: "student", status: "active", enrolledCourses: course._id }).select("_id").lean();
     if (!students.length) return NextResponse.json({ error: "No active students are enrolled in this course. Add its roster before scheduling." }, { status: 409 });
-    const studentIds = students.map((student) => String(student._id));
+    const rosterIds = new Set(students.map((student) => String(student._id)));
+    const studentIds = body.studentIds?.map((id) => id.toLowerCase()) || [...rosterIds];
+    if (studentIds.some((id) => !rosterIds.has(id))) return NextResponse.json({ error: "Stream students must be active members of this course's roster." }, { status: 409 });
     if ((room.capacity || 0) < studentIds.length) return NextResponse.json({ error: `Room capacity (${room.capacity || 0}) is below the enrolled roster (${studentIds.length}). Use automatic streams for oversized courses.` }, { status: 409 });
     const preferredVenues = (course.preferredVenues || []).map(String);
     if (preferredVenues.length && !preferredVenues.includes(String(room._id))) return NextResponse.json({ error: "Select one of this course's preferred venues." }, { status: 409 });
@@ -167,6 +191,9 @@ export async function POST(request: Request) {
     const cohort = cohortFor(department.code, course.level);
     const lecturer = course.lecturer?.trim() || "";
     const allocationInput = { ...body, lecturer, cohort };
+    if (await teachingAssessmentConflict([{
+      roomId: String(room._id), dayOfWeek: body.dayOfWeek!, startTime: body.startTime!, endTime: body.endTime!, studentIds, lecturer,
+    }])) return NextResponse.json({ error: "This teaching slot conflicts with a dated assessment. Resolve the assessment before scheduling." }, { status: 409 });
     const conflict = await findConflict(allocationInput, studentIds);
     if (conflict) {
       const conflictRoom = String(conflict.room) === body.room ? room.name : "another scheduled venue";
@@ -175,7 +202,11 @@ export async function POST(request: Request) {
     }
 
     await renewTimetableMutationLock(lock);
-    const allocation = await TimetableAllocation.create({
+    const actorId = access.session.user.id;
+    const allocation = await auditedMutation(actorId, "allocation.create", String(course._id), {
+      academicYear: body.academicYear!.trim(), semester: body.semester!.trim(), stream: body.stream?.trim() || "",
+      studentCount: String(studentIds.length),
+    }, async (session) => (await TimetableAllocation.create([{
       academicYear: body.academicYear!.trim(),
       semester: body.semester!.trim(),
       department: department._id,
@@ -187,13 +218,14 @@ export async function POST(request: Request) {
       startTime: body.startTime,
       endTime: body.endTime,
       status: "draft",
-      stream: "",
+      stream: body.stream?.trim() || "",
       streamSize: studentIds.length,
       streamCount: 1,
-      streamStudentIds: students.map((student) => student._id),
+      streamStudentIds: studentIds.map((id) => new mongoose.Types.ObjectId(id)),
       autoGenerated: false,
+      createdBy: actorId,
       notes: body.notes?.trim(),
-    });
+    }], { session }))[0]);
     const populated = await TimetableAllocation.findById(allocation._id).populate("department", "code name").populate("course", "code title").populate("room", "name code building capacity").lean();
     return NextResponse.json({ allocation: populated }, { status: 201 });
   } catch (error) {
@@ -204,27 +236,39 @@ export async function POST(request: Request) {
 }
 
 export async function PATCH(request: Request) {
-  const access = await requireAdminRole();
+  let access = await requireAdminRole({ departmental: true });
   if (access.response) return access.response;
   let lock: TimetableMutationLock | null = null;
   let scheduledRoomIds: string[] = [];
   let scheduledStudentIds: string[] = [];
   let scheduleSlots: TimetableSlot[] = [];
+  let approvalId: string | null = null;
   try {
     const body = await request.json();
     if (!body || typeof body !== "object" || typeof body.id !== "string" || !mongoose.isValidObjectId(body.id) ||
-      !["draft", "published", "cancelled"].includes(body.status) || Object.keys(body).some((key) => !["id", "status"].includes(key))) {
+      !["draft", "published", "cancelled"].includes(body.status) || Object.keys(body).some((key) => !["id", "status", "approvalId"].includes(key))) {
       return NextResponse.json({ error: "Only a valid allocation id and status may be changed." }, { status: 400 });
     }
     await connectToDatabase();
     const current = await TimetableAllocation.findById(body.id).lean();
     if (!current) return NextResponse.json({ error: "Allocation not found." }, { status: 404 });
+    const denied = departmentDenied(access.session.user, String(current.department));
+    if (denied) return denied;
     lock = await acquireTimetableMutationLock(current.academicYear, current.semester);
     if (!lock) return NextResponse.json({ error: "Another timetable change is in progress for this academic year and semester." }, { status: 409 });
+    access = await requireAdminRole({ departmental: true });
+    if (access.response) return access.response;
     const refreshed = await TimetableAllocation.findById(body.id).lean();
     if (!refreshed) return NextResponse.json({ error: "Allocation not found." }, { status: 404 });
+    const lockedDenied = departmentDenied(access.session.user, String(refreshed.department));
+    if (lockedDenied) return lockedDenied;
+    if (access.session.user.role !== "admin" && refreshed.status === "published") {
+      return NextResponse.json({ error: "Only an administrator can withdraw or cancel published teaching." }, { status: 403 });
+    }
 
     if (body.status === "published") {
+      approvalId = await validatePublicationReview(body.approvalId, access.session.user, "teaching", String(refreshed.course), refreshed.academicYear, refreshed.semester);
+      const term = await requireApprovedTerm(refreshed.academicYear, refreshed.semester);
       const room = await Room.findById(refreshed.room).lean();
       if (!room || !room.isAvailable) return NextResponse.json({ error: "The selected room is unavailable." }, { status: 409 });
       if (!["lecture_room", "laboratory", "seminar_room"].includes(room.spaceType || "lecture_room")) return NextResponse.json({ error: "The selected venue is not a teaching space." }, { status: 409 });
@@ -234,6 +278,9 @@ export async function PATCH(request: Request) {
         TimetableAllocation.find({ academicYear: refreshed.academicYear, semester: refreshed.semester, status: { $ne: "cancelled" } }).lean(),
       ]);
       if (!course) return NextResponse.json({ error: "The course for this allocation no longer exists." }, { status: 409 });
+      if (termAllocations.some((allocation) => String(allocation.course) === String(course._id) && !termContainsTeachingWeekday(term, allocation.dayOfWeek))) {
+        return NextResponse.json({ error: "The approved teaching window does not contain every scheduled weekday." }, { status: 409 });
+      }
       const termCourseIds = [...new Set(termAllocations.map((allocation) => String(allocation.course)))];
       const studentDocs = await User.find({ role: "student", status: "active", enrolledCourses: { $in: termCourseIds } })
         .select("_id enrolledCourses").lean();
@@ -286,14 +333,19 @@ export async function PATCH(request: Request) {
       if (validationErrors.length) {
         return NextResponse.json({ error: "Publication is blocked until this course is complete and conflict-free.", details: validationErrors }, { status: 409 });
       }
+      if (await teachingAssessmentConflict(publishAllocations.filter((allocation) => allocation.courseId === String(course._id)), term)) {
+        return NextResponse.json({ error: "Publication conflicts with a dated assessment for a room, student or known lecturer." }, { status: 409 });
+      }
       scheduledRoomIds = [...new Set(publishAllocations.map((allocation) => allocation.roomId))];
       scheduledStudentIds = [...new Set(publishAllocations.flatMap((allocation) => allocation.studentIds))];
-      scheduleSlots = publishAllocations.map((allocation) => ({
+      scheduleSlots = publishAllocations.filter((allocation) => allocation.courseId === String(course._id)).map((allocation) => ({
         roomId: allocation.roomId,
         dayOfWeek: allocation.dayOfWeek,
         startTime: allocation.startTime,
         endTime: allocation.endTime,
         studentIds: allocation.studentIds,
+        teachingStartDate: term.teachingStartDate,
+        teachingEndDate: term.teachingEndDate,
       }));
       const conflict = await findConflict({
         id: body.id,
@@ -315,7 +367,9 @@ export async function PATCH(request: Request) {
       academicYear: refreshed.academicYear, semester: refreshed.semester, courseId: String(refreshed.course),
       cancelledBookings: "0",
     };
-    await auditedMutation(access.session.user.id, `allocation.${body.status}`, body.id, auditDetails, async (session) => {
+    const actorId = access.session.user.id;
+    await auditedMutation(actorId, `allocation.${body.status}`, body.id, auditDetails, async (session) => {
+      if (approvalId) await completePublicationReview(approvalId, actorId, session);
       if (body.status === "published") {
         const activeBookings = await Booking.find({
           status: { $in: ["pending", "confirmed"] },
@@ -360,6 +414,9 @@ export async function PATCH(request: Request) {
       .populate("department", "code name").populate("course", "code title").populate("room", "name code building capacity").lean();
     return NextResponse.json({ allocation, cancelledBookings });
   } catch (error) {
+    if (error instanceof AcademicCalendarError) return NextResponse.json({ error: error.message }, { status: error.status });
+    const reviewError = publicationErrorResponse(error);
+    if (reviewError) return reviewError;
     return NextResponse.json({ error: error instanceof Error ? error.message : "Unable to update allocation." }, { status: 500 });
   } finally {
     if (lock) await releaseTimetableMutationLock(lock);

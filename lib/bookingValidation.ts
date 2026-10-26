@@ -35,6 +35,8 @@ export type TimetableSlot = {
   startTime: string;
   endTime: string;
   studentIds?: string[];
+  teachingStartDate?: string;
+  teachingEndDate?: string;
 };
 
 function campusDate(date: Date) {
@@ -81,6 +83,8 @@ export function findTimetableConflictingBookings(bookings: TimetableBooking[], a
   return bookings.filter((booking) => {
     const slot = getCampusTimeSlot(booking.startTime, booking.endTime);
     return slot && allocations.some((allocation) =>
+      (!allocation.teachingStartDate || campusDate(booking.startTime) >= allocation.teachingStartDate) &&
+      (!allocation.teachingEndDate || campusDate(booking.startTime) <= allocation.teachingEndDate) &&
       allocation.dayOfWeek === slot.dayOfWeek &&
       rangesOverlap(slot.startTime, slot.endTime, allocation.startTime, allocation.endTime) &&
       (allocation.roomId === booking.roomId || Boolean(allocation.studentIds?.includes(booking.userId)))

@@ -5,11 +5,16 @@ import { signOut, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useRef, useState } from "react";
 import Loading from "../loading";
-import { BookOpen, Building2, CalendarDays, GraduationCap, LayoutDashboard, LogOut, Megaphone, Network, Users } from "lucide-react";
-import { AccountManagement, AnnouncementManagement, CourseManagement, DepartmentManagement, Overview, RoomManagement, Timetable } from "@/components/admin/AdminSections";
+import { BookOpen, Building2, CalendarDays, GraduationCap, LayoutDashboard, LogOut, Megaphone, Network, Users, ShieldCheck, ScrollText, KeyRound } from "lucide-react";
+import { AccountManagement, AnnouncementManagement, CourseManagement, DepartmentManagement, RoomManagement, Timetable } from "@/components/admin/AdminSections";
+import { OperationsHub } from "@/components/admin/OperationsHub";
+import { AcademicCalendar } from "@/components/admin/AcademicCalendar";
+import { ApprovalWorkspace, AuditWorkspace, DepartmentAccessWorkspace } from "@/components/admin/GovernanceWorkspace";
 import { StudentManagement } from "@/components/admin/StudentManagement";
 import { BookingsManagement } from "@/components/admin/BookingsManagement";
 import { UnzaCatalogue } from "@/components/admin/UnzaCatalogue";
+import { EconomicsSourceReview } from "@/components/admin/EconomicsSourceReview";
+import { AssessmentManagement } from "@/components/admin/AssessmentManagement";
 import { RecordSelect } from "@/components/admin/RecordSelect";
 import { AdminActivityContext } from "@/components/admin/DataWorkspace";
 import type { Department, Metrics, Tab } from "@/components/admin/types";
@@ -17,7 +22,13 @@ import "./admin.css";
 
 const tabs: { id: Tab; label: string; icon: typeof LayoutDashboard; description: string }[] = [
   { id: "overview", label: "Operations", icon: LayoutDashboard, description: "A live overview of university operations and your selected planning cycle." },
+  { id: "calendar", label: "Academic calendar", icon: CalendarDays, description: "Define approved teaching and assessment windows, with protected dates and explicit approval." },
+  { id: "approvals", label: "Publication reviews", icon: ShieldCheck, description: "Independently review submitted drafts before publication to the student ecosystem." },
+  { id: "audit", label: "Audit history", icon: ScrollText, description: "Trace important academic, access and account decisions through durable audit events." },
+  { id: "access", label: "Department access", icon: KeyRound, description: "Grant explicit departmental scope to staff, with immediate server-side enforcement." },
   { id: "timetable", label: "University timetable", icon: CalendarDays, description: "Review allocations, manage drafts and publish conflict-checked schedules." },
+  { id: "assessments", label: "Exams, tests & quizzes", icon: CalendarDays, description: "Allocate dated departmental assessments, rooms, enrolled students and invigilators." },
+  { id: "academic-source", label: "Economics source review", icon: BookOpen, description: "Review the supplied departmental drafts, import course metadata and prepare approved teaching allocations." },
   { id: "bookings", label: "Room bookings", icon: CalendarDays, description: "Review student room requests and manage booking confirmations." },
   { id: "departments", label: "Departments", icon: Network, description: "Manage academic structure, schools and sourced department information." },
   { id: "courses", label: "Courses", icon: BookOpen, description: "Find courses, manage student rosters and configure teaching requirements." },
@@ -40,6 +51,7 @@ export default function AdminPage() {
   const [semester, setSemester] = useState("Semester 1");
   const [departmentFilter, setDepartmentFilter] = useState("");
   const [error, setError] = useState("");
+  const [accessBlocked, setAccessBlocked] = useState("");
   const [notice, setNotice] = useState("");
   const [saving, setSaving] = useState(false);
   const [workspaceBusy, setWorkspaceBusy] = useState(false);
@@ -54,7 +66,8 @@ export default function AdminPage() {
   const summaryRequest = useRef<AbortController | null>(null);
   const mutationPending = useRef(false);
   const allowed = status === "authenticated" && ["staff", "admin"].includes(session.user.role);
-  const visibleTabs = tabs.filter(({ id }) => id !== "accounts" || session?.user.role === "admin");
+  const adminOnly: Tab[] = ["accounts", "audit", "access", "students", "bookings", "announcements", "academic-source", "departments"];
+  const visibleTabs = tabs.filter(({ id }) => !adminOnly.includes(id) || session?.user.role === "admin");
   const activeTab = tabs.find(({ id }) => id === tab) || tabs[0];
 
   const load = useCallback(async () => {
@@ -66,8 +79,12 @@ export default function AdminPage() {
       const query = new URLSearchParams({ academicYear, semester, ...(departmentFilter ? { department: departmentFilter } : {}) });
       const response = await fetch(`/api/admin/overview?${query}`, { signal: controller.signal, cache: "no-store" });
       const data = await response.json();
+      if (response.status === 403 && !controller.signal.aborted) {
+        setAccessBlocked(data.error || "Administrator approval is required to access this workspace.");
+        return;
+      }
       if (!response.ok) throw new Error(data.error || "Unable to load operations summary.");
-      if (!controller.signal.aborted) setMetrics(data.metrics);
+      if (!controller.signal.aborted) { setAccessBlocked(""); setMetrics(data.metrics); }
     } catch (failure) {
       if (!controller.signal.aborted) setError(failure instanceof Error ? failure.message : "Unable to load operations summary.");
     } finally { if (!controller.signal.aborted) setSummaryLoading(false); }
@@ -103,36 +120,54 @@ export default function AdminPage() {
       return false;
     } finally { mutationPending.current = false; setSaving(false); }
   };
-  const configureCourse = (course: { code: string; title: string; department?: { _id: string } }) => {
-    setCourseForm({ ...emptyCourse, code: course.code, title: course.title, department: course.department?._id || "", credits: "", level: "", semester: "", expectedEnrollment: "", sessionsPerWeek: "", sessionMinutes: "" });
+  const configureCourse = (course: { code: string; title: string; level?: string; lecturer?: string; department?: { _id: string } }) => {
+    setCourseForm({ ...emptyCourse, code: course.code, title: course.title, department: course.department?._id || "", credits: "", level: course.level || "", lecturer: course.lecturer || "", semester: "", expectedEnrollment: "", sessionsPerWeek: "", sessionMinutes: "" });
     setNotice("Complete the course form with approved scheduling details. Missing values have not been inferred.");
   };
   const updateDepartment = (department: Department, active?: boolean) => mutate("/api/admin/departments", "PATCH",
     active === undefined ? { id: department._id, code: department.code, name: department.name, faculty: department.faculty, headOfDepartment: department.headOfDepartment } : { id: department._id, active }, "Department updated.");
   const selectTab = (next: Tab) => {
     if (saving || workspaceBusy) return;
-    if (next === "accounts" && session?.user.role !== "admin") return;
+    if (adminOnly.includes(next) && session?.user.role !== "admin") return;
     setTab(next); setError(""); setNotice("");
     if (next === "overview") void load();
   };
   if (!allowed) return <Loading />;
+  if (accessBlocked) return <main className="admin-shell flex min-h-screen items-center justify-center p-6"><section className="ui-card max-w-lg space-y-5">
+    <ShieldCheck className="text-emerald-800" size={32} /><p className="ui-eyebrow">Staff access required</p>
+    <h1 className="ui-title text-2xl">Your workspace needs authorization</h1><p role="alert" className="text-sm leading-6 text-slate-600">{accessBlocked}</p>
+    <p className="text-sm text-slate-500">A university administrator must assign your approved departments in Department access. Department names in a profile do not grant access.</p>
+    {error && <p role="alert" className="text-sm text-rose-800">{error}</p>}
+    <div className="flex flex-wrap gap-3"><button className="ui-btn ui-btn-primary" disabled={summaryLoading} onClick={() => { setError(""); void load(); }}>{summaryLoading ? "Checking access..." : "Check access again"}</button><button className="ui-btn ui-btn-secondary" onClick={() => void signOut({ callbackUrl: "/login" })}>Sign out</button></div>
+  </section></main>;
   return <AdminActivityContext.Provider value={setWorkspaceBusy}><main className="admin-shell min-h-screen text-slate-800">
     <div className="mx-auto flex min-h-screen max-w-[1920px]">
-      <aside className="admin-sidebar hidden w-60 shrink-0 flex-col p-5 text-white lg:flex">
+      <aside className="admin-sidebar hidden w-64 shrink-0 flex-col p-5 text-white lg:flex">
         <div className="mb-8 px-3 pt-3"><Image src="/images/unza_logo.jpg" width={70} height={70} alt="University of Zambia" className="mb-4 rounded-xl bg-white p-1 object-contain" /><p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-emerald-300">University of Zambia</p><h1 className="mt-1 text-xl font-semibold">Central Admin</h1><p className="mt-1 text-xs text-emerald-100/50">Academic operations</p></div>
-        <nav aria-label="Administration pages" className="space-y-1">{visibleTabs.map(({ id, label, icon: Icon }) => <button type="button" key={id} disabled={saving || workspaceBusy} aria-current={tab === id ? "page" : undefined} onClick={() => selectTab(id)} className={`admin-nav-item ${tab === id ? "is-active" : ""}`}><Icon size={18} />{label}</button>)}</nav>
+        <nav aria-label="Administration pages" className="space-y-5">{[
+          { label: "Command centre", ids: ["overview", "calendar", "approvals"] },
+          { label: "Academic delivery", ids: ["timetable", "assessments", "courses", "academic-source"] },
+          { label: "Campus & community", ids: ["departments", "students", "rooms", "bookings", "announcements"] },
+          { label: "Governance", ids: ["accounts", "access", "audit"] },
+        ].map((group) => <div key={group.label}><p className="admin-nav-group">{group.label}</p><div className="mt-2 space-y-1">{visibleTabs.filter(({ id }) => group.ids.includes(id)).map(({ id, label, icon: Icon }) => <button type="button" key={id} disabled={saving || workspaceBusy} aria-current={tab === id ? "page" : undefined} onClick={() => selectTab(id)} className={`admin-nav-item ${tab === id ? "is-active" : ""}`}><Icon size={17} />{label}</button>)}</div></div>)}</nav>
         <div className="mt-auto border-t border-white/10 pt-5"><p className="truncate px-3 text-sm font-medium">{session.user.name}</p><p className="mb-3 px-3 text-xs capitalize text-emerald-100/50">{session.user.role}</p><button type="button" disabled={saving || workspaceBusy} onClick={() => void signOut({ callbackUrl: "/login" })} className="admin-nav-item"><LogOut size={17} />Sign out</button></div>
       </aside>
       <section className="min-w-0 flex-1 p-4 pb-12 md:p-7 xl:p-9">
-        <header className="mb-6 flex flex-wrap items-start justify-between gap-4"><div><p className="ui-eyebrow">Workspace / {activeTab.label}</p><h2 className="mt-2 text-3xl font-semibold tracking-tight">{activeTab.label}</h2><p className="mt-2 max-w-2xl text-sm text-slate-500">{activeTab.description}</p></div><div className="flex items-center gap-3"><span className="hidden rounded-full border border-emerald-200 bg-emerald-50 px-3 py-1.5 text-xs font-medium text-emerald-800 sm:block">{session.user.role === "admin" ? "Administrator" : "Staff workspace"}</span><button type="button" disabled={saving || workspaceBusy} onClick={() => void signOut({ callbackUrl: "/login" })} className="ui-btn ui-btn-secondary ui-btn-sm lg:hidden"><LogOut size={16} />Sign out</button></div></header>
+        <header className="admin-workspace-header mb-6 flex flex-wrap items-start justify-between gap-4"><div><p className="ui-eyebrow">UNZA / Central workspace / {activeTab.label}</p><h2 className="mt-2 text-3xl font-semibold tracking-tight">{activeTab.label}</h2><p className="mt-2 max-w-2xl text-sm text-slate-500">{activeTab.description}</p></div><div className="flex items-center gap-3"><span className="hidden rounded-full border border-emerald-200 bg-emerald-50 px-3 py-1.5 text-xs font-medium text-emerald-800 sm:block">{session.user.role === "admin" ? "University administrator" : "Department workspace"}</span><button type="button" disabled={saving || workspaceBusy} onClick={() => void signOut({ callbackUrl: "/login" })} className="ui-btn ui-btn-secondary ui-btn-sm lg:hidden"><LogOut size={16} />Sign out</button></div></header>
         <nav aria-label="Mobile administration pages" className="mb-5 flex gap-2 overflow-x-auto pb-2 lg:hidden">{visibleTabs.map(({ id, label }) => <button type="button" key={id} disabled={saving || workspaceBusy} aria-current={tab === id ? "page" : undefined} onClick={() => selectTab(id)} className={`ui-chip whitespace-nowrap ${tab === id ? "ui-chip-active" : ""}`}>{label}</button>)}</nav>
-        {(tab === "overview" || tab === "timetable") && <fieldset disabled={saving || workspaceBusy} className="ui-card mb-5 grid items-start gap-4 sm:grid-cols-2 xl:grid-cols-3" aria-label="Planning cycle filters"><label><span className="ui-label">Academic year</span><input className="ui-input" maxLength={20} value={academicYear} onChange={(event) => setAcademicYear(event.target.value)} /></label><label><span className="ui-label">Semester</span><select className="ui-input" value={semester} onChange={(event) => setSemester(event.target.value)}><option>Semester 1</option><option>Semester 2</option><option>Summer</option></select></label><RecordSelect resource="departments" label="Planning department" value={departmentFilter} onChange={setDepartmentFilter} /></fieldset>}
+        {(tab === "overview" || tab === "timetable" || tab === "assessments") && <fieldset disabled={saving || workspaceBusy} className="ui-card mb-5 grid items-start gap-4 sm:grid-cols-2 xl:grid-cols-3" aria-label="Planning cycle filters"><label><span className="ui-label">Academic year</span><input className="ui-input" maxLength={20} value={academicYear} onChange={(event) => setAcademicYear(event.target.value)} /></label><label><span className="ui-label">Semester</span><select className="ui-input" value={semester} onChange={(event) => setSemester(event.target.value)}><option>Semester 1</option><option>Semester 2</option><option>Summer</option></select></label><RecordSelect resource="departments" label="Planning department" value={departmentFilter} onChange={setDepartmentFilter} /></fieldset>}
         {error && <div role="alert" className="mb-5 rounded-xl border border-rose-200 bg-rose-50 p-4 text-sm text-rose-800">{error}<button type="button" className="ml-3 underline" onClick={() => { setError(""); void load(); }}>Refresh summary</button></div>}
         {notice && <div role="status" className="mb-5 rounded-xl border border-emerald-200 bg-emerald-50 p-4 text-sm text-emerald-800">{notice}</div>}
         {(saving || workspaceBusy) && <p role="status" className="mb-3 text-sm text-emerald-700">Processing your request. Keep this page open until the result appears...</p>}
         <fieldset disabled={saving || workspaceBusy} inert={saving || workspaceBusy} className="min-w-0">
-          {tab === "overview" && <>{summaryLoading && <p role="status" className="mb-3 text-xs text-slate-500">Updating operations summary...</p>}{metrics ? <Overview metrics={metrics} setTab={selectTab} /> : <div className="ui-card" role="status">{error ? "Summary unavailable. Refresh to retry." : "Loading operations summary..."}</div>}</>}
-          {tab === "timetable" && <Timetable revision={revision} form={allocationForm} setForm={setAllocationForm} academicYear={academicYear} semester={semester} departmentFilter={departmentFilter} onGenerated={(message) => { setNotice(message); setRevision((value) => value + 1); void load(); }} onSubmit={(event) => { event.preventDefault(); void mutate("/api/admin/allocations", "POST", { ...allocationForm, academicYear, semester, status: "draft" }, "Class saved as a draft.", () => setAllocationForm({ ...allocationForm, course: "", room: "", notes: "" })); }} onCancel={(id) => { if (window.confirm("Cancel this allocation? It will be removed from active student timetables.")) void mutate("/api/admin/allocations", "PATCH", { id, status: "cancelled" }, "Class allocation cancelled."); }} onPublish={(id) => { if (window.confirm("Publish the complete course schedule? This takes priority over conflicting pending and confirmed room bookings, which will be cancelled.")) void mutate("/api/admin/allocations", "PATCH", { id, status: "published" }, (data) => `Complete course schedule published.${Number(data.cancelledBookings) > 0 ? ` ${data.cancelledBookings} conflicting booking${Number(data.cancelledBookings) === 1 ? " was" : "s were"} cancelled.` : ""}`); }} />}
+          {tab === "academic-source" && <EconomicsSourceReview onChanged={() => { setRevision((value) => value + 1); void load(); }} />}
+          {tab === "assessments" && <AssessmentManagement key={`${academicYear}:${semester}:${departmentFilter}`} academicYear={academicYear} semester={semester} departmentFilter={departmentFilter} />}
+          {tab === "calendar" && <AcademicCalendar onChanged={() => { setRevision((value) => value + 1); void load(); }} />}
+          {tab === "approvals" && <ApprovalWorkspace />}
+          {tab === "audit" && session.user.role === "admin" && <AuditWorkspace />}
+          {tab === "access" && session.user.role === "admin" && <DepartmentAccessWorkspace />}
+          {tab === "overview" && <>{summaryLoading && <p role="status" className="mb-3 text-xs text-slate-500">Updating operations summary...</p>}<OperationsHub metrics={metrics} academicYear={academicYear} semester={semester} departmentFilter={departmentFilter} revision={revision} onNavigate={selectTab} availableTabs={visibleTabs.map(({ id }) => id)} /></>}
+          {tab === "timetable" && <Timetable revision={revision} form={allocationForm} setForm={setAllocationForm} academicYear={academicYear} semester={semester} departmentFilter={departmentFilter} onGenerated={(message) => { setNotice(message); setRevision((value) => value + 1); void load(); }} onSubmit={(event) => { event.preventDefault(); void mutate("/api/admin/allocations", "POST", { ...allocationForm, academicYear, semester, status: "draft" }, "Class saved as a draft.", () => setAllocationForm({ ...allocationForm, course: "", room: "", notes: "" })); }} onCancel={(id) => { if (window.confirm("Cancel this allocation? It will be removed from active student timetables.")) void mutate("/api/admin/allocations", "PATCH", { id, status: "cancelled" }, "Class allocation cancelled."); }} onPublish={(id) => { if (window.confirm("Submit the complete draft course timetable for independent administrator approval?")) void mutate("/api/admin/approvals", "POST", { id, kind: "teaching" }, "Complete course submitted for independent review. Open Publication reviews to track the decision."); }} />}
           {tab === "bookings" && <BookingsManagement revision={revision} onStatusChange={(id, status) => {
             if (status === "cancelled" && !window.confirm("Cancel this student room booking?")) return;
             void mutate("/api/admin/bookings", "PATCH", { id, status }, status === "confirmed" ? "Booking confirmed." : "Booking cancelled.");
@@ -140,7 +175,7 @@ export default function AdminPage() {
           {tab === "departments" && <DepartmentManagement revision={revision} form={departmentForm} setForm={setDepartmentForm} onUpdate={updateDepartment} onSubmit={(event) => { event.preventDefault(); void mutate("/api/admin/departments", "POST", departmentForm, "Department created.", () => setDepartmentForm({ ...emptyDepartment })); }} />}
           {tab === "courses" && <div className="space-y-5"><CourseManagement revision={revision} form={courseForm} setForm={setCourseForm} academicYear={academicYear} onConfigure={configureCourse} onSubmit={(event) => { event.preventDefault(); void mutate("/api/admin/courses", "POST", { ...courseForm, credits: Number(courseForm.credits), expectedEnrollment: Number(courseForm.expectedEnrollment), sessionsPerWeek: Number(courseForm.sessionsPerWeek), sessionMinutes: Number(courseForm.sessionMinutes) }, "Course saved.", () => setCourseForm({ ...emptyCourse })); }} onSaveCourse={(course, patch) => mutate("/api/admin/courses", "PATCH", { id: course._id, ...patch }, `${course.code} scheduling settings updated.`)} /><details className="admin-composer ui-card"><summary>Verified UNZA catalogue and source information</summary><div className="mt-5"><UnzaCatalogue onImported={() => { setRevision((value) => value + 1); void load(); }} /></div></details></div>}
           {tab === "students" && <StudentManagement />}
-          {tab === "rooms" && <RoomManagement revision={revision} form={roomForm} setForm={setRoomForm} onClassify={(room, spaceType) => mutate("/api/admin/rooms", "PATCH", { id: room._id, spaceType }, "Location classification saved. Only lecture rooms are student-bookable.")} onSubmit={(event) => { event.preventDefault(); void mutate("/api/admin/rooms", "POST", { ...roomForm, capacity: Number(roomForm.capacity), floor: Number(roomForm.floor), latitude: Number(roomForm.latitude), longitude: Number(roomForm.longitude) }, "Campus location registered.", () => setRoomForm({ ...emptyRoom })); }} />}
+          {tab === "rooms" && <RoomManagement readOnly={session.user.role !== "admin"} revision={revision} form={roomForm} setForm={setRoomForm} onClassify={(room, spaceType) => mutate("/api/admin/rooms", "PATCH", { id: room._id, spaceType }, "Location classification saved. Only lecture rooms are student-bookable.")} onSubmit={(event) => { event.preventDefault(); void mutate("/api/admin/rooms", "POST", { ...roomForm, capacity: Number(roomForm.capacity), floor: Number(roomForm.floor), latitude: Number(roomForm.latitude), longitude: Number(roomForm.longitude) }, "Campus location registered.", () => setRoomForm({ ...emptyRoom })); }} />}
           {tab === "accounts" && session.user.role === "admin" && <AccountManagement revision={revision} form={accountForm} setForm={setAccountForm} onSubmit={(event) => { event.preventDefault(); void mutate("/api/admin/users", "POST", accountForm, "Staff account provisioned.", () => setAccountForm({ ...emptyAccount })); }} />}
           {tab === "announcements" && <AnnouncementManagement revision={revision} form={announcementForm} setForm={setAnnouncementForm} onSubmit={(event) => { event.preventDefault(); if (window.confirm("Publish this announcement to the selected audience?")) void mutate("/api/admin/announcements", "POST", { ...announcementForm, priority: "high" }, "Announcement published.", () => setAnnouncementForm({ title: "", message: "", audience: announcementForm.audience })); }} />}
         </fieldset>

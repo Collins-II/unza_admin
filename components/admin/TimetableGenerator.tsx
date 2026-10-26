@@ -1,7 +1,6 @@
 "use client";
 
 import { useContext, useState } from "react";
-import { useSession } from "next-auth/react";
 import { Sparkles } from "lucide-react";
 import { AdminActivityContext } from "./DataWorkspace";
 
@@ -24,40 +23,17 @@ type Props = {
 };
 
 export function TimetableGenerator({ academicYear, semester, departmentFilter, onSaved }: Props) {
-  const { data: session } = useSession();
   const setWorkspaceBusy = useContext(AdminActivityContext);
   const [options, setOptions] = useState({ maxVenueRadiusM: "500", dayStart: "08:00", dayEnd: "18:00", maxStreams: "8", includeSaturday: false, replaceDrafts: true });
   const [result, setResult] = useState<GenerationResult | null>(null);
-  const [busy, setBusy] = useState<"" | "preview" | "save" | "publish" | "setup">("");
+  const [busy, setBusy] = useState<"" | "preview" | "save">("");
   const [error, setError] = useState("");
   const [previewPage, setPreviewPage] = useState(0);
   const [streamPage, setStreamPage] = useState(0);
 
   const scopeLabel = departmentFilter ? "the selected department" : "all departments";
 
-  const setupDemo = async () => {
-    if (!window.confirm(`Connect the current 1000-student fixtures to synthetic courses under verified UNZA departments for ${semester}? Use a separate test database. Legacy profiles are not overwritten. No schedule will be published.`)) return;
-    setBusy("setup");
-    setWorkspaceBusy?.(true);
-    setError("");
-    setResult(null);
-    try {
-      const response = await fetch("/api/admin/timetable/mock-data", {
-        method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ semester }),
-      });
-      const data = await response.json();
-      if (!response.ok) throw new Error(data.error || "Unable to set up demo data.");
-      onSaved(`${data.students} demo students linked to ${data.courses} synthetic courses with ${data.rooms} test rooms in ${data.semester}. Select all departments (or a UNZA department), then preview the schedule.`);
-    } catch (setupError) {
-      setError(setupError instanceof Error ? setupError.message : "Unable to set up demo data.");
-    } finally {
-      setBusy("");
-      setWorkspaceBusy?.(false);
-    }
-  };
-
-  const run = async (mode: "preview" | "save" | "publish") => {
-    if (mode === "publish" && !window.confirm("Publish this complete timetable? It will take priority over room bookings and automatically cancel any conflicting pending or confirmed bookings.")) return;
+  const run = async (mode: "preview" | "save") => {
     setBusy(mode);
     setWorkspaceBusy?.(true);
     setError("");
@@ -69,7 +45,7 @@ export function TimetableGenerator({ academicYear, semester, departmentFilter, o
           academicYear, semester, department: departmentFilter || undefined,
           maxVenueRadiusM: Number(options.maxVenueRadiusM), maxStreams: Number(options.maxStreams),
           dayStart: options.dayStart, dayEnd: options.dayEnd, includeSaturday: options.includeSaturday, replaceDrafts: options.replaceDrafts,
-          dryRun: mode === "preview", publish: mode === "publish",
+          dryRun: mode === "preview", publish: false,
         }),
       });
       const data = await response.json();
@@ -78,10 +54,7 @@ export function TimetableGenerator({ academicYear, semester, departmentFilter, o
       setPreviewPage(0);
       setStreamPage(0);
       if (mode !== "preview") {
-        const bookingNotice = mode === "publish" && data.cancelledBookings
-          ? ` ${data.cancelledBookings} conflicting booking${data.cancelledBookings === 1 ? " was" : "s were"} cancelled.`
-          : "";
-        onSaved(`${data.saved} class sessions ${mode === "publish" ? "published" : "saved as drafts"} for ${scopeLabel}.${bookingNotice}`);
+        onSaved(`${data.saved} class sessions saved as drafts for ${scopeLabel}. Submit each complete course for independent review.`);
         setResult(null);
       }
     } catch (generationError) {
@@ -102,13 +75,7 @@ export function TimetableGenerator({ academicYear, semester, departmentFilter, o
       <div className="flex flex-wrap items-start justify-between gap-3">
         <div><p className="ui-eyebrow">Auto scheduler</p><h3 className="ui-title text-2xl">Generate timetable</h3><p className="mt-2 max-w-2xl text-sm text-gray-600">Places every unscheduled {semester} course in {scopeLabel}. Cohorts that exceed a venue are split into streams, and the remainder moves to other venue slots. Classes stay within walking distance and travel time.</p></div>
       </div>
-      {process.env.NODE_ENV === "development" && session?.user.role === "admin" && (
-        <div className="mt-4 border-2 border-amber-600 bg-amber-50 p-3 text-sm">
-          <strong>Development test data</strong>
-          <p className="mt-1">Version 2 distributes 1,000 fictional students across verified UNZA departments with explicitly synthetic department and school-shared courses. These are not official university courses. Use a separate transaction-capable test database; existing legacy mock accounts and published schedules are not migrated.</p>
-          <button type="button" disabled={Boolean(busy)} onClick={() => void setupDemo()} className="ui-btn ui-btn-secondary mt-3">{busy === "setup" ? "Connecting demo data..." : "Connect mock students"}</button>
-        </div>
-      )}
+      <p className="mt-3 text-xs text-emerald-800">Generation prepares drafts only. A separate administrator must approve each submitted course before it reaches students.</p>
       <fieldset disabled={Boolean(busy)} className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-5" onChange={() => setResult(null)}>
         <label><span className="ui-label">Max venue radius (m)</span><input className="ui-input" type="number" min={50} max={5000} step={50} value={options.maxVenueRadiusM} onChange={(event) => setOptions({ ...options, maxVenueRadiusM: event.target.value })} /></label>
         <label><span className="ui-label">Day starts</span><input className="ui-input" type="time" value={options.dayStart} onChange={(event) => setOptions({ ...options, dayStart: event.target.value })} /></label>
@@ -124,7 +91,6 @@ export function TimetableGenerator({ academicYear, semester, departmentFilter, o
         {result && result.sessions.length > 0 && result.unscheduled.length === 0 && <>
           <button type="button" disabled={Boolean(busy)} onClick={() => void run("save")} className="ui-btn ui-btn-secondary">{busy === "save" ? "Saving..." : "Save as draft"}</button>
         </>}
-        {result && result.stats.courses > 0 && result.unscheduled.length === 0 && <button type="button" disabled={Boolean(busy)} onClick={() => void run("publish")} className="ui-btn ui-btn-primary">{busy === "publish" ? "Publishing..." : "Publish schedule"}</button>}
       </div>
       {error && <p className="mt-4 border-2 border-rose-700 bg-rose-50 p-3 text-sm font-bold text-rose-800">{error}</p>}
       {result && (

@@ -17,4 +17,7 @@ jobs:
       - run: npm ci
       - run: npm run lint
       - run: npm test
+      - run: npm run test:bookings
+      - run: npm run test:academics
+      - run: npm run test:governance
       - run: npm run build

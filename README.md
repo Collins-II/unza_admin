@@ -2,6 +2,57 @@ This is the UNZA Central Administration application. It is a [Next.js](https://n
 
 ## Central administration
 
+### Connected academic operations
+
+The Operations workspace replaces the old generic overview with live, access-scoped metrics,
+an attention centre, a dated assessment agenda and links to the next academic workflow. Navigation
+groups academic delivery, campus operations and governance; no synthetic trends or payment metrics
+are shown.
+
+- **Department access:** administrators retain university-wide access. Staff need explicit active
+  department IDs assigned by an administrator in **Department access**. Existing staff are unassigned
+  by default and blocked until assigned; free-text profile department names never grant permissions.
+  Every protected request rechecks account status, role and assignments. Staff can prepare scoped
+  courses, rosters, teaching and assessments, and read shared rooms/calendars. Student searches use
+  exact active department codes; cross-department enrolment requires an administrator.
+  Student lifecycle, account/access management, department/room mutations, bookings, announcements,
+  imports and the university audit register remain administrator-only. Existing records are preserved.
+- **Academic calendar:** administrators create and approve exact year/semester labels and inclusive
+  teaching/assessment dates in Africa/Lusaka. Teaching publication needs an approved calendar;
+  non-cancelled assessment creation/edits must fall within its assessment window. Versioned edits,
+  approval and archive decisions are audited. Resolve dependent published teaching and non-cancelled
+  assessments before changing dates or archiving. Archived calendars are read-only.
+  The current institution-wide calendar rejects overlapping approved teaching windows, including
+  different semesters/years; programme-specific concurrent calendars are not yet supported.
+- **Prepare -> submit -> independent review -> publish:** generation and manual entry save drafts.
+  Submit a complete course timetable or one assessment from its workspace. A different active
+  administrator approves the exact immutable draft snapshot through **Publication reviews**.
+  Submitters, recorded creators and assessment draft editors cannot approve their own work, including administrator-authored
+  drafts. At least two separately authenticated administrators are needed for an administrator-led
+  preparation/review cycle. Unknown creators of legacy records are not retroactively inferred.
+  Changed drafts require rejection and resubmission; duplicate pending submissions are rejected.
+  Rejection requires a reason and preserves the draft. Publication revalidates resources, rosters,
+  capacity and conflicts, then saves the decision, publication and audit transactionally.
+- **Legacy and student continuity:** previously published schedules remain visible, including terms
+  without calendars. Add approved dates and review them; do not assume they are newly certified.
+  Actual-date teaching/booking conflicts respect approved teaching windows, with conservative
+  recurring protection for legacy terms lacking approved dates. Publication cancels conflicting
+  bookings only inside its approved teaching dates. The student integration adds approved
+  `academicTerms` alongside published `assessments`; existing response fields remain intact.
+  The separate student server forwards additive campus fields, but rendering new calendar/assessment
+  screens in that application is a separate integration step.
+
+`GET/PATCH /api/admin/access`, `GET/POST/PATCH /api/admin/academic-calendar`,
+`GET/POST/PATCH /api/admin/approvals` and `GET /api/admin/approvals/detail?id=...` support these
+workspaces. Approval PATCH accepts `{ id, decision: "approve" }` or
+`{ id, decision: "reject", reason }`. Teaching/assessment publication requires `approvalId`;
+direct generator publication is disabled. Review details explicitly reject submissions exceeding
+500 teaching sessions instead of presenting a truncated review.
+
+Run `npm run test:governance` for mocked authorization, immutable review and dated-teaching regression
+tests. These tests and the academic suite do not replace authenticated staging tests or real
+replica-set transaction/concurrency validation.
+
 ### High-volume administration workspace
 
 Mobile summary cards use compact multi-column layouts: overview metrics stay two abreast, timetable-health metrics share one three-card row, and generation-result metrics use two columns. Desktop spacing and layouts are preserved.
@@ -15,13 +66,13 @@ All seven registers (students, departments, courses, campus locations, timetable
 - Row selection is **current-page only** and clears when the query/page changes or a batch finishes. Students, departments, rooms and administrator-only staff accounts support status/availability actions; timetable allocations support cancellation. Courses and announcements support selected-row export, not unsafe inferred bulk edits. Existing role, last-administrator and timetable locks remain authoritative.
 - Batch mutations require confirmation, run sequentially through the existing mutation APIs and report successes and individual failures. They are **not a single atomic transaction**. Navigation inside the workspace is blocked while processing; do not close the browser until the result appears. Network failures stop the batch; inspect refreshed records before retrying.
 - CSV export includes either the filtered result set or selected rows, using the displayed columns. It streams from a bounded database cursor and rejects filtered sets above **10,000 rows**; narrow filters rather than expecting silent truncation. Spreadsheet formula cells are neutralized. Account credentials, payment data and timetable stream-member IDs are never exported by the register endpoint. Exports can contain personal information: handle them under university policy. Newly issued temporary credentials have a separate, deliberately explicit secure download.
-- Term and planning-department filters apply to the overview/timetable only. Other pages have their own resource-specific filters. Student department filters accept the exact stored code (including legacy descriptive codes), while course and allocation department filters use linked department records. Course roster enrolments remain global, not term-specific. Generation previews render 50 sessions and 25 streams per page; publishing still validates the complete schedule.
+- Term and planning-department filters apply to operations, timetable and assessments. Other pages have their own resource-specific filters. Student department filters accept the exact stored code (including legacy descriptive codes), while course and allocation department filters use linked department records. Course roster enrolments remain global, not term-specific. Generation previews render 50 sessions and 25 streams per page; publishing still validates the complete schedule.
 
 The query endpoint bounds search/filter lengths, allowlists sort and status values, uses literal (escaped) search patterns, caps query execution time and projects only permitted fields. Contains-searches may still scan data: benchmark against real institution-sized staging data and provision appropriate database indexes before production; this UI update is not a load-capacity certification.
 
 ### Production release gates
 
-Run `npm run lint`, `npm test`, `npm run build`, and `npm run release:check` against the intended deployment configuration. CI runs lint, unit tests and a production build on Node 24. `release:check` is read-only and deliberately fails for localhost URLs, missing/short secrets, insufficient administrators, missing database prerequisites, or active/published mock data. A passing result is not proof of secret entropy, backups, security certification or load capacity.
+Run `npm run lint`, `npm test`, `npm run test:bookings`, `npm run test:academics`, `npm run test:governance`, `npm run build`, and `npm run release:check` against the intended deployment configuration. CI runs lint, unit tests, booking/academic/governance workflow tests and a production build on Node 24. `release:check` is read-only and deliberately fails for localhost URLs, missing/short secrets, insufficient administrators, missing database prerequisites, or active/published mock data. A passing result is not proof of secret entropy, backups, security certification or load capacity.
 
 For database-backed authentication regression tests, start a **local test deployment** on port 3100, then explicitly set `ALLOW_LOCAL_AUTH_SMOKE=1` and run `npm run test:live-auth` (`LOCAL_TEST_URL` optionally overrides the local port). The test requires the local server's database URI/authentication secret and an existing active administrator; it creates one random, short-lived test staff account, checks login, session revocation, lockout and audit events, and removes that exact account in `finally`. Audit history is retained. Do not run this against production data or interrupt it before cleanup.
 
@@ -58,8 +109,8 @@ Course rosters currently apply globally across academic years. Enrolment changes
 
 Only active staff and administrator accounts can sign in. Public registration and the former student-facing routes are disabled. Staff and administrator accounts sign in at `/login` and are routed to `/admin`. The central console currently provides:
 
-- university-wide counts for students, staff, rooms, bookings, and paid orders
-- student directory visibility
+- access-scoped operational counts and actionable academic priorities
+- administrator-managed student directory and departmental course roster searches
 - room availability publishing and unpublishing
 - booking approval and rejection
 - official announcements delivered to active staff and administrator accounts
@@ -67,7 +118,7 @@ Only active staff and administrator accounts can sign in. Public registration an
 - automatic weekly schedule generation with real course rosters, capacity-based student streams, preferred multiple venues, travel-time checks, and complete-course publication checks
 - conflict detection for room, lecturer, and student overlaps, including room capacity and venue availability validation
 
-The `/api/admin/*` routes are protected server-side and require a `staff` or `admin` role. Course rosters are explicit links from active `student` user records to courses; staff can search existing student records and manage those links from the course editor. A course cannot be published until all active enrollees are assigned to capacity-safe streams and all required weekly sessions are scheduled.
+The `/api/admin/*` routes are protected server-side: central operations are administrator-only and opted-in departmental endpoints require explicit staff scope. Course rosters are explicit links from active `student` user records to courses; assigned staff can search scoped student records and manage those links from the course editor. A course cannot be published until all active enrollees are assigned to capacity-safe streams, all required weekly sessions are scheduled, its calendar is approved and an independent administrator approves the submitted snapshot.
 
 Generation and publication use MongoDB transactions and term-scoped locks. Production MongoDB must support transactions (for example, an Atlas replica set), and the application database user must be able to create the model indexes. Course/room scheduling settings and student enrolments are protected from concurrent timetable writes.
 
@@ -75,7 +126,7 @@ Generation and publication use MongoDB transactions and term-scoped locks. Produ
 
 When the database contains no staff or administrator account, use `/setup` to create the one-time initial administrator. The setup endpoint closes as soon as it creates the first account. For production deployments, set `INITIAL_ADMIN_SETUP_TOKEN` in the server environment and enter the same token during setup.
 
-After initial setup, sign in as an administrator and use **Staff accounts** in Central Admin to create staff or additional administrator accounts. Staff accounts cannot provision other accounts.
+After initial setup, sign in as an administrator and use **Staff accounts** in Central Admin to create staff or additional administrator accounts. Assign approved staff scope separately in **Department access**. Staff accounts cannot provision accounts or grant themselves access.
 
 ## Room geolocation and student-app integration
 
@@ -108,7 +159,7 @@ PATCH /api/integration/bookings/<BOOKING_ID>
 x-student-app-key: <STUDENT_APP_API_KEY>
 ```
 
-Create requests send `studentId`, `roomId`, `purpose`, `startTime`, `endTime`, and the purpose-specific details below. Times must be timezone-qualified ISO timestamps on one Lusaka-local calendar date, aligned to whole minutes, and in the future. Every published timetable is authoritative: booking requests are rejected if the room is scheduled or the student has a class at that time. New bookings start as `pending`; pending and confirmed bookings reserve the room. When a valid timetable is published, overlapping pending or confirmed bookings are automatically cancelled in the same transaction as publication. The booking response and list include `cancellationReason: "timetable_conflict"` so the student app can explain that the class schedule takes priority. Students can edit or cancel only their own bookings; confirmation remains a staff operation. The student app must derive the student ID from its authenticated server-side session rather than trusting a browser-supplied ID, and must keep the integration key server-side.
+Create requests send `studentId`, `roomId`, `purpose`, `startTime`, `endTime`, and the purpose-specific details below. Times must be timezone-qualified ISO timestamps on one Lusaka-local calendar date, aligned to whole minutes, and in the future. Every published timetable is authoritative within its approved dates (or conservatively recurring for legacy terms): booking requests are rejected if the room is scheduled or the student has a class at that time. New bookings start as `pending`; pending and confirmed bookings reserve the room. When a valid timetable is published, overlapping pending or confirmed bookings inside its approved teaching dates are automatically cancelled in the same transaction as publication. The booking response and list include `cancellationReason: "timetable_conflict"` so the student app can explain that the class schedule takes priority. Students can edit or cancel only their own bookings; confirmation remains an administrator operation. The student app must derive the student ID from its authenticated server-side session rather than trusting a browser-supplied ID, and must keep the integration key server-side.
 
 ### Purpose-based booking authorization
 
@@ -117,7 +168,7 @@ Only online rooms explicitly classified with `spaceType: "lecture_room"` are boo
 - `purpose: "Tutorial Group"` requires **at least 48 hours** from submission to start, a positive integer `attendees`, and `tutorialGroup: { groupName, courseCode, topic, leaderName }`. Text limits are 120, 30, 1000 and 120 characters respectively.
 - `purpose: "Event"` requires **7–14 days** from submission to start (inclusive), an event `title` (1–120 characters), and a positive integer `attendees`.
 - Expected attendees must fit a known room capacity. Optional `conversationId` is for TG Study Circles only; the requester must be a member and the full circle must have at least 50 unique members. The central server verifies this against the shared database rather than trusting browser counts.
-- Staff and administrators review requests in **Room bookings**, filter by purpose, and inspect the TG details and submission time. Approval revalidates the purpose, original submission window, room, capacity, active student and current timetable/booking conflicts. Legacy incomplete requests cannot be newly confirmed; ask the student to resubmit. Cancellation remains available.
+- Administrators review requests in **Room bookings**, filter by purpose, and inspect the TG details and submission time. Approval revalidates the purpose, original submission window, room, capacity, active student and current timetable/booking conflicts. Legacy incomplete requests cannot be newly confirmed; ask the student to resubmit. Cancellation remains available.
 - To edit, send the same complete payload as creation to `PATCH /api/integration/bookings/<id>`. Central admin records a new `requestedAt`, rechecks advance notice and resets status to `pending`, clearing the previous review. A request containing only `studentId` cancels rather than edits. Started/cancelled requests cannot be edited; started bookings cannot be student-cancelled.
 
 The student app's server requires `ADMIN_APP_URL` pointing to this app and a matching `STUDENT_APP_API_KEY`. Booking creation, modification, cancellation and retrieval must go through these integration endpoints, not independent writes to the booking collection. Both apps currently use the same database for student IDs, room IDs and Study Circle membership. Approval/cancellation actions record the reviewer and an atomic audit event. Timetable publication still overrides conflicting student reservations.
@@ -126,7 +177,7 @@ Restart both development servers after updating these schemas so cached Mongoose
 
 ### Student registration and sign-in
 
-Students are registered by staff or administrators in the **Students** tab (single form or pasted CSV of up to 100 rows). Each student receives a unique numeric student ID (auto-issued as `<year><5-digit sequence>`, or an admin-supplied 8-10 digit ID) and a random temporary password. The password is shown once, stored only as a bcrypt hash, and must be changed at first sign-in. Staff can reset passwords and deactivate/reactivate accounts; students in a published timetable must be unenrolled and the schedule republished before deactivation. Only `active` students sign in, appear on rosters, or receive timetables.
+Students are registered by administrators in the **Students** tab (single form or pasted CSV of up to 100 rows). Each student receives a unique numeric student ID (auto-issued as `<year><5-digit sequence>`, or an admin-supplied 8-10 digit ID) and a random temporary password. The password is shown once, stored only as a bcrypt hash, and must be changed at first sign-in. Administrators can reset passwords and deactivate/reactivate accounts; students in a published timetable must be unenrolled and the schedule republished before deactivation. Only `active` students sign in, appear on rosters, or receive timetables.
 
 Students never sign in to Central Admin. The student app's server verifies credentials with the shared key:
 
@@ -188,6 +239,77 @@ Start with a few courses, then expand to all cohorts. Create enough available te
 
 ## Timetable validation
 
+### Economics departmental source review
+
+The **Economics source review** workspace uses the two supplied 2026 Term I PDF drafts.
+[The source transcription](./lib/economicsSource.ts) records Draft 2's 34 course titles, year groups,
+lecturer labels, desired streams and allocated slot totals (pages 2-4). Draft 5 page 1 takes precedence
+for teaching-grid evidence. No PDFs or personal local file paths are deployed.
+
+1. An administrator previews the evidence and imports the source course metadata. This transaction
+   creates `UNZA-HSS-ECON` if missing, creates only missing courses, preserves matching existing courses,
+   and aborts on title/department conflicts. It is repeatable and audited; other departments are untouched.
+2. New source courses remain inactive catalogue entries. Configure approved credits, Semester 1,
+   expected enrolment, session duration and sessions per stream in **Courses**, then enter real student rosters.
+   Source stream requests and total hourly slots are not divided into guessed weekly requirements.
+3. Review each Draft 5 cell, match its venue to a verified campus room, and record the departmental
+   decision. Explicitly correct ambiguous codes/cross-listings using an approved course. For named
+   streams, choose enrolled students; otherwise the full active roster is assigned. Save only as a
+   draft through the existing allocation validator. Capacity, lecturer/student/room conflicts and
+   approved course session length remain authoritative.
+4. The PDF heading says **2025/2026** despite the 2026 filenames. Source-review drafts use that
+   academic year and local **Semester 1** label for Term I. Select that cycle in the teaching workspace.
+   Nothing is automatically published; the complete course/stream schedule must pass publication checks.
+
+Entries including `ECN311`, `ECN4153`, `BB2311`, `BB2421`, `ECN4411/BB4414`, bare venues and codes
+absent from the Draft 2 roster are flagged, not silently repaired. Consecutive hourly cells are
+preserved as source evidence, not automatically merged into a class. No room capacities/coordinates,
+credits, student identities or assessment dates are invented.
+
+### Dated exams, tests and quizzes
+
+The **Exams, tests & quizzes** workspace supports paginated, cycle/department/date-filtered allocations,
+draft creation, editing/rescheduling, publication and cancellation. It is separate from weekly teaching.
+All date-only values and times use **Africa/Lusaka (UTC+02:00)**.
+
+- Choose an active configured course, a verified available teaching space, a real date/time and at
+  least one active staff invigilator. Assign the whole active course roster or an explicit subset
+  for split-room sittings. Room capacity must be a positive integer and accommodate every assigned student.
+- Draft and published assessments reserve rooms, students and invigilators across all planning terms.
+  Adjacent sessions are permitted; overlapping shared resources are rejected. Published teaching
+  and confirmed bookings also block assessment creation/publication.
+- Teaching creation/publication and student booking requests/confirmation check assessment reservations
+  in return. These mutations share the academic configuration lock. They never silently cancel assessments.
+- Changes are audited transactionally. PATCH requests require `expectedVersion`; stale edits return
+  409. Publication rechecks current capacity, account eligibility, rosters and conflicts. Cancellation
+  remains available when dependent records become unavailable. Course/department/room/account changes
+  and roster changes are guarded while affected assessments remain active.
+- Editing retains the saved student roster. To replace a roster, cancel the old allocation and create
+  a reviewed replacement. Student integration endpoints add published `assessments` and `timeZone`
+  without exposing other students' IDs or invigilator accounts.
+
+`GET/POST/PATCH /api/admin/assessments` is staff-authenticated. GET accepts `academicYear`, `semester`,
+`department`, `date`, one-based `page` and `limit` (max 100). POST accepts `academicYear`, `semester`,
+`department`, `course`, `room`, `title`, `assessmentType` (`exam|test|quiz`), `date`, `startTime`, `endTime`,
+`invigilatorIds`, and optional `studentIds`. POST always creates a draft. PATCH accepts `id`,
+`expectedVersion`, required `status` (`draft|published|cancelled`) and editable POST fields.
+The staff name picker is `/api/admin/assessments/invigilators`; it is paginated and does not grant
+access to the administrator-only staff account register.
+
+**Production limitations:** approved term dates now bound dated teaching conflicts; legacy terms
+without approved calendars retain conservative weekly recurrence. Calendar dates and lecturer-account
+identity links must be verified before using the system to certify term-specific operations.
+Lecturer-to-invigilator teaching
+checks match normalized stored names; PDF lecturer labels are not verified account IDs. Invigilator-to-
+invigilator checks use account IDs. This feature does not implement grading, marks, weighting, resits,
+seating plans, accessibility arrangements or examination approval policy. Obtain those policies rather
+than assuming the teaching drafts establish them. Complete the production release gates above; this
+implementation alone is not a university-wide production-readiness certification.
+
+Run `npm run test:academics` for mocked API/service regression tests covering resource conflicts,
+cross-term assessment collisions, capacity, publication revalidation, stale updates and audits.
+These tests do not replace replica-set transaction/concurrency testing or authenticated staging browser tests.
+
 Run `npm test` for the scheduler and publication-validation regression tests, `npm run lint` for ESLint, and `npx tsc --noEmit` for TypeScript checks. The test command uses Node's built-in TypeScript stripping and requires Node.js 22.6 or newer.
 
 ## Getting Started
@@ -195,29 +317,18 @@ Run `npm test` for the scheduler and publication-validation regression tests, `n
 First, run the development server:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm run dev -- --port=3001
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [Central Admin](http://localhost:3001/admin). The separate
+[student application](http://localhost:3000) remains on port 3000. Its server must use
+`ADMIN_APP_URL=http://localhost:3001` and the matching integration key for local development.
 
-## Campus commerce and DPO
+## Academic administration boundary
 
-Authenticated students can use `/commerce` to purchase campus services. Checkout creates a pending order, requests a hosted DPO payment token, and redirects the student to DPO. Configure these server-side variables before enabling live checkout:
-
-```env
-DPO_COMPANY_TOKEN=your-company-token
-DPO_CURRENCY=ZMW
-# Optional: use the DPO sandbox/API endpoint supplied for your account
-DPO_API_URL=https://secure.3gdirectpay.com/API/v6/
-```
-
-Configure DPO to POST payment notifications to `/api/commerce/callback`. The callback marks the matching order as `paid` only when DPO returns result `000`; no card data is stored by this application.
+Unused commerce/DPO helpers and payment metrics have been removed from this central administration
+repository. No historical commerce collection was deleted and no commerce functionality in the
+separate student application was changed. Payment processing is not part of this academic console.
 
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 

@@ -1,13 +1,15 @@
 import { NextResponse } from "next/server";
 import mongoose from "mongoose";
 
-import { requireAdminRole } from "@/lib/adminAuth";
+import { requireAdminRole, departmentDenied, departmentScope } from "@/lib/adminAuth";
 import { connectToDatabase } from "@/lib/database";
 import Course from "@/lib/database/models/Course";
 import Room from "@/lib/database/models/Room";
 import Department from "@/lib/database/models/Department";
 import { DEFAULT_VENUE_RADIUS_M, TEACHING_SPACES, distanceMeters } from "@/lib/timetableGenerator";
 import TimetableAllocation from "@/lib/database/models/TimetableAllocation";
+import AssessmentAllocation from "@/lib/database/models/AssessmentAllocation";
+import { auditedMutation } from "@/lib/audit";
 import { acquireTimetableConfigurationLock, releaseTimetableLock, renewTimetableLock } from "@/lib/timetableLock";
 
 const VENUE_FIELDS = "code name building capacity latitude longitude";
@@ -19,11 +21,11 @@ function boundedInteger(value: unknown, fallback: number, min: number, max: numb
 }
 
 export async function GET() {
-  const access = await requireAdminRole();
+  const access = await requireAdminRole({ departmental: true });
   if (access.response) return access.response;
   try {
     await connectToDatabase();
-    const courses = (await Course.find({ active: true }).populate("department", "code name faculty").populate("preferredVenues", VENUE_FIELDS).sort({ code: 1 }).lean()).map((course) => ({
+    const courses = (await Course.find({ active: true, ...departmentScope(access.session.user) }).populate("department", "code name faculty").populate("preferredVenues", VENUE_FIELDS).sort({ code: 1 }).lean()).map((course) => ({
       ...course,
       preferredSpaceTypes: course.preferredSpaceTypes?.length ? course.preferredSpaceTypes : TEACHING_SPACES,
     }));
@@ -34,7 +36,7 @@ export async function GET() {
 }
 
 export async function POST(request: Request) {
-  const access = await requireAdminRole();
+  let access = await requireAdminRole({ departmental: true });
   if (access.response) return access.response;
   let lock: { key: string; token: string } | null = null;
   try {
@@ -43,6 +45,8 @@ export async function POST(request: Request) {
     const code = typeof body.code === "string" ? body.code.trim().toUpperCase() : "";
     const title = typeof body.title === "string" ? body.title.trim() : "";
     const department = typeof body.department === "string" ? body.department : "";
+    const denied = departmentDenied(access.session.user, department);
+    if (denied) return denied;
     const level = typeof body.level === "string" ? body.level.trim() : "";
     const semester = typeof body.semester === "string" ? body.semester.trim() : "";
     const expectedEnrollment = Number(body.expectedEnrollment);
@@ -60,6 +64,10 @@ export async function POST(request: Request) {
     await connectToDatabase();
     lock = await acquireTimetableConfigurationLock();
     if (!lock) return NextResponse.json({ error: "A timetable update is in progress. Retry after it finishes." }, { status: 409 });
+    access = await requireAdminRole({ departmental: true });
+    if (access.response) return access.response;
+    const lockedDenied = departmentDenied(access.session.user, department);
+    if (lockedDenied) return lockedDenied;
     await renewTimetableLock(lock);
     if (!mongoose.isValidObjectId(department) || !await Department.exists({ _id: department, active: true })) {
       return NextResponse.json({ error: "An active department is required." }, { status: 400 });
@@ -69,7 +77,11 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "Keep the verified course title and department when configuring a catalogue course." }, { status: 409 });
     }
     const values = { code, title, department, level, semester, expectedEnrollment, credits, sessionsPerWeek, sessionMinutes, preferredSpaceTypes, lecturer: typeof body.lecturer === "string" ? body.lecturer.trim() : "", active: true, catalogueOnly: false };
-    const course = catalogue ? await Course.findByIdAndUpdate(catalogue._id, { $set: values }, { new: true, runValidators: true }) : await Course.create(values);
+    const course = await auditedMutation(access.session.user.id, catalogue ? "course.configure" : "course.create", code, {
+      sourceVersion: catalogue?.teachingSource?.version || "", semester,
+    }, async (session) => catalogue
+      ? Course.findByIdAndUpdate(catalogue._id, { $set: values }, { new: true, runValidators: true, session })
+      : (await Course.create([values], { session }))[0]);
     return NextResponse.json({ course }, { status: 201 });
   } catch (error) {
     return NextResponse.json({ error: error instanceof Error ? error.message : "Unable to create course." }, { status: 500 });
@@ -79,7 +91,7 @@ export async function POST(request: Request) {
 }
 
 export async function PATCH(request: Request) {
-  const access = await requireAdminRole();
+  let access = await requireAdminRole({ departmental: true });
   if (access.response) return access.response;
   let lock: { key: string; token: string } | null = null;
   try {
@@ -93,10 +105,17 @@ export async function PATCH(request: Request) {
     await connectToDatabase();
     lock = await acquireTimetableConfigurationLock();
     if (!lock) return NextResponse.json({ error: "A timetable update is in progress. Retry after it finishes." }, { status: 409 });
+    access = await requireAdminRole({ departmental: true });
+    if (access.response) return access.response;
     const course = await Course.findById(body.id);
     if (!course) return NextResponse.json({ error: "Course not found." }, { status: 404 });
+    const denied = departmentDenied(access.session.user, String(course.department));
+    if (denied) return denied;
     if (await TimetableAllocation.exists({ course: course._id, status: { $ne: "cancelled" } })) {
       return NextResponse.json({ error: "Cancel this course's existing timetable allocations before changing its scheduling settings." }, { status: 409 });
+    }
+    if (await AssessmentAllocation.exists({ course: course._id, status: { $ne: "cancelled" } })) {
+      return NextResponse.json({ error: "Cancel this course's assessments before changing its scheduling settings." }, { status: 409 });
     }
 
     if (body.preferredVenues !== undefined) {

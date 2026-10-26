@@ -63,3 +63,13 @@ test("identifies room and personal booking conflicts for cancellation on timetab
     { roomId: "room-b", dayOfWeek: "Monday", startTime: "09:30", endTime: "10:30", studentIds: ["student-a"] },
   ]).map((booking) => booking.id), ["booking-1"]);
 });
+
+test("teaching publication cancels bookings inside its dates only, including inclusive boundaries", () => {
+  const booking = (id: string, date: string) => ({
+    id, roomId: "room", userId: "student", startTime: new Date(`${date}T09:00:00+02:00`), endTime: new Date(`${date}T10:00:00+02:00`),
+  });
+  const bookings = [booking("before", "2026-10-19"), booking("start", "2026-10-26"), booking("end", "2026-11-02"), booking("after", "2026-11-09")];
+  assert.deepEqual(findTimetableConflictingBookings(bookings, [{
+    roomId: "room", dayOfWeek: "Monday", startTime: "09:00", endTime: "10:00", teachingStartDate: "2026-10-26", teachingEndDate: "2026-11-02",
+  }]).map((row) => row.id), ["start", "end"]);
+});

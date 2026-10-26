@@ -5,15 +5,16 @@ import { requireAdminRole } from "@/lib/adminAuth";
 import { connectToDatabase } from "@/lib/database";
 import Department from "@/lib/database/models/Department";
 import TimetableAllocation from "@/lib/database/models/TimetableAllocation";
+import AssessmentAllocation from "@/lib/database/models/AssessmentAllocation";
 import { acquireTimetableConfigurationLock, releaseTimetableLock, renewTimetableLock } from "@/lib/timetableLock";
 import { auditedMutation } from "@/lib/audit";
 
 export async function GET() {
-  const access = await requireAdminRole();
+  const access = await requireAdminRole({ departmental: true });
   if (access.response) return access.response;
   try {
     await connectToDatabase();
-    const departments = await Department.find().sort({ active: -1, faculty: 1, name: 1 }).lean();
+    const departments = await Department.find(access.session.user.role === "admin" ? {} : { _id: { $in: access.session.user.departmentIds || [] } }).sort({ active: -1, faculty: 1, name: 1 }).lean();
     return NextResponse.json({ departments });
   } catch (error) {
     return NextResponse.json({ error: error instanceof Error ? error.message : "Unable to load departments." }, { status: 500 });
@@ -59,7 +60,10 @@ export async function PATCH(request: Request) {
     await connectToDatabase();
     lock = await acquireTimetableConfigurationLock();
     if (!lock) return NextResponse.json({ error: "A timetable change is in progress. Retry after it finishes." }, { status: 409 });
-    if ((code !== undefined || active === false) && await TimetableAllocation.exists({ department: id, status: { $ne: "cancelled" } })) {
+    if ((code !== undefined || active === false) && (
+      await TimetableAllocation.exists({ department: id, status: { $ne: "cancelled" } }) ||
+      await AssessmentAllocation.exists({ department: id, status: { $ne: "cancelled" } })
+    )) {
       return NextResponse.json({ error: "Cancel this department's allocations before changing its code or deactivating it." }, { status: 409 });
     }
     await renewTimetableLock(lock);
@@ -93,7 +97,8 @@ export async function DELETE(request: Request) {
     await connectToDatabase();
     lock = await acquireTimetableConfigurationLock();
     if (!lock) return NextResponse.json({ error: "A timetable change is in progress. Retry after it finishes." }, { status: 409 });
-    if (await TimetableAllocation.exists({ department: id, status: { $ne: "cancelled" } })) {
+    if (await TimetableAllocation.exists({ department: id, status: { $ne: "cancelled" } }) ||
+        await AssessmentAllocation.exists({ department: id, status: { $ne: "cancelled" } })) {
       return NextResponse.json({ error: "Cancel this department's allocations before deactivating it." }, { status: 409 });
     }
     await renewTimetableLock(lock);

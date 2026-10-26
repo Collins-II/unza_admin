@@ -7,6 +7,7 @@ import Course from "@/lib/database/models/Course";
 import Booking from "@/lib/database/models/Booking";
 import Room from "@/lib/database/models/Room";
 import TimetableAllocation from "@/lib/database/models/TimetableAllocation";
+import AssessmentAllocation from "@/lib/database/models/AssessmentAllocation";
 import { acquireTimetableConfigurationLock, releaseTimetableLock, renewTimetableLock } from "@/lib/timetableLock";
 
 const spaceTypes = ["lecture_room", "laboratory", "seminar_room", "office", "library", "clinic", "cafeteria", "residence", "administrative", "other"] as const;
@@ -95,6 +96,9 @@ export async function PATCH(request: Request) {
     if (!current) return NextResponse.json({ error: "Room not found." }, { status: 404 });
     const changesSchedulingData = hasLatitude || (hasSpaceType && body.spaceType !== (current.spaceType || "lecture_room")) ||
       (typeof body.isAvailable === "boolean" && body.isAvailable !== current.isAvailable);
+    if (changesSchedulingData && await AssessmentAllocation.exists({ room: current._id, status: { $ne: "cancelled" } })) {
+      return NextResponse.json({ error: "Cancel this room's assessments before changing its availability, location or space type." }, { status: 409 });
+    }
     if (changesSchedulingData && await TimetableAllocation.exists({ room: current._id, status: { $ne: "cancelled" } })) {
       return NextResponse.json({ error: "Cancel existing allocations in this room before changing its availability, location, or teaching-space type." }, { status: 409 });
     }

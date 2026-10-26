@@ -19,6 +19,15 @@ export interface ICourse extends Document {
   catalogueOnly?: boolean;
   sourceUrl?: string;
   verifiedAt?: string;
+  teachingSource?: {
+    document: string;
+    page: number;
+    version: string;
+    academicYear: string;
+    term: string;
+    desiredStreams?: number;
+    allocatedSlots?: number;
+  };
 }
 
 const courseSchema = new Schema<ICourse>(
@@ -45,6 +54,18 @@ const courseSchema = new Schema<ICourse>(
     catalogueOnly: { type: Boolean, default: false, index: true },
     sourceUrl: { type: String, trim: true },
     verifiedAt: { type: String, trim: true },
+    teachingSource: {
+      type: new Schema({
+        document: { type: String, required: true },
+        page: { type: Number, required: true },
+        version: { type: String, required: true },
+        academicYear: { type: String, required: true },
+        term: { type: String, required: true },
+        desiredStreams: { type: Number, min: 1 },
+        allocatedSlots: { type: Number, min: 1 },
+      }, { _id: false }),
+      default: undefined,
+    },
   },
   { timestamps: true }
 );

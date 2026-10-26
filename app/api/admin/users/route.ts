@@ -5,6 +5,7 @@ import mongoose from "mongoose";
 import { requireAdminRole, requireSystemAdmin } from "@/lib/adminAuth";
 import { connectToDatabase } from "@/lib/database";
 import TimetableAllocation from "@/lib/database/models/TimetableAllocation";
+import AssessmentAllocation from "@/lib/database/models/AssessmentAllocation";
 import User from "@/lib/database/models/User";
 import { acquireTimetableConfigurationLock, releaseTimetableLock, renewTimetableLock } from "@/lib/timetableLock";
 import { removesLastAdministrator } from "@/lib/accountPolicy";
@@ -79,6 +80,10 @@ export async function PATCH(request: Request) {
     if (!lock) return NextResponse.json({ error: "A timetable update is in progress. Retry after it finishes." }, { status: 409 });
     const current = await User.findById(id).select("role status enrolledCourses").lean();
     if (!current) return NextResponse.json({ error: "User not found." }, { status: 404 });
+    if ((status !== undefined && status !== "active" || current.role === "student" && role !== undefined) &&
+        await AssessmentAllocation.exists({ status: { $ne: "cancelled" }, $or: [{ studentIds: current._id }, { invigilatorIds: current._id }] })) {
+      return NextResponse.json({ error: "Cancel or reassign this account's assessments before changing its eligibility." }, { status: 409 });
+    }
     const activeAdministrators = await User.countDocuments({ role: "admin", status: "active" });
     if (removesLastAdministrator(current, { role, status }, activeAdministrators)) {
       return NextResponse.json({ error: "Create another active administrator before deactivating or demoting the last administrator." }, { status: 409 });

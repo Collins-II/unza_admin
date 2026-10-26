@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import mongoose from "mongoose";
-import { requireAdminRole, requireSystemAdmin } from "@/lib/adminAuth";
+import { requireAdminRole, requireSystemAdmin, departmentDenied, studentDepartmentScope } from "@/lib/adminAuth";
+import Course from "@/lib/database/models/Course";
 import { connectToDatabase } from "@/lib/database";
 import { cellValue, csvCell, DataQueryError, escapeSearch, MAX_EXPORT_ROWS, normalizeStudentRegisterRecord, parseDataQuery } from "@/lib/adminData";
 
@@ -8,9 +9,9 @@ const headers = { "Cache-Control": "private, no-store" };
 type Stage = Record<string, unknown>;
 const projections = {
   students: "name studentId email department program year phone status mustChangePassword enrolledCourses createdAt",
-  accounts: "name studentId email department role status createdAt",
+  accounts: "name studentId email department departmentIds __v role status createdAt",
   departments: "code name faculty headOfDepartment active sourceUrl verifiedAt",
-  courses: "code title department level semester credits expectedEnrollment lecturer sessionsPerWeek sessionMinutes preferredVenues preferredSpaceTypes active catalogueOnly sourceUrl verifiedAt",
+  courses: "code title department level semester credits expectedEnrollment lecturer sessionsPerWeek sessionMinutes preferredVenues preferredSpaceTypes active catalogueOnly sourceUrl verifiedAt teachingSource",
   rooms: "code name building capacity latitude longitude spaceType isAvailable",
   allocations: "academicYear semester department course room cohort lecturer dayOfWeek startTime endTime status stream streamSize streamCount notes",
   announcements: "title message audience priority createdAt",
@@ -18,13 +19,18 @@ const projections = {
 
 export async function GET(request: Request) {
   const params = new URL(request.url).searchParams;
-  const access = params.get("resource") === "accounts" ? await requireSystemAdmin() : await requireAdminRole();
+  const access = params.get("resource") === "accounts" ? await requireSystemAdmin() : await requireAdminRole({ departmental: true });
   if (access.response) return access.response;
   try {
     const query = parseDataQuery(params);
     const { resource, register } = query;
     const match: Record<string, unknown> = {};
     if (resource === "students") match.role = "student";
+    if (resource === "students" && params.get("course")) {
+      const course = params.get("course")!;
+      if (!mongoose.isValidObjectId(course)) throw new DataQueryError("Invalid student course filter.");
+      match.enrolledCourses = new mongoose.Types.ObjectId(course);
+    }
     if (resource === "accounts") match.role = { $in: ["staff", "admin"] };
     if (query.id) match._id = new mongoose.Types.ObjectId(query.id);
     if (query.ids.length) match._id = { $in: query.ids.map((id) => new mongoose.Types.ObjectId(id)) };
@@ -46,13 +52,31 @@ export async function GET(request: Request) {
     await connectToDatabase();
     const db = mongoose.connection.db;
     if (!db) throw new Error("Database connection is unavailable.");
+    if (access.session.user.role !== "admin") {
+      const scopeIds = (access.session.user.departmentIds || []).map((id: string) => new mongoose.Types.ObjectId(id));
+      const scoped: Record<string, unknown> = resource === "departments" ? { _id: { $in: scopeIds } }
+        : ["courses", "allocations"].includes(resource) ? { department: { $in: scopeIds } } : {};
+      if (resource === "students") {
+        const courseId = params.get("course");
+        if (courseId) {
+          if (!mongoose.isValidObjectId(courseId)) throw new DataQueryError("Invalid course.");
+          const course = await Course.findById(courseId).select("department").lean();
+          if (!course) return NextResponse.json({ error: "Course not found." }, { status: 404 });
+          const denied = departmentDenied(access.session.user, String(course.department));
+          if (denied) return denied;
+        }
+        Object.assign(scoped, await studentDepartmentScope(access.session.user));
+      }
+      if (resource === "announcements") return NextResponse.json({ error: "Announcement management requires administrator access." }, { status: 403 });
+      match.$and = [...(Array.isArray(match.$and) ? match.$and : []), scoped];
+    }
     if (resource === "rooms" && params.get("teaching") === "1") match.spaceType = { $in: ["lecture_room", "laboratory", "seminar_room"] };
     const courseId = params.get("courseId");
     if (resource === "rooms" && courseId) {
       if (!mongoose.isValidObjectId(courseId)) throw new DataQueryError("Invalid course.");
       const course = await db.collection("courses").findOne({ _id: new mongoose.Types.ObjectId(courseId), active: true }, { projection: { preferredVenues: 1, preferredSpaceTypes: 1 } });
       if (!course) throw new DataQueryError("Select an active course.");
-      if (Array.isArray(course.preferredVenues) && course.preferredVenues.length) match.$and = [{ _id: { $in: course.preferredVenues } }];
+      if (Array.isArray(course.preferredVenues) && course.preferredVenues.length) match.$and = [...(Array.isArray(match.$and) ? match.$and : []), { _id: { $in: course.preferredVenues } }];
       if (Array.isArray(course.preferredSpaceTypes) && course.preferredSpaceTypes.length) match.spaceType = { $in: course.preferredSpaceTypes.filter((type) => ["lecture_room", "laboratory", "seminar_room"].includes(type)) };
     }
     const searchFields = [...register.search];

@@ -2,10 +2,11 @@ import { NextResponse } from "next/server";
 import bcrypt from "bcryptjs";
 import mongoose from "mongoose";
 
-import { requireAdminRole } from "@/lib/adminAuth";
+import { requireAdminRole, studentDepartmentScope } from "@/lib/adminAuth";
 import { connectToDatabase } from "@/lib/database";
 import Counter from "@/lib/database/models/Counter";
 import TimetableAllocation from "@/lib/database/models/TimetableAllocation";
+import AssessmentAllocation from "@/lib/database/models/AssessmentAllocation";
 import User from "@/lib/database/models/User";
 import { formatStudentId, generateTemporaryPassword, MAX_BULK_STUDENTS, normalizeStudentInput, parseStudentCsv, type StudentInput } from "@/lib/studentRegistration";
 import { acquireTimetableConfigurationLock, releaseTimetableLock, renewTimetableLock } from "@/lib/timetableLock";
@@ -54,7 +55,7 @@ async function registerStudent(input: StudentInput, registeredBy: string) {
 }
 
 export async function GET(request: Request) {
-  const access = await requireAdminRole();
+  const access = await requireAdminRole({ departmental: true });
   if (access.response) return access.response;
   try {
     const params = new URL(request.url).searchParams;
@@ -70,6 +71,7 @@ export async function GET(request: Request) {
     await connectToDatabase();
     const pattern = search ? new RegExp(escapeRegExp(search), "i") : null;
     const filter = {
+      ...await studentDepartmentScope(access.session.user),
       role: "student",
       status: statusParam === "all" ? { $in: ["active", "inactive", "pending"] } : statusParam || "active",
       ...(courseId ? { enrolledCourses: courseId } : {}),
@@ -174,8 +176,9 @@ export async function PATCH(request: Request) {
       if (status === "inactive") {
         lock = await acquireTimetableConfigurationLock();
         if (!lock) return NextResponse.json({ error: "A timetable update is in progress. Retry after it finishes." }, { status: 409 });
-        if (await TimetableAllocation.exists({ streamStudentIds: student._id, status: "published" })) {
-          return NextResponse.json({ error: "This student is part of a published timetable. Unenrol them from their courses and republish before deactivating the account." }, { status: 409 });
+        if (await TimetableAllocation.exists({ streamStudentIds: student._id, status: "published" }) ||
+            await AssessmentAllocation.exists({ studentIds: student._id, status: { $ne: "cancelled" } })) {
+          return NextResponse.json({ error: "This student has a published timetable or active assessment. Resolve those allocations before deactivating the account." }, { status: 409 });
         }
         await renewTimetableLock(lock);
       }

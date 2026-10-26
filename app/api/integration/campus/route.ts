@@ -6,7 +6,9 @@ import Course from "@/lib/database/models/Course";
 import Department from "@/lib/database/models/Department";
 import Room from "@/lib/database/models/Room";
 import TimetableAllocation from "@/lib/database/models/TimetableAllocation";
+import AssessmentAllocation from "@/lib/database/models/AssessmentAllocation";
 import { requireStudentIntegrationKey } from "@/lib/studentIntegrationAuth";
+import AcademicTerm from "@/lib/database/models/AcademicTerm";
 
 export async function GET(request: Request) {
   const denied = requireStudentIntegrationKey(request);
@@ -18,7 +20,7 @@ export async function GET(request: Request) {
     const validTypes = ["lecture_room", "laboratory", "seminar_room", "office", "library", "clinic", "cafeteria", "residence", "administrative", "other"];
     const typeFilter = requestedType && validTypes.includes(requestedType) ? requestedType : null;
     await connectToDatabase();
-    const [rawRooms, departments, allocations, announcements, courses] = await Promise.all([
+    const [rawRooms, departments, allocations, announcements, courses, assessments, academicTerms] = await Promise.all([
       Room.find({
         isAvailable: true,
         ...(typeFilter ? { spaceType: typeFilter } : {}),
@@ -29,9 +31,22 @@ export async function GET(request: Request) {
         ...(params.get("academicYear") ? { academicYear: params.get("academicYear") } : {}),
         ...(params.get("semester") ? { semester: params.get("semester") } : {}),
         ...(params.get("department") ? { department: params.get("department") } : {}),
-      }).select("-streamStudentIds").populate("department", "code name").populate("course", "code title level").populate("room", "name code building capacity spaceType latitude longitude location").lean(),
+      }).select("-streamStudentIds -createdBy").populate("department", "code name").populate("course", "code title level").populate("room", "name code building capacity spaceType latitude longitude location").lean(),
       Announcement.find({ audience: { $in: ["all", "students"] } }).select("title message priority createdAt").sort({ createdAt: -1 }).limit(30).lean(),
       Course.find({ active: true, ...(params.get("department") ? { department: params.get("department") } : {}) }).select("code title department level credits semester lecturer").sort({ code: 1 }).lean(),
+      AssessmentAllocation.find({
+        status: "published",
+        ...(params.get("academicYear") ? { academicYear: params.get("academicYear") } : {}),
+        ...(params.get("semester") ? { semester: params.get("semester") } : {}),
+        ...(params.get("department") ? { department: params.get("department") } : {}),
+      }).select("academicYear semester department course room date startTime endTime title assessmentType status")
+        .populate("department", "code name").populate("course", "code title")
+        .populate("room", "name code building latitude longitude").sort({ date: 1, startTime: 1, _id: 1 }).lean(),
+      AcademicTerm.find({
+        status: "approved",
+        ...(params.get("academicYear") ? { academicYear: params.get("academicYear") } : {}),
+        ...(params.get("semester") ? { semester: params.get("semester") } : {}),
+      }).select("academicYear semester status teachingStartDate teachingEndDate assessmentStartDate assessmentEndDate").sort({ teachingStartDate: 1 }).lean(),
     ]);
     const rooms = rawRooms;
 
@@ -43,6 +58,9 @@ export async function GET(request: Request) {
       timetable: allocations,
       announcements,
       courses,
+      assessments,
+      academicTerms,
+      timeZone: "Africa/Lusaka",
     }, {
       headers: { "Cache-Control": "private, max-age=60" },
     });

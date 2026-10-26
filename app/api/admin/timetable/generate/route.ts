@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import mongoose from "mongoose";
 
-import { requireAdminRole } from "@/lib/adminAuth";
+import { requireAdminRole, departmentDenied, departmentScope } from "@/lib/adminAuth";
 import { connectToDatabase } from "@/lib/database";
 import Course from "@/lib/database/models/Course";
 import Room from "@/lib/database/models/Room";
@@ -12,6 +12,7 @@ import { DEFAULT_VENUE_RADIUS_M, TEACHING_SPACES, generateTimetable, type FixedA
 import { WEEKDAYS, isTimeRangeValid } from "@/lib/timetable";
 import { acquireTimetableMutationLock, releaseTimetableMutationLock, renewTimetableMutationLock, type TimetableMutationLock } from "@/lib/timetableLock";
 import { validateTimetableForPublishing } from "@/lib/timetableValidation";
+import { teachingAssessmentConflict } from "@/lib/assessmentSchedule";
 import { findTimetableConflictingBookings, type TimetableSlot } from "@/lib/bookingValidation";
 import AuditEvent from "@/lib/database/models/AuditEvent";
 import { recordAudit } from "@/lib/audit";
@@ -34,7 +35,7 @@ type GenerateInput = {
 const idOf = (value: unknown) => String((value as { _id?: unknown })?._id ?? value);
 
 export async function POST(request: Request) {
-  const access = await requireAdminRole();
+  let access = await requireAdminRole({ departmental: true });
   if (access.response) return access.response;
   let lock: TimetableMutationLock | null = null;
   try {
@@ -42,6 +43,11 @@ export async function POST(request: Request) {
     if (!body || typeof body !== "object" || typeof body.academicYear !== "string" || typeof body.semester !== "string" || !body.academicYear.trim() || !body.semester.trim()) return NextResponse.json({ error: "Academic year and semester are required." }, { status: 400 });
     body.academicYear = body.academicYear.trim();
     body.semester = body.semester.trim();
+    if (body.publish) return NextResponse.json({ error: "Save drafts and submit each complete course for independent approval. Direct generation/publication is disabled." }, { status: 409 });
+    if (body.department) {
+      const denied = departmentDenied(access.session.user, body.department);
+      if (denied) return denied;
+    }
     const dayStart = body.dayStart || "08:00";
     const dayEnd = body.dayEnd || "18:00";
     if (typeof dayStart !== "string" || typeof dayEnd !== "string" || !isTimeRangeValid(dayStart, dayEnd)) return NextResponse.json({ error: "Provide a valid teaching day window." }, { status: 400 });
@@ -69,8 +75,15 @@ export async function POST(request: Request) {
     if (!body.dryRun) {
       lock = await acquireTimetableMutationLock(body.academicYear, body.semester);
       if (!lock) return NextResponse.json({ error: "Another timetable change is in progress for this academic year and semester. Please retry shortly." }, { status: 409 });
+      access = await requireAdminRole({ departmental: true });
+      if (access.response) return access.response;
+      if (body.department) {
+        const denied = departmentDenied(access.session.user, body.department);
+        if (denied) return denied;
+      }
     }
     const courseFilter = {
+      ...departmentScope(access.session.user),
       active: true,
       semester: body.semester,
       ...(body.department ? { department: body.department } : {}),
@@ -229,6 +242,7 @@ export async function POST(request: Request) {
     let scheduledRoomIds: string[] = [];
     let scheduledStudentIds: string[] = [];
     if (!body.dryRun && !result.unscheduled.length && (result.sessions.length > 0 || body.publish)) {
+      const actorId = access.session.user.id;
       const departmentByCourse = new Map(courseDocs.map((course) => [idOf(course), idOf(course.department)]));
       const documents = result.sessions.map((session) => ({
         academicYear: body.academicYear,
@@ -242,6 +256,7 @@ export async function POST(request: Request) {
         startTime: session.startTime,
         endTime: session.endTime,
         status: body.publish ? "published" : "draft",
+        createdBy: actorId,
         stream: session.stream,
         streamSize: session.streamSize,
         streamCount: session.streamCount,
@@ -307,6 +322,9 @@ export async function POST(request: Request) {
         if (validationErrors.length) {
           return NextResponse.json({ error: "Publication is blocked until the timetable is complete and conflict-free.", details: validationErrors }, { status: 409 });
         }
+        if (await teachingAssessmentConflict(publishAllocations.filter((allocation) => scopeIds.has(allocation.courseId)))) {
+          return NextResponse.json({ error: "Publication conflicts with a dated assessment for a room, student or known lecturer." }, { status: 409 });
+        }
       }
       const dbSession = await mongoose.startSession();
       try {
@@ -357,7 +375,7 @@ export async function POST(request: Request) {
           } else {
             saved = documents.length;
           }
-          await recordAudit(dbSession, access.session.user.id, body.publish ? "timetable.publish" : "timetable.draft", `${body.academicYear}|${body.semester}`, {
+          await recordAudit(dbSession, actorId, body.publish ? "timetable.publish" : "timetable.draft", `${body.academicYear}|${body.semester}`, {
             courseCount: String(scopeIds.size), saved: String(saved), cancelledBookings: String(cancelledBookings),
           });
         });

@@ -37,6 +37,11 @@ moduleMock("../lib/database/models/Room.ts", { defaultExport: {
   findByIdAndUpdate(id, update, options) { calls.classification = { id, update, options }; return query({ ...room, ...update }); },
 } });
 moduleMock("../lib/database/models/Course.ts", { defaultExport: { exists: async () => preferredVenue } });
+moduleMock("../lib/database/models/AssessmentAllocation.ts", { defaultExport: {
+  exists: async () => false,
+  find: () => query([]),
+} });
+moduleMock("../lib/database/models/AcademicTerm.ts", { defaultExport: { find: () => query([]) } });
 moduleMock("../lib/database/models/User.ts", { defaultExport: {
   findOne(filter) { calls.studentFilter = filter; return query(student); },
 } });

@@ -6,6 +6,8 @@ import TimetableAllocation from "@/lib/database/models/TimetableAllocation";
 import User from "@/lib/database/models/User";
 import { bookingConflictsWithTimetable, getCampusTimeSlot } from "@/lib/bookingValidation";
 import { isBookableLectureRoom, parseTutorialGroup, validateBookingDetails, validateBookingSchedule } from "@/lib/bookingPolicy";
+import { bookingAssessmentConflict } from "@/lib/assessmentSchedule";
+import { teachingOnDate, campusDateString } from "@/lib/termSchedule";
 
 export class BookingPolicyError extends Error {
   constructor(message: string, readonly status = 400) {
@@ -84,7 +86,7 @@ export async function saveStudentBooking(value: unknown, bookingId?: string) {
     TimetableAllocation.find({
       status: "published", dayOfWeek: slot.dayOfWeek,
       startTime: { $lt: slot.endTime }, endTime: { $gt: slot.startTime },
-    }).select("room course dayOfWeek startTime endTime streamStudentIds").lean(),
+    }).select("academicYear semester room course dayOfWeek startTime endTime streamStudentIds").lean(),
     Booking.findOne({
       ...(bookingId ? { _id: { $ne: bookingId } } : {}),
       status: { $in: ["pending", "confirmed"] },
@@ -93,13 +95,17 @@ export async function saveStudentBooking(value: unknown, bookingId?: string) {
     }).select("_id").lean(),
   ]);
   const courses = new Set((student.enrolledCourses || []).map(String));
-  const slots = allocations.map((allocation) => ({
+  const datedAllocations = await teachingOnDate(allocations, campusDateString(startTime));
+  const slots = datedAllocations.map((allocation) => ({
     roomId: String(allocation.room), dayOfWeek: allocation.dayOfWeek, startTime: allocation.startTime, endTime: allocation.endTime,
     studentIds: allocation.streamStudentIds?.length
       ? allocation.streamStudentIds.map(String) : courses.has(String(allocation.course)) ? [String(student._id)] : [],
   }));
   if (conflictingBooking || bookingConflictsWithTimetable(slot, String(room._id), slots, String(student._id))) {
     throw new BookingPolicyError("This lecture room or your timetable is unavailable during the selected time.", 409);
+  }
+  if (await bookingAssessmentConflict(String(room._id), String(student._id), startTime, endTime)) {
+    throw new BookingPolicyError("This lecture room or student is reserved for a dated assessment.", 409);
   }
   const draft = {
     user: student._id, room: room._id, purpose, title: typeof body.title === "string" ? body.title.trim() : "",
